@@ -6,6 +6,7 @@
 package service;
 
 import java.util.List;
+import model.dao.MovieDAO;
 import model.pojo.Movie;
 import model.pojo.Users;
 
@@ -15,7 +16,12 @@ import model.pojo.Users;
  */
 public class MovieService {
     
-    public static List<Movie> allMovie(Users user,List<Movie> mlist){  
+    public static String addMovie(Movie movie){
+        return MovieDAO.addMovie(movie);
+    }
+    
+    public static List<Movie> allMovie(Users user,List<Movie> mlist){
+        if(UsersService.login(user)!=null);
         List<Movie> lst = mlist;
         return lst;
     }

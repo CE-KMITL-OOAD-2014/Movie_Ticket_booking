@@ -6,6 +6,7 @@
 package service;
 
 import java.sql.Date;
+import model.dao.MovieDAO;
 import model.pojo.Movie;
 import model.pojo.Users;
 
@@ -17,6 +18,7 @@ public class AdminService {
 
     public static Movie adminAddMovie(Users user, Movie movie) {
         if (user.isIsadmin()) {
+            MovieDAO.addMovie(movie);
             return movie;
         } else {
             return null;

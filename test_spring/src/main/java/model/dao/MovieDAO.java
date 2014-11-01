@@ -36,11 +36,11 @@ public class MovieDAO {
             session.beginTransaction();
             session.save(movie);
             session.getTransaction().commit();
+            Movie movieadd = (Movie) session.load(Movie.class, movie.getMname());
             session.close();
-            return movie.getMname();
+            return movieadd.getMname();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 

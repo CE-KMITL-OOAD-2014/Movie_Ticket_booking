@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controller;
+
 import service.UsersService;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class UsersContoller {
         user.setPhonenumber(request.getParameter("phonenumber"));
         user.setIsadmin(false);
         try {
-            
+
             String username = UsersDAO.addUser(user);
             mv = new ModelAndView("success");
             mv.addObject("username", username);
@@ -49,23 +50,24 @@ public class UsersContoller {
         return mv;
     }
 
+    @RequestMapping("/updateuser")
+    public ModelAndView updateUser(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("userss");
+
+        Users user = new Users(request.getParameter("username"), request.getParameter("password"),
+                request.getParameter("email"), request.getParameter("phonenumber"), false);
+        String userupdate = UsersService.register(user);
+        mv.addObject("users", userupdate);
+        return mv;
+    }
+    
     @RequestMapping("/alluser")
     public ModelAndView listUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("userss");
         List<Users> lst = UsersDAO.listUser();
         mv.addObject("users", lst);
-        return mv;
-    }
-
-    @RequestMapping("/updateuser")
-    public ModelAndView updateUser(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("userss");
-
-        Users user = new Users("username", "world", "email123", "111-111-1110", false);
-        mv.addObject("users", user);
-        UsersDAO.updateUser(user);
         return mv;
     }
 
@@ -85,5 +87,5 @@ public class UsersContoller {
         ModelAndView mv = new ModelAndView("home");
         return mv;
     }
-    
+
 }

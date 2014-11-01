@@ -31,28 +31,30 @@ public class UsersDAO {
         return lst;
     }
 
-    public static String addUser(Users user) throws Exception{
+    public static String addUser(Users user){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
+            Users useradd = (Users) session.load(Users.class, user.getUsername());
             session.close();
+            return useradd.getUsername();
         } catch (Exception e) {
             throw e;
         }
-        return user.getUsername();
     }
 
-    public static void updateUser(Users user) {
+    public static String updateUser(Users user) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.update(user);
             session.getTransaction().commit();
             session.close();
+            return "User Update!";
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
     
@@ -66,6 +68,20 @@ public class UsersDAO {
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public static Users getMoviebyName(String username) {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.getTransaction();
+            Users user = (Users) session.load(Users.class, username);
+            session.getTransaction().commit();
+            session.close();
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

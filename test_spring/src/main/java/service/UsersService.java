@@ -7,12 +7,29 @@ package service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import model.dao.UsersDAO;
+import model.pojo.Movie;
+import model.pojo.Users;
 
 /**
  *
  * @author TRathC
  */
 public class UsersService {
+    
+    public static String register(Users user) throws Exception{
+        return UsersDAO.addUser(user);
+    }
+    
+    public static String editInformation(Users user){
+        return UsersDAO.updateUser(user);
+    }
+    
+    public static String login(Users user){
+        String session = null;
+        return session;
+    }
     
     public static String hash(String pass) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
