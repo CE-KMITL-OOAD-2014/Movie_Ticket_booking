@@ -29,28 +29,24 @@ public class UsersContoller {
     public ModelAndView addUsers(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        Users user = new Users();
+        Users user = new Users(request.getParameter("username"),request.getParameter("password"),
+                                    request.getParameter("email"), request.getParameter("phonenumber"), 
+                                        false);
         String hash = UsersService.hash(request.getParameter("password"));
-        user.setUsername(request.getParameter("username"));
-        user.setPassword(hash);
-        user.setEmail(request.getParameter("email"));
-        user.setPhonenumber(request.getParameter("phonenumber"));
-        user.setIsadmin(false);
+        String username = UsersService.register(user);
         try {
-
-            String username = UsersDAO.addUser(user);
             mv = new ModelAndView("success");
             mv.addObject("username", username);
             return mv;
         } catch (Exception ex) {
             Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
             mv = new ModelAndView("fail");
-            mv.addObject("msg", "dsadasdsaddsad");
+            mv.addObject("msg", "register fail!");
         }
         return mv;
     }
 
-    @RequestMapping("/updateuser")
+    @RequestMapping("/editinformation")
     public ModelAndView updateUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("userss");

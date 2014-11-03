@@ -28,6 +28,7 @@ public class UsersService {
     
     public static String login(Users user){
         String session = null;
+        int a = user.getUsername().hashCode();
         return session;
     }
     

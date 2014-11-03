@@ -9,10 +9,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
-	<link href="/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet">
-	<script src="/jquery-2.1.1.min.js"></script>
-	<script src="/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+	<link href="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
+	<link href="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet">
+	<script src="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/jquery-2.1.1.min.js"></script>
+	<script src="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
 	<title> </title>
 </head>
 <body>
