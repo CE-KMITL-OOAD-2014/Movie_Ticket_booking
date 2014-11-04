@@ -17,7 +17,7 @@ import model.pojo.Users;
 public class MovieService {
     
     public static String addMovie(Movie movie){
-        return MovieDAO.addMovie(movie);
+        return movie.getMname();
     }
     
     public static List<Movie> allMovie(Users user,List<Movie> mlist){

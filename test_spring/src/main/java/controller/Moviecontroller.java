@@ -8,6 +8,7 @@ package controller;
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.MovieDAO;
 import model.pojo.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,7 @@ public class Moviecontroller {
         try {
             Movie movie = new Movie(request.getParameter("mname"), new Date(20120811) , 
                     request.getParameter("type"), new Date(20120811),request.getParameter("synopsis"), img);
+            MovieDAO.addMovie(movie);
             String mname = MovieService.addMovie(movie);
             mv.addObject("username", mname);
             return mv;

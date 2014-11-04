@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UsersContoller {
 
-    @RequestMapping("/adduser")
+    @RequestMapping("/adduser") 
     public ModelAndView addUsers(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;

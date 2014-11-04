@@ -7,7 +7,6 @@ import java.sql.Date;
 
 import model.pojo.Movie;
 import model.pojo.Users;
-import org.junit.Assert;
 import service.AdminService;
 
 import org.junit.Test;
@@ -22,13 +21,14 @@ public class AddDeletemovieUnitTest {
     @Test
     public void test()
     {
+        byte[] img = {0x0};
         //Create 2 user
         Users admin = new Users("admin", "admin", "admin.email", "000-000-0000", true);
         Users user = new Users("user","user", "user.email", "111-111-1111", false);
         
         //add Movie
-        Movie movie1 = new Movie("MovieA", null, "TypeA", null, "SynopsisA", null);
-        Movie movie2 = new Movie("MovieB", null, "TypeB", null, "SynopsisB", null);
+        Movie movie1 = new Movie("MovieA", new Date(121011), "TypeA", new Date(121011), "SynopsisA", img);
+        Movie movie2 = new Movie("MovieB", new Date(121011), "TypeB", new Date(121011), "SynopsisB", img);
 
         
         Movie movie1adminadd = AdminService.adminAddMovie(admin,movie1);

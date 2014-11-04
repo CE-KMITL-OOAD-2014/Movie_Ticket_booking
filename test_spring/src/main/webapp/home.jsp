@@ -9,10 +9,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
-	<link href="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet">
-	<script src="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/jquery-2.1.1.min.js"></script>
-	<script src="/Users/TRathC/Downloads/Movie_Ticket_booking/test_spring/src/main/webapp/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+	<link href="bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
+	<link href="bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet">
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="bootstrap-3.2.0-dist/js/bootstrap.js"></script>
 	<title> </title>
 </head>
 <body>
@@ -109,7 +109,7 @@
 							  		<div class="form-group">
 							    		<label class="control-label col-sm-2" for="input-password">Password :</label>
 							    		<div class="col-sm-3">
-							    			<input type="password" name="password" class="form-control" id="input-password" placeholder="Password" required autofocus onchange="form.repass.pattern = this.value;">
+                                                                            <input type="password" name="password" class="form-control" id="input-password" placeholder="Password" required autofocus onchange="form.repass.pattern = this.value;"> <!-- -->
 							    		</div>
 							    		<div class="col-sm-9"><p class="help-block col-sm-offset-3">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p></div>
 							  		</div>
@@ -133,7 +133,7 @@
 							    		</div>
 							  		</div>
                                                                         <div class="modal-footer">
-                                                                            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                                                                            <button type="submit" class="btn btn-default" >Submit</button> <!--data-dismiss="modal" -->
                                                                         </div>
 								</form>
 							</div>
@@ -151,6 +151,8 @@
 		</div>
 
 <!--Sign In Modal -->
+              
+
 		<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  	<div class="modal-dialog">
 		   		<div class="modal-content">
@@ -302,6 +304,8 @@
 			</div>
 		</div>
 	</center>
+
+
 
 
 
