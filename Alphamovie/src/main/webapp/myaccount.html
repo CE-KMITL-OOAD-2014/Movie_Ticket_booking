@@ -1,0 +1,330 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="bootstrap/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
+  <link href="bootstrap/bootstrap-3.2.0-dist/css/bootstrap-theme.css" rel="stylesheet">
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="bootstrap/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
+	<title>My Account</title>
+  
+</head>
+<body>
+  <style type="text/css">
+      body{
+        background-attachment: fixed;
+        background-image: url(img/cinemabackground.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      div{
+        word-wrap:break-word; 
+        display:block;
+      }
+      .panel {
+      background:#D3D3D3;}
+      .nav-tabs > li.active > a,
+      .nav-tabs > li.active > a:hover,
+      .nav-tabs > li.active > a:focus {
+          color: #000000;
+          cursor: white;
+          background-color: #D3D3D3;
+          
+          border-bottom-color: transparent;
+          } 
+  </style>
+<div class="wrap">
+<div class="container">
+	<div class="page-header">
+    <img src="img/myacc2.png" class="img-responsive col-sm-offset-2" alt="Responsive image">
+  </div>
+  
+  <div class="panel panel-default col-sm-8 col-sm-offset-2">
+        <h3 class="panel-title">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#profile" role="tab" data-toggle="tab"><b>Profile</b></a></li>
+              <li><a href="#editinfo" role="tab" data-toggle="tab"><b>Edit Profile</b></a></li>
+              <li><a href="#changepass" role="tab" data-toggle="tab"><b>Change Password</b></a></li>
+              <li><a href="#checkbooking" role="tab" data-toggle="tab"><b>Check Booking Status</b></a></li>
+            </ul>
+        </h3>
+      <div class="panel-body">
+        <div class="tab-content">
+
+        <!-- /.Profile form -->
+          <div class="tab-pane fade in active" id="profile">
+          <form class="form-horizontal" role="form">
+            <p>  </p>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="show-username">Username :</label>
+              <div class="col-sm-6">
+                <p> - </p>
+              </div>
+            </div>
+            <!--div class="form-group">
+              <label class="control-label col-sm-2" for="show-name">Name :</label>
+              <div class="col-sm-4">
+                <p> - </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="show-address">Address :</label>
+              <div class="col-sm-4">
+                <p> - </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="show-gender">Gender :</label>
+              <div class="col-sm-4">
+                <p> - </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="show-dob">Date of Birth :</label>
+              <div class="col-sm-4">
+                <p> - </p>
+              </div>
+            </div-->
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="show-email">Email :</label>
+              <div class="col-sm-6">
+                <p> - </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="show-tel">Phone Number :</label>
+              <div class="col-sm-6">
+                <p> - </p>
+              </div>
+            </div>
+          </form>
+          </div>
+
+        <!-- /.Edit-Profile form -->
+          <div class="tab-pane fade" id="editinfo">
+          <form class="form-horizontal" role="form">
+            <p>  </p>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="input-name">Name :</label>
+              <div class="col-sm-6">
+                <input type="name" class="form-control" id="input-name" placeholder="Name">
+              </div>
+            </div>
+          <!--
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="input-address">Address :</label>
+              <div class="col-sm-4">
+                <input type="name" class="form-control" id="input-address" placeholder="Address">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="show-gender">Gender :</label>
+              <div class="col-sm-4">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Male
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Female
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="show-dob">Date of Birth :</label>
+              <div class="col-sm-1">
+                <select class="form-control" for="select-date">
+                < /.Select date form >
+                  <option>D</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                  <option>24</option>
+                  <option>25</option>
+                  <option>26</option>
+                  <option>27</option>
+                  <option>28</option>
+                  <option>29</option>
+                  <option>30</option>
+                  <option>31</option>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" for="select-date">
+                </.Select month form>
+                  <option>M</option>
+                  <option>January</option>
+                  <option>Febuary</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <select class="form-control" for="select-date">
+                < /.Select year form>
+                  <option>Y</option>
+                  <option>2014</option>
+                  <option>2013</option>
+                  <option>2012</option>
+                  <option>2011</option>
+                  <option>2010</option>
+                  <option>2009</option>
+                  <option>2008</option>
+                  <option>2007</option>
+                  <option>2006</option>
+                  <option>2005</option>
+                  <option>2004</option>
+                  <option>2003</option>
+                  <option>2002</option>
+                  <option>2001</option>
+                  <option>2000</option>
+                  <option>1999</option>
+                  <option>1998</option>
+                  <option>1997</option>
+                  <option>1996</option>
+                  <option>1995</option>
+                  <option>1994</option>
+                  <option>1993</option>
+                  <option>1992</option>
+                  <option>1991</option>
+                  <option>1990</option>
+                  <option>1989</option>
+                  <option>1988</option>
+                  <option>1987</option>
+                  <option>1986</option>
+                  <option>1985</option>
+                  <option>1984</option>
+                  <option>1983</option>
+                  <option>1982</option>
+                  <option>1981</option>
+                  <option>1980</option>
+                  <option>1979</option>
+                  <option>1978</option>
+                  <option>1977</option>
+                  <option>1976</option>
+                  <option>1975</option>
+                  <option>1974</option>
+                  <option>1973</option>
+                  <option>1972</option>
+                  <option>1971</option>
+                  <option>1970</option>
+                  <option>1969</option>
+                  <option>1968</option>
+                  <option>1967</option>
+                  <option>1966</option>
+                  <option>1965</option>
+                  <option>1964</option>
+                  <option>1963</option>
+                  <option>1962</option>
+                  <option>1961</option>
+                  <option>1960</option>
+                  <option>1959</option>
+                  <option>1958</option>
+                  <option>1957</option>
+                  <option>1956</option>
+                  <option>1955</option>
+                  <option>1954</option>
+                  <option>1953</option>
+                  <option>1952</option>
+                  <option>1951</option>
+                  <option>1950</option>
+                </select>
+              </div>
+            </div>
+            -->
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="show-email">Email :</label>
+              <div class="col-sm-6">
+                <input type="email" class="form-control" id="input-email" placeholder="Enter email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="show-tel">Phone Number :</label>
+              <div class="col-sm-6">
+                <input type="phonenumber" class="form-control" id="input-tel" placeholder="(xxx)-xxx-xxxx">
+              </div>
+            </div>
+            <p>  </p>
+            <button type="submit" class="btn btn-warning col-sm-2 col-sm-offset-5"><b>Submit</b></button>
+          </form>
+          </div>
+
+        <!-- /.Change-password form -->
+          <div class="tab-pane fade" id="changepass">
+          <form class="form-horizontal" role="form">
+            <p>  </p>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="input-newpassword">New Password:</label>
+              <div class="col-sm-6">
+                <input type="password" class="form-control" id="input-newpassword" placeholder="New Password">
+              </div>
+              <span class="col-sm-8"></span><p class="col-sm-7 col-sm-offset-3 help-block">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="confirm-newpassword">Confirm New Password:</label>
+              <div class="col-sm-6">
+                <input type="password" class="form-control" id="confirm-newpassword" placeholder="Confirm New Password">
+              </div>
+              <p class="col-sm-3 help-block">.</p>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3" for="input-newpassword">Password:</label>
+              <div class="col-sm-6">
+                <input type="password" class="form-control" id="input-password" placeholder="Password">
+              </div>
+            </div>
+            <p>  </p>
+            <button type="submit" class="btn btn-warning col-sm-2 col-sm-offset-5"><b>Submit</b></button>
+          </form>
+          </div>
+
+      
+
+        <!-- /.Check-booking form -->
+          <div class="tab-pane fade" id="checkbooking">
+            <div class="jumbotron">
+              <h1>COMING SOON!!</h1>
+            </div>
+          </div>
+        
+
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+	
+</body>
+</html>
