@@ -16,6 +16,7 @@ import model.dao.UsersDAO;
 import model.pojo.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -25,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UsersContoller {
 
-    @RequestMapping("/adduser") 
+    @RequestMapping(value ="/myaccount", method = RequestMethod.POST) 
     public ModelAndView addUsers(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;
@@ -33,10 +34,10 @@ public class UsersContoller {
                                     request.getParameter("email"), request.getParameter("phonenumber"), 
                                         false);
         String hash = UsersService.hash(request.getParameter("password"));
-        String username = UsersService.register(user);
+        Users usera = UsersService.register(user);
         try {
-            mv = new ModelAndView("success");
-            mv.addObject("username", username);
+            mv = new ModelAndView("myaccount");
+            mv.addObject("user", usera);
             return mv;
         } catch (Exception ex) {
             Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
@@ -46,15 +47,15 @@ public class UsersContoller {
         return mv;
     }
 
-    @RequestMapping("/editinformation")
+    @RequestMapping(value = "/updateinformation", method = RequestMethod.POST)
     public ModelAndView updateUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("userss");
+        ModelAndView mv = new ModelAndView("myaccout");
 
         Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
-        String userupdate = UsersService.register(user);
-        mv.addObject("users", userupdate);
+        Users userupdate = UsersService.register(user);
+        mv.addObject("user", userupdate);
         return mv;
     }
     
@@ -77,11 +78,10 @@ public class UsersContoller {
         return mv;
     }
 
-    @RequestMapping("/home")
-    public ModelAndView homepage(HttpServletRequest request,
+    @RequestMapping("/index")
+    public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("home");
+        ModelAndView mv = new ModelAndView("index");
         return mv;
     }
-
 }

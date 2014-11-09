@@ -30,10 +30,10 @@ public class MovieListUnitTest {
         Users user1 = new Users("user1","user1", "user1.email", "111-111-1111", false);
         Users user2 = new Users("user2","user2", "user2.email", "111-111-1111", false);
         
-        Movie movie1 = new Movie("MovieA", new Date(121011), "TypeA", new Date(121011), "SynopsisA", img);
-        Movie movie2 = new Movie("MovieB", new Date(121011), "TypeB", new Date(121011), "SynopsisB", img);
-        Movie movie3 = new Movie("MovieC", new Date(121011), "TypeC", new Date(121011), "SynopsisC", img);
-        Movie movie4 = new Movie("MovieD", new Date(121011), "TypeD", new Date(121011), "SynopsisD", img);
+        Movie movie1 = new Movie("MovieA", "0-0-0000", "TypeA", 1, "SynopsisA", img);
+        Movie movie2 = new Movie("MovieB", "0-0-0000", "TypeB", 2, "SynopsisB", img);
+        Movie movie3 = new Movie("MovieC", "0-0-0000", "TypeC", 3, "SynopsisC", img);
+        Movie movie4 = new Movie("MovieD", "0-0-0000", "TypeD", 4, "SynopsisD", img);
         
         assertEquals(true,mlist.add(AdminService.adminAddMovie(admin, movie1)));
         assertEquals(true,mlist.add(AdminService.adminAddMovie(admin, movie2)));

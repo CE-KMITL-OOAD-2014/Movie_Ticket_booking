@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Oct 26, 2014 4:31:16 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.pojo.Movie" table="Movie" schema="dbo" catalog="Alpha" optimistic-lock="version">
+    <class name="model.pojo.Movie" table="Movie" schema="dbo" catalog="Alpha">
         <id name="mname" type="string">
             <column name="mname" length="50" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
-        <property name="releasedate" type="date">
+        <property name="releasedate" type="string">
             <column name="releasedate" length="10" not-null="true" />
         </property>
         <property name="type" type="string">
             <column name="type" length="50" not-null="true" />
         </property>
-        <property name="duration" type="time">
-            <column name="duration" length="16" not-null="true" />
+        <property name="duration" type="int">
+            <column name="duration" not-null="true" />
         </property>
         <property name="synopsis" type="string">
             <column name="synopsis" length="500" not-null="true" />

@@ -8,5 +8,7 @@
     <property name="hibernate.connection.password">OOADag1710</property>
     <mapping resource="model/pojo/Movie.hbm.xml"/>
     <mapping resource="model/pojo/Users.hbm.xml"/>
+    <mapping resource="model/pojo/Cinema.hbm.xml"/>
+    <mapping resource="model/pojo/Showtime.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

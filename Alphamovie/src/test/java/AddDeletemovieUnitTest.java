@@ -27,8 +27,8 @@ public class AddDeletemovieUnitTest {
         Users user = new Users("user","user", "user.email", "111-111-1111", false);
         
         //add Movie
-        Movie movie1 = new Movie("MovieA", new Date(121011), "TypeA", new Date(121011), "SynopsisA", img);
-        Movie movie2 = new Movie("MovieB", new Date(121011), "TypeB", new Date(121011), "SynopsisB", img);
+        Movie movie1 = new Movie("MovieA", "0-0-0000", "TypeA", 1, "SynopsisA", img);
+        Movie movie2 = new Movie("MovieB", "0-0-0000", "TypeB", 2, "SynopsisB", img);
 
         
         Movie movie1adminadd = AdminService.adminAddMovie(admin,movie1);

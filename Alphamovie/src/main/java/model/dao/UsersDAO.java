@@ -31,7 +31,7 @@ public class UsersDAO {
         return lst;
     }
 
-    public static String addUser(Users user){
+    public static Users addUser(Users user){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -39,7 +39,7 @@ public class UsersDAO {
             session.getTransaction().commit();
             Users useradd = (Users) session.load(Users.class, user.getUsername());
             session.close();
-            return useradd.getUsername();
+            return useradd;
         } catch (Exception e) {
             throw e;
         }
@@ -71,7 +71,7 @@ public class UsersDAO {
         }
     }
     
-    public static Users getMoviebyName(String username) {
+    public static Users getUserbyName(String username) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction();

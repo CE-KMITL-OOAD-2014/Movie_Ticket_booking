@@ -18,7 +18,7 @@ import model.pojo.Users;
  */
 public class UsersService {
     
-    public static String register(Users user) throws Exception{
+    public static Users register(Users user) throws Exception{
         return UsersDAO.addUser(user);
     }
     

@@ -7,6 +7,7 @@ package model.dao;
 
 import java.util.List;
 import model.pojo.Movie;
+import model.pojo.Showtime;
 import model.ulti.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,9 +29,9 @@ public class MovieDAO {
             e.printStackTrace();
         }
         return lst;
-    }
+    } 
 
-    public static String addMovie(Movie movie) {
+    public static Movie addMovie(Movie movie) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -38,7 +39,7 @@ public class MovieDAO {
             session.getTransaction().commit();
             Movie movieadd = (Movie) session.load(Movie.class, movie.getMname());
             session.close();
-            return movieadd.getMname();
+            return movieadd;
         } catch (Exception e) {
             throw e;
         }
@@ -71,15 +72,13 @@ public class MovieDAO {
 
     public static Movie getMoviebyName(String mname) {
         try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            Movie movie = (Movie) session.load(Movie.class, mname);
-            session.getTransaction().commit();
-            session.close();
-            return movie;
+            List<Movie> lst = listMovie();
+            for(Movie  m : lst){
+                if(m.getMname().equals(mname))return m;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 }

@@ -5,7 +5,9 @@
  */
 package controller;
 
-import java.sql.Date;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.MovieDAO;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import service.MovieService;
 
 /**
  *
@@ -24,20 +25,26 @@ import service.MovieService;
  */
 @Controller
 public class Moviecontroller {
-
+    
     @RequestMapping(value = "/addmovie", method = RequestMethod.POST)
     public ModelAndView addMovie(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("success");
+        ModelAndView mv = new ModelAndView("moviedetail");
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile multipartFile = multipartRequest.getFile("img");
         byte[] img = multipartFile.getBytes();
         try {
-            Movie movie = new Movie(request.getParameter("mname"), new Date(20120811) , 
-                    request.getParameter("type"), new Date(20120811),request.getParameter("synopsis"), img);
-            MovieDAO.addMovie(movie);
-            String mname = MovieService.addMovie(movie);
-            mv.addObject("username", mname);
+
+            Movie movie = new Movie(request.getParameter("mname"), request.getParameter("releasedate"),
+                    request.getParameter("type"), Integer.parseInt(request.getParameter("duration")), request.getParameter("synopsis"), img);
+            Movie movieadd = MovieDAO.addMovie(movie);
+
+            mv = new ModelAndView("moviedetail");
+            OutputStream os = new ByteArrayOutputStream();
+            // wp.getData() = byte[]
+            os.write(movieadd.getMimg());
+            mv.addObject("data", os);
+            mv.addObject("movie", movieadd);
             return mv;
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,5 +52,39 @@ public class Moviecontroller {
             return mv;
         }
     }
+    
+    @RequestMapping("/movieedit")
+    public ModelAndView editpage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("movieedit");
+        return mv;
+    }
 
+    @RequestMapping("/moviedetail")
+    public ModelAndView moviedetailpage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = null;
+        try {
+            mv = new ModelAndView("moviedetail");
+            Movie movie = MovieDAO.getMoviebyName("Hungergame");
+            mv.addObject("movie", movie);
+            return mv;
+        } catch (NumberFormatException ex) {
+            mv = new ModelAndView("success");
+            return mv;
+        }
+    }
+
+    @RequestMapping("/movie")
+    public ModelAndView moviepage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        try {
+            ModelAndView mv = new ModelAndView("movie");
+            List<Movie> lst = MovieDAO.listMovie();
+            mv.addObject("movie", lst);
+            return mv;
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+    }
 }
