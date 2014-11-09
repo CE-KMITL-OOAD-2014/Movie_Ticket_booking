@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.pojo.Cinema" table="Cinema" schema="dbo" catalog="Alpha" optimistic-lock="version">
+        <id name="cinema" type="int">
+            <column name="cinema" />
+            <generator class="assigned" />
+        </id>
+        <property name="seatmax" type="int">
+            <column name="seatmax" not-null="true" />
+        </property>
+        <property name="seatcount" type="int">
+            <column name="seatcount" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

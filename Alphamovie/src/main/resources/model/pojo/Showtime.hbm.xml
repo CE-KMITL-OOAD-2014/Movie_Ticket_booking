@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.pojo.Showtime" table="Showtime" schema="dbo" catalog="Alpha" optimistic-lock="version">
+        <composite-id name="id" class="model.pojo.ShowtimeId">
+            <key-property name="time" type="string">
+                <column name="time" length="5" />
+            </key-property>
+            <key-property name="cinema" type="int">
+                <column name="cinema" />
+            </key-property>
+        </composite-id>
+        <property name="mname" type="string">
+            <column name="mname" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
