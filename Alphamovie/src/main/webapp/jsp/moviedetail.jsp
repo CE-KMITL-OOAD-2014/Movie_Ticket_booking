@@ -32,10 +32,10 @@
 
                     <!--left table-->  
                     <div class="col-sm-8">
-                        <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b><c:out value="${movie.getMname()}"></c:out></b></h2></p></div><br>
+                        <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b> <c:out value="${movie.getMname()}"></c:out> </b></h2></p></div><br>
                             <div class="date-release">
                                 <label class="col-sm-3"><b>Release Date</b></label>
-                                <p><c:out value="${movie.getReleasedate()}"></c:out></p>
+                                <p> <c:out value="${movie.getReleasedate()}"></c:out> </p>
                             </div>
                             <div class="type-movie">
                                 <label class="col-sm-3"><b>Film Categories</b></label>
@@ -71,9 +71,8 @@
                         <div class="col-sm-4">
                             <center>
                                 <br><br>
-                                <img src="<c:out value="${data}"/>" />
-                          <!-- <img src="${pageContext.request.contextPath}/img/" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;">
-                            -->    <br><br>
+                                <img src="data:image/jpg;base64,<c:out value="${data}" />" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
+                            <br><br>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#reviewModal">Add Review & Rating</button>
                         </center>
                     </div>

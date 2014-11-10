@@ -35,12 +35,6 @@ public class Movie implements java.io.Serializable {
         this.mimg = mimg;
     }
 
-    public void addShowtime(String time, int cinema) {
-        ShowtimeId id = new ShowtimeId(time, cinema);
-        Showtime showtimeadd = new Showtime(id, this.mname);
-        ShowtimeDAO.addShowtime(showtimeadd);
-    }
-
     @Id
 
     @Column(name = "mname", nullable = false, length = 50)

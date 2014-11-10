@@ -5,9 +5,11 @@
  */
 package controller;
 
+import java.awt.Image;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.MovieDAO;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -41,9 +44,11 @@ public class Moviecontroller {
 
             mv = new ModelAndView("moviedetail");
             OutputStream os = new ByteArrayOutputStream();
-            // wp.getData() = byte[]
             os.write(movieadd.getMimg());
-            mv.addObject("data", os);
+            
+            /*Base64 b64 = new Base64();
+            String stringToStore = new String(b64.encode(movieadd.getMimg()));*/
+            mv.addObject("data", os.toString());
             mv.addObject("movie", movieadd);
             return mv;
         } catch (Exception e) {
@@ -52,7 +57,7 @@ public class Moviecontroller {
             return mv;
         }
     }
-    
+
     @RequestMapping("/movieedit")
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -63,28 +68,20 @@ public class Moviecontroller {
     @RequestMapping("/moviedetail")
     public ModelAndView moviedetailpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = null;
+        ModelAndView mv;
         try {
             mv = new ModelAndView("moviedetail");
-            Movie movie = MovieDAO.getMoviebyName("Hungergame");
+            Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
+            OutputStream os = new ByteArrayOutputStream();
+            os.write(movie.getMimg());
+            Base64 b64 = new Base64();
+            String stringToStore = new String(b64.encode(movie.getMimg()));
+            mv.addObject("data", stringToStore);
             mv.addObject("movie", movie);
             return mv;
         } catch (NumberFormatException ex) {
             mv = new ModelAndView("success");
             return mv;
-        }
-    }
-
-    @RequestMapping("/movie")
-    public ModelAndView moviepage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        try {
-            ModelAndView mv = new ModelAndView("movie");
-            List<Movie> lst = MovieDAO.listMovie();
-            mv.addObject("movie", lst);
-            return mv;
-        } catch (NumberFormatException ex) {
-            return null;
         }
     }
 }

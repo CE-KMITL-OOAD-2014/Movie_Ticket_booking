@@ -204,15 +204,17 @@
                 <div class="tab-content">
 
                     <!--Now Show Tab -->
-                    <div class="tab-pane fade in active" id="nowshow" style="display:block;">
-                        <c:forEach var="movie" items="${movie}">
-                            <div class="well col-sm-3">
-                                <img src="img/photodune-1625438-movies-film-blue-light-background-s.jpg" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
-                                <p><c:out value="${movie.getMname()}"></c:out></p>
-                                    </a>
-                                </div>
-                        </c:forEach>
-                    </div>
+                        <div class="tab-pane fade in active" id="nowshow" style="display:block;">
+                            <c:forEach var="movie" items="${movie}">
+                                <div class="well col-sm-3">
+                                    <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"></c:out>">
+                                    <img src="${pageContext.request.contextPath}/resources/img/photodune-1625438-movies-film-blue-light-background-s.jpg" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
+                                    <p><c:out value="${movie.getMname()}"></c:out></p>
+                                        </a>
+                                    </div>
+                            </c:forEach>
+                        </div>
+
                     <!--Coming Tab -->
                     <div class="tab-pane fade in active" id="coming">
 

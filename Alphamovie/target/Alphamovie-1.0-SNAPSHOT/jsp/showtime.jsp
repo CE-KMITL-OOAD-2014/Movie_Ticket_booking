@@ -51,7 +51,7 @@
                         <td>
                                 <p style="strong"><b> <c:out value="${showtime.getMname()}"/></b></p>
                                 <p>showtime</p>
-                                <button type="button" class="btn btn-default">1</button>
+                                <button type="button" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
                         </td>
                         </tr>
                         </c:forEach>

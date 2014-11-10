@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import java.sql.Connection;
 import java.util.List;
 import model.pojo.Movie;
 import model.pojo.Showtime;
@@ -29,15 +30,15 @@ public class MovieDAO {
             e.printStackTrace();
         }
         return lst;
-    } 
+    }
 
     public static Movie addMovie(Movie movie) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(movie);
-            session.getTransaction().commit();
             Movie movieadd = (Movie) session.load(Movie.class, movie.getMname());
+            session.getTransaction().commit();
             session.close();
             return movieadd;
         } catch (Exception e) {
@@ -72,13 +73,15 @@ public class MovieDAO {
 
     public static Movie getMoviebyName(String mname) {
         try {
-            List<Movie> lst = listMovie();
-            for(Movie  m : lst){
-                if(m.getMname().equals(mname))return m;
-            }
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Movie movie = (Movie) session.get(Movie.class, mname);
+            session.getTransaction().commit();
+            session.close();
+            return movie;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

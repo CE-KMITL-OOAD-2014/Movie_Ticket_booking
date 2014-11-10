@@ -35,31 +35,37 @@ public class ShowtimeDAO {
     }
 
     public static List<Showtime> listMovieinCinema(int cinema) {
-        List<Showtime> lsts = null;
-        List<Showtime> lstshow = null;
-//        List<Movie> lstallm = listMovie();
-//        List<Movie> lstm = new ArrayList<Movie>();
-//        List<String> lstmname = new ArrayList<String>();
+        List<Showtime> lsts = listShowtime();
+        List<Showtime> lstshow = new ArrayList<Showtime>();
         try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Showtime");
-            lsts = query.list();
-            session.close();
             for (Showtime s : lsts) {
                 if (s.getId().getCinema() == cinema) {
                     lstshow.add(s);
                 }
             }
-//            for (String str : lstmname) {
-//                for (Movie m : lstallm) {
-//                    if (str.equals(m.getMname()))lstm.add(m);
-//                }
-//            }
+            return lstshow;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return lsts;
     }
+    
+     public static List<Showtime> listShowtimebyMovie(String mname) {
+        List<Showtime> lsts = listShowtime();
+        List<Showtime> lstshow = new ArrayList<Showtime>();
+        try {
+            for (Showtime s : lsts) {
+                if (s.getMname().equals(mname)) {
+                    lstshow.add(s);
+                }
+            }
+            return lstshow;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 
     public static Showtime addShowtime(Showtime showtime) {
         try {
