@@ -19,11 +19,11 @@ import model.pojo.Users;
 public class UsersService {
     
     public static Users register(Users user) throws Exception{
-        return UsersDAO.addUser(user);
+        return UsersDAO.addorupdateUser(user);
     }
     
-    public static String editInformation(Users user){
-        return UsersDAO.updateUser(user);
+    public static Users editInformation(Users user){
+        return UsersDAO.addorupdateUser(user);
     }
     
     public static String login(Users user){

@@ -41,7 +41,7 @@ public class Moviecontroller {
 
             Movie movie = new Movie(request.getParameter("mname"), request.getParameter("releasedate"),
                     request.getParameter("type"), Integer.parseInt(request.getParameter("duration")), request.getParameter("synopsis"), img);
-            Movie movieadd = MovieDAO.addMovie(movie);
+            Movie movieadd = MovieDAO.addorupdateMovie(movie);
 
             mv = new ModelAndView("moviedetail");
             OutputStream os = new ByteArrayOutputStream();

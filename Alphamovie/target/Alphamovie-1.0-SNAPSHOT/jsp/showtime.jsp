@@ -46,12 +46,12 @@
                         <tbody>
                         <c:forEach var="movie" items="${movie}">
                             <tr class="mshowtime" id="mst1">
-                                <td><center><h2>1</h2></center></td>
+                                <td><center><h2><c:out value="${movie.getType()}"/></h2></center></td>
                         <td class="col-sm-3"><img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 90px; height: 120px;"></td>
                         <td>
                                 <p style="strong"><b> <c:out value="${movie.getMname()}"/></b></p>
                                 <p>showtime</p>
-                                <button type="button" class="btn btn-default">10:00</button>
+                                <button type="button" class="btn btn-default"><c:out value="${movie.getShowtimeList()}"/></button>
                         </td>
                         </tr>
                         </c:forEach>

@@ -27,17 +27,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class UsersContoller {
 
     @RequestMapping(value ="/myaccount", method = RequestMethod.POST) 
-    public ModelAndView addUsers(HttpServletRequest request,
+    public ModelAndView Register(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;
         Users user = new Users(request.getParameter("username"),request.getParameter("password"),
                                     request.getParameter("email"), request.getParameter("phonenumber"), 
                                         false);
-        String hash = UsersService.hash(request.getParameter("password"));
-        Users usera = UsersService.register(user);
+        //String hash = UsersService.hash(request.getParameter("password"));
+        Users useradd = UsersService.register(user);
         try {
-            mv = new ModelAndView("myaccount");
-            mv.addObject("user", usera);
+            mv = new ModelAndView("index");
+            mv.addObject("user", useradd);
             return mv;
         } catch (Exception ex) {
             Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
@@ -56,6 +56,21 @@ public class UsersContoller {
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
         Users userupdate = UsersService.register(user);
         mv.addObject("user", userupdate);
+        return mv;
+    }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView login(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("index");
+
+        Users user = new Users(request.getParameter("username"), request.getParameter("password"),
+                request.getParameter("email"), request.getParameter("phonenumber"), false);
+        user.getPassword();
+        Users usercheck = UsersDAO.getUserbyName(user.getUsername());
+        if(user.getPassword().equals(usercheck.getPassword())){
+            mv.addObject("user", usercheck);
+        }
         return mv;
     }
     

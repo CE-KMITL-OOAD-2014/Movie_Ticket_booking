@@ -2,6 +2,7 @@ package model.pojo;
 // Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
 
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class Movie  implements java.io.Serializable {
      private String synopsis;
      private byte[] mimg;
      private String b64str;
+     private List<Showtime> listshowtime = null;
 
     public Movie() {
     }
@@ -47,6 +49,14 @@ public class Movie  implements java.io.Serializable {
 
     public String getB64str() {
         return this.b64str;
+    }
+    
+    public List<Showtime> addShowtimeList(List<Showtime> showtimelst) {
+        return this.listshowtime = showtimelst;
+    }
+    
+    public List<Showtime> getShowtimeList() {
+        return this.listshowtime;
     }
    
      @Id 

@@ -47,29 +47,17 @@ public class ReviewRatingDAO {
         }
     }
 
-    public static ReviewRating addReviewRating(ReviewRating reviewrating) {
+    public static ReviewRating saveorupdateReviewRating(ReviewRating reviewrating) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(reviewrating);
+            session.saveOrUpdate(reviewrating);
             session.getTransaction().commit();
             ReviewRating reviewratingadd = (ReviewRating) session.load(ReviewRating.class, reviewrating.getId());
             session.close();
             return reviewratingadd;
         } catch (Exception e) {
             throw e;
-        }
-    }
-
-    public static void updateReviewRating(ReviewRating reviewrating) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.update(reviewrating);
-            session.getTransaction().commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

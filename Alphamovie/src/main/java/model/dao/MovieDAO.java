@@ -5,14 +5,9 @@
  */
 package model.dao;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.sql.Connection;
 import java.util.List;
 import model.pojo.Movie;
-import model.pojo.Showtime;
 import model.ulti.HibernateUtil;
-import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -38,29 +33,17 @@ public class MovieDAO {
         return lst;
     }
 
-    public static Movie addMovie(Movie movie) {
+    public static Movie addorupdateMovie(Movie movie) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(movie);
+            session.saveOrUpdate(movie);
             Movie movieadd = (Movie) session.load(Movie.class, movie.getMname());
             session.getTransaction().commit();
             session.close();
             return movieadd;
         } catch (Exception e) {
             throw e;
-        }
-    }
-
-    public static void updateMovie(Movie movie) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.update(movie);
-            session.getTransaction().commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

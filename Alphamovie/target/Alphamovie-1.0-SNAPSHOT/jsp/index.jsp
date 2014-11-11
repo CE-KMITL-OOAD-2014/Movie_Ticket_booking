@@ -65,6 +65,7 @@
                     <li><a href="movie"><b> Movie </b></a></li>
                     <li><a href="showtime"><b> Showtime </b></a></li>
                     <li><a href="#"><b> Booking Ticket </b></a></li>
+                    <li><b><c:out value="${user.getUsername()}"></c:out> </b></li>
                 </ul>
 
                 <!--ul class="nav navbar-nav">
@@ -95,7 +96,7 @@
                             <li><a href=" # "><b>View Your Profile</b></a></li>
                             <li><a href=" # "><b>Manage Booking</b></a></li>
                             <li class="divider"></li>
-                            <li><a href=" # "><b>Sign Out</b></a></li>
+                            <li><a href=" # "><b>Sign   Out</b></a></li>
                         </ul>
                     </li> 
                 </ul>

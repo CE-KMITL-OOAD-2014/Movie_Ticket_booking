@@ -31,28 +31,15 @@ public class UsersDAO {
         return lst;
     }
 
-    public static Users addUser(Users user){
+    public static Users addorupdateUser(Users user){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(user);
+            session.saveOrUpdate(user);
             session.getTransaction().commit();
             Users useradd = (Users) session.load(Users.class, user.getUsername());
             session.close();
             return useradd;
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public static String updateUser(Users user) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.update(user);
-            session.getTransaction().commit();
-            session.close();
-            return "User Update!";
         } catch (Exception e) {
             throw e;
         }
@@ -74,8 +61,8 @@ public class UsersDAO {
     public static Users getUserbyName(String username) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            Users user = (Users) session.load(Users.class, username);
+            session.beginTransaction();
+            Users user = (Users) session.get(Users.class, username);
             session.getTransaction().commit();
             session.close();
             return user;
