@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 11, 2014 5:50:30 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.pojo.Showtime" table="Showtime" schema="dbo" catalog="Alpha" optimistic-lock="version">
+    <class name="model.pojo.Showtime" table="Showtime" schema="dbo" catalog="Alpha">
         <composite-id name="id" class="model.pojo.ShowtimeId">
             <key-property name="time" type="string">
                 <column name="time" length="5" />

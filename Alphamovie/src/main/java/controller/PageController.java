@@ -26,22 +26,31 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
     
+    @RequestMapping("/index")
+    public ModelAndView indexpage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("index");
+        return mv;
+    }
+    
     @RequestMapping("/showtime")
     public ModelAndView movieshowtimepage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("showtime");
         
-            List<Showtime> lsts = null;
-            List<Showtime> lstshow = new ArrayList<Showtime>();
+            List<Movie> lstm = null;
+            List<Movie> lstallm = new ArrayList<Movie>();
+            List<Showtime> lsts = ShowtimeDAO.listShowtime();
+            List<Showtime> lstalls = new ArrayList<Showtime>();
             List<Cinema> lstc = CinemaDAO.listCinema();
-            for(Cinema c:lstc){
-                lsts = ShowtimeDAO.listMovieinCinema(c.getCinema());
-                for(Showtime s: lsts){
-                    lstshow.add(s);
-                }
-            }
-            mv.addObject("showtime", lstshow);
+            
+                lstm = CinemaDAO.listMovieinCinema(1);
+               // lsts = CinemaDAO.listShowtimeinCinema(1);
+                //lstalls.addAll(lsts);
+                //lstallm.addAll(lstm);
+           // mv.addObject("showtime", lsts);
+            mv.addObject("movie", lstm);
             return mv;
         } catch (NumberFormatException ex) {
             return null;

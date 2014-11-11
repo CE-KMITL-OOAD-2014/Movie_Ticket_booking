@@ -7,7 +7,6 @@ package model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import static model.dao.MovieDAO.listMovie;
 import model.pojo.Movie;
 import model.pojo.Showtime;
 import model.pojo.ShowtimeId;
@@ -33,24 +32,8 @@ public class ShowtimeDAO {
         }
         return lst;
     }
-
-    public static List<Showtime> listMovieinCinema(int cinema) {
-        List<Showtime> lsts = listShowtime();
-        List<Showtime> lstshow = new ArrayList<Showtime>();
-        try {
-            for (Showtime s : lsts) {
-                if (s.getId().getCinema() == cinema) {
-                    lstshow.add(s);
-                }
-            }
-            return lstshow;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     
-     public static List<Showtime> listShowtimebyMovie(String mname) {
+    public static List<Showtime> listShowtimebyMovie(String mname) {
         List<Showtime> lsts = listShowtime();
         List<Showtime> lstshow = new ArrayList<Showtime>();
         try {
@@ -73,7 +56,7 @@ public class ShowtimeDAO {
             session.beginTransaction();
             session.save(showtime);
             session.getTransaction().commit();
-            Showtime showtimeadd = (Showtime) session.load(Showtime.class, showtime.getShowtime());
+            Showtime showtimeadd = (Showtime) session.load(Showtime.class, showtime.getId());
             session.close();
             return showtimeadd;
         } catch (Exception e) {
@@ -97,7 +80,7 @@ public class ShowtimeDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction();
-            Showtime dshowtime = (Showtime) session.load(Showtime.class, showtime.getShowtime());
+            Showtime dshowtime = (Showtime) session.load(Showtime.class, showtime.getId());
             session.delete(dshowtime);
             session.getTransaction().commit();
             session.close();

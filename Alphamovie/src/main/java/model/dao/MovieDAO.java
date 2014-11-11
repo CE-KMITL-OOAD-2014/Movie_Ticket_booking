@@ -84,6 +84,7 @@ public class MovieDAO {
             Movie movie = (Movie) session.get(Movie.class, mname);
             session.getTransaction().commit();
             session.close();
+            movie.setB64str();
             return movie;
         } catch (Exception e) {
             e.printStackTrace();

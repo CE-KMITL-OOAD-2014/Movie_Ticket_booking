@@ -77,11 +77,5 @@ public class UsersContoller {
         UsersDAO.deleteUser(user);
         return mv;
     }
-
-    @RequestMapping("/index")
-    public ModelAndView indexpage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("index");
-        return mv;
-    }
+    
 }

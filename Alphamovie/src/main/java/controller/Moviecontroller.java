@@ -13,7 +13,9 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.MovieDAO;
+import model.dao.ReviewRatingDAO;
 import model.pojo.Movie;
+import model.pojo.ReviewRating;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +70,9 @@ public class Moviecontroller {
         try {
             mv = new ModelAndView("moviedetail");
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            movie.setB64str();
+            
+            List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
+            mv.addObject("review", lstr);
             mv.addObject("movie", movie);
             return mv;
         } catch (NumberFormatException ex) {

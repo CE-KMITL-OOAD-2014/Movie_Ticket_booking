@@ -73,12 +73,21 @@
 		  			</ul-->
 
 		      		<ul class="nav navbar-nav navbar-right">     
-		        		<li class="show-if-logout" style="display: list-item;" data-toggle="modal" data-target="#signinModal">
+		        		<li class="show-if-logout" data-toggle="modal" data-target="#signinModal">
 		         			<a href="#"><b> Sign In </b></a>
-		          		
 		        		</li>
-		        		<li class="show-if-logout" style="display: list-item;" data-toggle="modal" data-target="#signupModal"><a href=" # "><b> Sign Up </b></a></li> 
-		        		<li class="show-if-login" id="user-menu" style="display: none;">
+		        		<li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href=" # "><b> Sign Up </b></a></li> 
+		        		
+		        		<li class="show-if-login" id="user-login">
+        					<a href="myaccount.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
+        				</li>
+        				<li class="show-if-login" id="admin-login">
+        					<a href="adminmanage.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
+        				</li>
+        				<li class="show-if-login">
+		         			<a href="#"><b> Sign Out </b></a>
+		        		</li>
+		        		<!--li class="show-if-login" id="user-menu" style="display: none;">
         					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
         						<span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account</b></span>
         						<b class="caret"></b>
@@ -89,7 +98,7 @@
         						<li class="divider"></li>
         						<li><a href=" # "><b>Sign Out</b></a></li>
         					</ul>
-        				</li> 
+        				</li--> 
 		      		</ul>
     			</div><!-- /.navbar-collapse -->
   		</div><!-- /.container-fluid -->

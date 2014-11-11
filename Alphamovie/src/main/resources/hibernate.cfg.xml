@@ -10,5 +10,6 @@
     <mapping resource="model/pojo/Users.hbm.xml"/>
     <mapping resource="model/pojo/Cinema.hbm.xml"/>
     <mapping resource="model/pojo/Showtime.hbm.xml"/>
+    <mapping resource="model/pojo/ReviewRating.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

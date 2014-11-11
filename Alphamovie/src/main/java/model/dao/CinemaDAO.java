@@ -5,8 +5,11 @@
  */
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.pojo.Cinema;
+import model.pojo.Movie;
+import model.pojo.Showtime;
 import model.ulti.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -27,6 +30,39 @@ public class CinemaDAO {
             e.printStackTrace();
         }
         return lst;
+    }
+    
+    public static List<Movie> listMovieinCinema(int cinema) {
+        List<Showtime> lsts = ShowtimeDAO.listShowtime();
+        List<Movie> lstshow = new ArrayList<Movie>();
+        try {
+            for (Showtime s : lsts) {
+                if (s.getId().getCinema() == cinema) {
+                    Movie movie = MovieDAO.getMoviebyName(s.getMname());
+                    lstshow.add(movie);
+                }
+            }
+            return lstshow;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static List<Showtime> listShowtimeinCinema(int cinema) {
+        List<Showtime> lsts = ShowtimeDAO.listShowtime();
+        List<Showtime> lstshow = new ArrayList<Showtime>();
+        try {
+            for (Showtime s : lsts) {
+                if (s.getId().getCinema() == cinema) {
+                    lstshow.add(s);
+                }
+            }
+            return lstshow;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static Cinema addCinema(Cinema cinema) {

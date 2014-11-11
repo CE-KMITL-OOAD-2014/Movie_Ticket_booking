@@ -52,18 +52,20 @@
                             </div>
                             <br><br><br>
                             <div class="review-rate">
-                                <label class="col-sm-2"><b>Rating</b></label>
+                              <!--  <label class="col-sm-2"><b>Rating</b></label>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                                         <span class="sr-only">60% Complete (warning)</span>
                                     </div>
-                                </div>
+                                </div>-->
+                            
                                 <label class="col-sm-2"><b>Review</b></label>
+                                <c:forEach var="review" items="${review}">
                                 <br><br>
                                 <div class="review-show col-sm-offset-1">
-                                    <p>good</p>
-                                    <p>awesome</p>
+                                    <p><c:out value="${review.getUsername()} : "></c:out> <c:out value="${review.getReview()}"></c:out></p>
                                 </div>
+                            </c:forEach>
                             </div>
 
                             <!--right table-->

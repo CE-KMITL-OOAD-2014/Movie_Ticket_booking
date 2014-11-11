@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1
+// Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -45,23 +45,6 @@ public class ShowtimeId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof ShowtimeId) ) return false;
-		 ShowtimeId castOther = ( ShowtimeId ) other; 
-         
-		 return ( (this.getTime()==castOther.getTime()) || ( this.getTime()!=null && castOther.getTime()!=null && this.getTime().equals(castOther.getTime()) ) )
- && (this.getCinema()==castOther.getCinema());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + ( getTime() == null ? 0 : this.getTime().hashCode() );
-         result = 37 * result + this.getCinema();
-         return result;
-   }   
 
 
 }

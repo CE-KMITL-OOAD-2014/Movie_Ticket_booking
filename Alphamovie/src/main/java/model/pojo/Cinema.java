@@ -1,8 +1,7 @@
 package model.pojo;
-// Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1
+// Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
 
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,7 +34,7 @@ public class Cinema  implements java.io.Serializable {
      @Id 
 
     
-    @Column(name="cinema", unique=true, nullable=false)
+    @Column(name="cinema", nullable=false)
     public int getCinema() {
         return this.cinema;
     }

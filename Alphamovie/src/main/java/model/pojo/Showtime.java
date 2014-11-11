@@ -1,8 +1,7 @@
 package model.pojo;
-// Generated Nov 9, 2014 4:14:53 PM by Hibernate Tools 4.3.1
+// Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
 
 
-import java.io.Serializable;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -54,10 +53,6 @@ public class Showtime  implements java.io.Serializable {
     
     public void setMname(String mname) {
         this.mname = mname;
-    }
-
-    public Serializable getShowtime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
