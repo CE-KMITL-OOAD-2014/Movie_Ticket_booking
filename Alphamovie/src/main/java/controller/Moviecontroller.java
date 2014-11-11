@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -45,9 +44,6 @@ public class Moviecontroller {
             mv = new ModelAndView("moviedetail");
             OutputStream os = new ByteArrayOutputStream();
             os.write(movieadd.getMimg());
-            
-            /*Base64 b64 = new Base64();
-            String stringToStore = new String(b64.encode(movieadd.getMimg()));*/
             mv.addObject("data", os.toString());
             mv.addObject("movie", movieadd);
             return mv;
@@ -72,11 +68,7 @@ public class Moviecontroller {
         try {
             mv = new ModelAndView("moviedetail");
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            OutputStream os = new ByteArrayOutputStream();
-            os.write(movie.getMimg());
-            Base64 b64 = new Base64();
-            String stringToStore = new String(b64.encode(movie.getMimg()));
-            mv.addObject("data", stringToStore);
+            movie.setB64str();
             mv.addObject("movie", movie);
             return mv;
         } catch (NumberFormatException ex) {

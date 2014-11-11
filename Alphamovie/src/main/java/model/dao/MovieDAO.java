@@ -5,11 +5,14 @@
  */
 package model.dao;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.util.List;
 import model.pojo.Movie;
 import model.pojo.Showtime;
 import model.ulti.HibernateUtil;
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -25,6 +28,9 @@ public class MovieDAO {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Movie");
             lst = query.list();
+            for(Movie m:lst){
+                m.setB64str();
+            }
             session.close();
         } catch (Exception e) {
             e.printStackTrace();

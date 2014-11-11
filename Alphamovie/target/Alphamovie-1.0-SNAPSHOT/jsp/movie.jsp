@@ -208,7 +208,7 @@
                             <c:forEach var="movie" items="${movie}">
                                 <div class="well col-sm-3">
                                     <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"></c:out>">
-                                    <img src="${pageContext.request.contextPath}/resources/img/photodune-1625438-movies-film-blue-light-background-s.jpg" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
+                                    <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
                                     <p><c:out value="${movie.getMname()}"></c:out></p>
                                         </a>
                                     </div>
