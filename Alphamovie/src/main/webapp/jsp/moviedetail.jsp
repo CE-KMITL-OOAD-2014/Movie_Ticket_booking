@@ -52,28 +52,28 @@
                             </div>
                             <br><br><br>
                             <div class="review-rate">
-                              <!--  <label class="col-sm-2"><b>Rating</b></label>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>-->
-                            
+                                <!--  <label class="col-sm-2"><b>Rating</b></label>
+                                  <div class="progress">
+                                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                          <span class="sr-only">60% Complete (warning)</span>
+                                      </div>
+                                  </div>-->
+
                                 <label class="col-sm-2"><b>Review</b></label>
-                                <c:forEach var="review" items="${review}">
+                            <c:forEach var="review" items="${review}">
                                 <br><br>
                                 <div class="review-show col-sm-offset-1">
-                                    <p><c:out value="${review.getUsername()} : "></c:out> <c:out value="${review.getReview()}"></c:out></p>
+                                    <p><c:out value="${review.getUsername()} : "/> <c:out value="${review.getReview()}"/> <c:out value="Rating = ${review.getRating()}"/></p>
                                 </div>
                             </c:forEach>
-                            </div>
-
-                            <!--right table-->
                         </div>
-                        <div class="col-sm-4">
-                            <center>
-                                <br><br>
-                                <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
+
+                        <!--right table-->
+                    </div>
+                    <div class="col-sm-4">
+                        <center>
+                            <br><br>
+                            <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
                             <br><br>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#reviewModal">Add Review & Rating</button>
                         </center>

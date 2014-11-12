@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
+// Generated Nov 12, 2014 10:39:01 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -32,12 +32,13 @@ public class ReviewRating  implements java.io.Serializable {
        this.mname = mname;
        this.username = username;
        this.rating = rating;
+       this.review = review;
     }
    
      @Id 
 
     
-    @Column(name="id", unique=true, nullable=false)
+    @Column(name="id", nullable=false)
     public int getId() {
         return this.id;
     }
@@ -75,6 +76,7 @@ public class ReviewRating  implements java.io.Serializable {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
     
     @Column(name="review", nullable=false, length=100)
     public String getReview() {

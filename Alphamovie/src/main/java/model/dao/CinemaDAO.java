@@ -34,13 +34,17 @@ public class CinemaDAO {
     
     public static List<Movie> listMovieinCinema(int cinema) {
         List<Showtime> lsts = ShowtimeDAO.listShowtime();
+        List<String> lstmname = new ArrayList<String>();
         List<Movie> lstshow = new ArrayList<Movie>();
         try {
             for (Showtime s : lsts) {
-                if (s.getId().getCinema() == cinema) {
-                    Movie movie = MovieDAO.getMoviebyName(s.getMname());
-                    lstshow.add(movie);
+                if (!lstmname.contains(s.getMname()) && s.getId().getCinema() == cinema) {
+                    lstmname.add(s.getMname());
                 }
+            }
+            for (String mname : lstmname){
+                Movie movie = MovieDAO.getMoviebyName(mname);
+                lstshow.add(movie);
             }
             return lstshow;
         } catch (Exception e) {
