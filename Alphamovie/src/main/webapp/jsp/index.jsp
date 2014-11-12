@@ -12,7 +12,38 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
+        
+        <script>  
+            $(document).ready(function(){
+                if ($(localStorage.getItem("session")).val() != ''){
+                    $(".show-if-logout").hide();
+                    $("#logout").show();
+                    if ($(localStorage.getItem("isadmin")).val() === 'true'){
+                        $("#admin-login").show();
+                        $("#user-login").hide();
+                    }
+                    else {
+                        $("#user-login").show();
+                        $("#admin-login").hide();
+                    }
+                }    
+                else {
+                    $(".show-if-logout").show();
+                    $(".show-if-login").hide();
+                }
+            });
+	</script>
+        
+        <script>
+            $(document).ready(function(){
+              $("#logout").click(function(){
+                    localStorage.clear();
+                    location.reload(true);
+              });
+            });
+	</script>
+        
 <title> Alpha Movie Ticket Booking </title>
 </head>
 <body>
@@ -65,7 +96,10 @@
                     <li><a href="movie"><b> Movie </b></a></li>
                     <li><a href="showtime"><b> Showtime </b></a></li>
                     <li><a href="#"><b> Booking Ticket </b></a></li>
+<<<<<<< HEAD
+=======
                     <li><b><c:out value="${user.getSession()}"></c:out> </b></li>
+>>>>>>> a00b60041112e09e87342916f4493d2515b2058b
                 </ul>
 
                 <!--ul class="nav navbar-nav">
@@ -82,27 +116,42 @@
                         </ul-->
 
                 <ul class="nav navbar-nav navbar-right">     
-                    <li class="show-if-logout" style="display: list-item;" data-toggle="modal" data-target="#signinModal">
-                        <a href="#"><b> Sign In </b></a>
-
-                    </li>
-                    <li class="show-if-logout" style="display: list-item;" data-toggle="modal" data-target="#signupModal"><a href=" # "><b> Sign Up </b></a></li> 
-                    <li class="show-if-login" id="user-menu" style="display: none;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account</b></span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href=" # "><b>View Your Profile</b></a></li>
-                            <li><a href=" # "><b>Manage Booking</b></a></li>
-                            <li class="divider"></li>
-                            <li><a href=" # "><b>Sign   Out</b></a></li>
-                        </ul>
-                    </li> 
-                </ul>
+		        		<li class="show-if-logout">
+		         			<a href="signin.html"><b> Sign In </b></a>
+		        		</li>
+		        		<li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href="#"><b> Sign Up </b></a></li> 
+		        		
+		        		<li class="show-if-login" id="user-login">
+        					<a href="myaccount.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
+        				</li>
+        				<li class="show-if-login" id="admin-login">
+        					<a href="adminmanage.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
+        				</li>
+        				<li class="show-if-login" id="logout">
+		         			<a href="#"><b> Sign Out </b></a>
+		        		</li>
+		</ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+                
+                <script>
+                    if(typeof(Storage)!=="undefined")
+                        {
+                        // Code for localStorage/sessionStorage.
+                        localStorage.setItem("user",'<c:out value="${user.getUsername()}"></c:out>');
+                        localStorage.setItem("session",'xx');  
+                        localStorage.setItem("isadmin",'false');  
+                        //fetch object
+                        console.log(localStorage.getItem("user")); // will return "[object Object]"
+                        console.log(localStorage.getItem("session"));
+                        console.log(localStorage.getItem("isadmin"));
+                        }
+                    else
+                        {
+                        // Sorry! No Web Storage support..
+                        }
+                </script>
 
     <!--Sign Up Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

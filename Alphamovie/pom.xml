@@ -177,6 +177,7 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
