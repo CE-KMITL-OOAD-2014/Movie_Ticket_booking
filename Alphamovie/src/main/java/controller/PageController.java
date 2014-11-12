@@ -1,17 +1,13 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CinemaDAO;
 import model.dao.MovieDAO;
-import model.dao.ShowtimeDAO;
 import model.pojo.Cinema;
 import model.pojo.Movie;
-import model.pojo.Showtime;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,17 +37,16 @@ public class PageController {
         try {
             ModelAndView mv = new ModelAndView("showtime");
 
-            List<Movie> lstm = null;
-            List<Movie> lstallm = new ArrayList<Movie>();
+            List<Movie> lstm = new ArrayList<Movie>();
             List<Cinema> lstc = CinemaDAO.listCinema();
             for (Cinema c : lstc) {
-                lstm = CinemaDAO.listMovieinCinema(c.getCinema());
-                lstallm.addAll(lstm);
+                c.addMovieList(CinemaDAO.listMovieinCinema(c.getCinema()));
+                lstm.addAll(c.getMovieList());
             }
-            for (Movie m : lstallm) {
-                m.addShowtimeList(ShowtimeDAO.listShowtimebyMovie(m.getMname()));
+            for (Movie m : lstm) {
+                m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname()));
             }
-            mv.addObject("movie", lstallm);
+            mv.addObject("cinema", lstc);
             return mv;
         } catch (NumberFormatException ex) {
             return null;

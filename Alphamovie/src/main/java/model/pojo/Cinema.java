@@ -1,7 +1,8 @@
 package model.pojo;
-// Generated Nov 11, 2014 5:50:29 PM by Hibernate Tools 4.3.1
+// Generated Nov 12, 2014 10:39:01 PM by Hibernate Tools 4.3.1
 
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +22,8 @@ public class Cinema  implements java.io.Serializable {
      private int cinema;
      private int seatmax;
      private int seatcount;
-
+     private List<Movie> movielist = null;
+     
     public Cinema() {
     }
 
@@ -29,6 +31,14 @@ public class Cinema  implements java.io.Serializable {
        this.cinema = cinema;
        this.seatmax = seatmax;
        this.seatcount = seatcount;
+    }
+    
+    public List<Movie> addMovieList(List<Movie> movielist) {
+        return this.movielist = movielist;
+    }
+
+    public List<Movie> getMovieList() {
+        return this.movielist;
     }
    
      @Id 

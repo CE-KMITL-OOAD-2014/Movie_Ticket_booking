@@ -26,17 +26,24 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UsersContoller {
 
-    @RequestMapping(value ="/myaccount", method = RequestMethod.POST) 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView Register(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;
-        Users user = new Users(request.getParameter("username"),request.getParameter("password"),
-                                    request.getParameter("email"), request.getParameter("phonenumber"), 
-                                        false);
-        //String hash = UsersService.hash(request.getParameter("password"));
-        Users useradd = UsersService.register(user);
         try {
-            mv = new ModelAndView("index");
+            List<Users> lst = UsersDAO.listUser();
+            for (Users u : lst) {
+                if (u.getUsername().equals((request.getParameter("username")))) {
+                    mv = new ModelAndView("fail");
+                    return mv;
+                }
+            }
+            Users user = new Users(request.getParameter("username"), request.getParameter("password"),
+                    request.getParameter("email"), request.getParameter("phonenumber"),
+                    false);
+            //String hash = UsersService.hash(request.getParameter("password"));
+            Users useradd = UsersService.register(user);
+            mv = new ModelAndView("register");
             mv.addObject("user", useradd);
             return mv;
         } catch (Exception ex) {
@@ -58,7 +65,7 @@ public class UsersContoller {
         mv.addObject("user", userupdate);
         return mv;
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -68,12 +75,12 @@ public class UsersContoller {
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
         user.getPassword();
         Users usercheck = UsersDAO.getUserbyName(user.getUsername());
-        if(user.getPassword().equals(usercheck.getPassword())){
+        if (user.getPassword().equals(usercheck.getPassword())) {
             mv.addObject("user", usercheck);
         }
         return mv;
     }
-    
+
     @RequestMapping("/alluser")
     public ModelAndView listUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -92,5 +99,5 @@ public class UsersContoller {
         UsersDAO.deleteUser(user);
         return mv;
     }
-    
+
 }

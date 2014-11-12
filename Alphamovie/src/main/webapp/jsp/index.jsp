@@ -116,7 +116,7 @@
                     <div class="wrap">
                         <div class="container">
 
-                            <form class="form-horizontal" role="form" name = "input" action="myaccount" method="post">
+                            <form class="form-horizontal" role="form" name = "input" action="register" method="post">
 
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="input-username">Username :</label>

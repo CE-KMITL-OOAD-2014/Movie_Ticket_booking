@@ -33,23 +33,6 @@ public class ShowtimeDAO {
         return lst;
     }
     
-    public static List<Showtime> listShowtimebyMovie(String mname) {
-        List<Showtime> lsts = listShowtime();
-        List<Showtime> lstshow = new ArrayList<Showtime>();
-        try {
-            for (Showtime s : lsts) {
-                if (s.getMname().equals(mname)) {
-                    lstshow.add(s);
-                }
-            }
-            return lstshow;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    
-
     public static Showtime addShowtime(Showtime showtime) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
