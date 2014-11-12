@@ -66,7 +66,7 @@ public class UsersContoller {
 
         Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
-        user.getPassword();
+        
         Users usercheck = UsersDAO.getUserbyName(user.getUsername());
         if(user.getPassword().equals(usercheck.getPassword())){
             mv.addObject("user", usercheck);

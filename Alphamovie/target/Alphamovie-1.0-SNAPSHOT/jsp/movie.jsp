@@ -204,7 +204,7 @@
                 <div class="tab-content">
 
                     <!--Now Show Tab -->
-                        <div class="tab-pane fade in active" id="nowshow" style="display:block;">
+                        <div class="tab-pane fade in active" id="nowshow">
                             <c:forEach var="movie" items="${movie}">
                                 <div class="well col-sm-3">
                                     <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"></c:out>">
@@ -216,16 +216,9 @@
                         </div>
 
                     <!--Coming Tab -->
-                    <div class="tab-pane fade in active" id="coming">
-
-                        <p>________________</p>
-                        <p>________________</p>
-                        <p>________________</p>
-                        <p>________________</p>
-                        <p>________________</p>
-                        <p>________________</p>
-                        <p>________________</p>
-                    </div>
+			<div class="tab-pane fade" id="coming">
+                            <center><p><H1>Coming Soon!!</H1></p></center>
+			</div>
                 </div>
             </div>
         </div>
