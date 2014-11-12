@@ -83,6 +83,19 @@ public class UsersContoller {
         }
         return mv;
     }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public ModelAndView logout(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("index");
+        
+        Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
+        usercheck.setSession(null);
+        UsersDAO.addorupdateUser(usercheck);
+        return mv;
+    }
+    
+    
 
     @RequestMapping("/alluser")
     public ModelAndView listUser(HttpServletRequest request,

@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index")
     public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
