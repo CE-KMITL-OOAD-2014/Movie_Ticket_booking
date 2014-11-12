@@ -20,5 +20,8 @@
         <property name="isadmin" type="boolean">
             <column name="isadmin" not-null="true" />
         </property>
+        <property name="session" type="string">
+            <column length="150" name="session"/>
+        </property>
     </class>
 </hibernate-mapping>

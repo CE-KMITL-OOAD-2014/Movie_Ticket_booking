@@ -23,6 +23,7 @@ public class Users  implements java.io.Serializable {
      private String email;
      private String phonenumber;
      private boolean isadmin;
+     private String session;
 
     public Users() {
     }
@@ -86,9 +87,15 @@ public class Users  implements java.io.Serializable {
     public void setIsadmin(boolean isadmin) {
         this.isadmin = isadmin;
     }
-
-
-
+    
+    @Column(name="session", length=150)
+    public String getSession() {
+        return this.session;
+    }
+    
+    public void setSession(String session) {
+        this.session = session;
+    }
 
 }
 

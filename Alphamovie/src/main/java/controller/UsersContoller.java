@@ -73,9 +73,12 @@ public class UsersContoller {
 
         Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
-        user.getPassword();
+        
         Users usercheck = UsersDAO.getUserbyName(user.getUsername());
         if (user.getPassword().equals(usercheck.getPassword())) {
+            String hash = UsersService.hash(request.getParameter("username"));
+            usercheck.setSession(hash);
+            UsersDAO.addorupdateUser(usercheck);
             mv.addObject("user", usercheck);
         }
         return mv;

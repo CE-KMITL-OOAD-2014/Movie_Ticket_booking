@@ -1,0 +1,4 @@
+model\dao\ReviewRatingDAO.class
+model\dao\ShowtimeDAO.class
+model\dao\MovieDAO.class
+model\dao\CinemaDAO.class
