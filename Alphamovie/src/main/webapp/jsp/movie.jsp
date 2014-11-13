@@ -53,9 +53,9 @@
                     <div class="tab-pane fade in active" id="nowshow">
                         <c:forEach var="movie" items="${movie}">
                             <div class="well col-sm-3">
-                                <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"></c:out>">
-                                    <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
-                                    <p><c:out value="${movie.getMname()}"></c:out></p>
+                                <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>">
+                                    <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
+                                    <p><c:out value="${movie.getMname()}"/></p>
                                     </a>
                                 </div>
                         </c:forEach>

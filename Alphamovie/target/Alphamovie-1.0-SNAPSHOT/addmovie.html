@@ -4,7 +4,7 @@
 	<link href="bootstrap/bootstrap-3.2.0-dist/css/bootstrap.css" rel="stylesheet">
 	<script src="jquery-2.1.1.min.js"></script>
 	<script src="bootstrap/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
-	<title>Add Movie</title>
+	<title>Add & Delete Movie</title>
 </head>
 <body>
     <style type="text/css">
@@ -17,9 +17,64 @@
         }
     </style>
     <div class="page-header">
-      <span class="col-sm-1"></span><h1>Add Movie</h1>
+      <span class="col-sm-1"></span><h1>Add & Delete Movie</h1>
+    </div>
+
+              <div class="wrap">
+        <div class="well col-sm-8 col-sm-offset-2">
+          <table class="table table-striped">
+            <thead>
+              <h3><b>Movie List</b></h3>
+            </thead>
+              <tbody>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-3">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-4">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-4">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
     </div>
           <div class="wrap col-sm-offset-2 col-sm-8">
+              <br>
+              <p><h3><b>Add Movie</b></h3></p>
+              <p><center>_______________________________________________________________________________________________________</center></p>
+              <br>
               <form role="form">
                 <div class="form-group">
                   <label for="InputtitleM">Title Movie</label>
@@ -109,6 +164,7 @@
                   <p class="help-block">Choose picture file.</p>
                 </div>
                 <span class="col-sm-5"></span><button type="submit" class="btn btn-default col-sm-2"><b>Submit</b></button>
+                <br><br><br><br>
               </form>
           </div>
 

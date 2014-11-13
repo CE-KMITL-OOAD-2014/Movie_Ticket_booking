@@ -8,6 +8,7 @@ package model.dao;
 import java.util.ArrayList;
 import java.util.List;
 import static model.dao.ShowtimeDAO.listShowtime;
+import model.pojo.Cinema;
 import model.pojo.Movie;
 import model.pojo.Showtime;
 import model.ulti.HibernateUtil;
@@ -26,7 +27,7 @@ public class MovieDAO {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Movie");
             lst = query.list();
-            for(Movie m:lst){
+            for (Movie m : lst) {
                 m.setB64str();
             }
             session.close();
@@ -35,13 +36,13 @@ public class MovieDAO {
         }
         return lst;
     }
-    
-    public static List<Showtime> listShowtimeinMovie(String mname) {
+
+    public static List<Showtime> listShowtimeinMovie(String mname, int c) {
         List<Showtime> lsts = listShowtime();
         List<Showtime> lstshow = new ArrayList<Showtime>();
         try {
             for (Showtime s : lsts) {
-                if (s.getMname().equals(mname)) {
+                if (c == s.getId().getCinema() && mname.equals(s.getMname())) {
                     lstshow.add(s);
                 }
             }

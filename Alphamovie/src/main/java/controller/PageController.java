@@ -41,10 +41,10 @@ public class PageController {
             List<Cinema> lstc = CinemaDAO.listCinema();
             for (Cinema c : lstc) {
                 c.addMovieList(CinemaDAO.listMovieinCinema(c.getCinema()));
-                lstm.addAll(c.getMovieList());
-            }
-            for (Movie m : lstm) {
-                m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname()));
+                lstm = c.getMovieList();
+                for (Movie m : lstm){
+                    m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname(),c.getCinema()));
+                }
             }
             mv.addObject("cinema", lstc);
             return mv;

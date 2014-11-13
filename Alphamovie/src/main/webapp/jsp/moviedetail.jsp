@@ -98,29 +98,30 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="sel-score">Choose Score </label>
                                 <div class="col-sm-1">
-                                    <select class="form-control" for="select-date">
+                                    <select class="form-control" name="rating">
                                         <option>-</option>
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div>        
                             <br><br>      
                             <div class="form-group col-sm-5">
                                 <label class="control-label" for="add-review">Add review </label>
-                                <textarea class="form-control" rows="5"></textarea>
+                                <textarea class="form-control" rows="5" name="review"></textarea>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            </body>
-            </html>
+        </div>
+    </div>
+</body>
+</html>

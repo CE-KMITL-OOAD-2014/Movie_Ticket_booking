@@ -80,7 +80,7 @@
 
                         <!-- /.Edit-Profile form -->
                         <div class="tab-pane fade" id="editinfo">
-                            <form class="form-horizontal" role="form" name = "input" action="myaccount/update" method="post">
+                            <form class="form-horizontal" role="form" name = "input" action="update" method="post">
                                 <input type="hidden" name="username" class="form-control" id="input-username" value="<c:out value="${user.getUsername()}"/>">
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="show-username">Username :</label>
@@ -107,7 +107,7 @@
 
                         <!-- /.Change-password form -->
                         <div class="tab-pane fade" id="changepass">
-                            <form class="form-horizontal" role="form" name = "input" action="myaccount/changepassword" method="post">
+                            <form class="form-horizontal" role="form" name = "input" action="changepassword" method="post">
                                 <input type="hidden" name="username" class="form-control" id="input-username" value="<c:out value="${user.getUsername()}"/>">
                                 <p>  </p>
                                 <div class="form-group">

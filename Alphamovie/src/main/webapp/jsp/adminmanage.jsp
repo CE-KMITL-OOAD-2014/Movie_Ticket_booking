@@ -39,13 +39,13 @@
                     <div class="panel-body">
                         <br>
                         <p>
-                            <a href="addmovie.html"><button type="button" class="btn btn-primary col-sm-4 col-sm-offset-1"><br><b><h4>Add Movie</h4></b><br></button></a>
-                            <a href="deletemovie.thml"><button type="button" class="btn btn-danger col-sm-4 col-sm-offset-2"><br><b><h4>Delete Movie</h4></b><br></button></a>
+                            <a href="movieedit"><button type="button" class="btn btn-primary col-sm-4 col-sm-offset-1"><br><b><h4>Add Movie</h4></b><br></button></a>
+                            <a href="movieedit"><button type="button" class="btn btn-danger col-sm-4 col-sm-offset-2"><br><b><h4>Delete Movie</h4></b><br></button></a>
                         </p>
                         <br><br><br><br><br><br>
                         <p>
-                            <a href="addshowtime.html"><button type="button" class="btn btn-primary col-sm-4 col-sm-offset-1"><br><b><h4>Add Showtime</h4></b><br></button></a>
-                            <a href="addcinema.html"><button type="button" class="btn btn-warning col-sm-4 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
+                            <a href="addshowtime"><button type="button" class="btn btn-primary col-sm-4 col-sm-offset-1"><br><b><h4>Add Showtime</h4></b><br></button></a>
+                            <a href="addcinema"><button type="button" class="btn btn-warning col-sm-4 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
                         </p>
                         <br><br><br><br><br>
                     </div>

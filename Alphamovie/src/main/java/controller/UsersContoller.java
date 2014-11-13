@@ -54,7 +54,7 @@ public class UsersContoller {
         return mv;
     }
 
-    @RequestMapping(value = "/myaccount/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");
@@ -75,7 +75,7 @@ public class UsersContoller {
         return mv;
     }
 
-    @RequestMapping(value = "/myaccount/changepassword", method = RequestMethod.POST)
+    @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
     public ModelAndView changepasswordUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");

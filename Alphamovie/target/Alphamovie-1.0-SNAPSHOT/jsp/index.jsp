@@ -216,10 +216,13 @@
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h1 class="modal-title" id="myModalLabel">Member Registeration</h4>
                 </div>
+
                 <div class="modal-body">
+
                     <div class="wrap">
                         <form class="form-horizontal" role="form" name = "input" action="register" method="post">
                             <div class="form-group">
+
                                 <label class="control-label col-sm-2" for="input-username">Username :</label>
                                 <div class="col-sm-3">
                                     <input type="text" name="username" class="form-control" id="input-username" placeholder="Username" required autofocus>
