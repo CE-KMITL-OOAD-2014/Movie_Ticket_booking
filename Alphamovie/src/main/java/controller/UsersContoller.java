@@ -54,15 +54,37 @@ public class UsersContoller {
         return mv;
     }
 
-    @RequestMapping(value = "/updateinformation", method = RequestMethod.POST)
+    @RequestMapping(value = "/myaccount/update", method = RequestMethod.POST)
     public ModelAndView updateUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("myaccout");
+        ModelAndView mv = new ModelAndView("myaccount");
+        Users user = UsersDAO.getUserbyName(request.getParameter("username"));
+        user.setEmail(request.getParameter("email"));
+        user.setPhonenumber(request.getParameter("phonenumber"));
+        UsersDAO.addorupdateUser(user);
+        mv.addObject("user", user);
+        return mv;
+    }
 
-        Users user = new Users(request.getParameter("username"), request.getParameter("password"),
-                request.getParameter("email"), request.getParameter("phonenumber"), false);
-        Users userupdate = UsersService.register(user);
-        mv.addObject("user", userupdate);
+    @RequestMapping(value = "/myaccount", method = RequestMethod.POST)
+    public ModelAndView UserInformationpage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("myaccount");
+        Users user = UsersDAO.getUserbyName(request.getParameter("username"));
+        mv.addObject("user", user);
+        return mv;
+    }
+
+    @RequestMapping(value = "/myaccount/changepassword", method = RequestMethod.POST)
+    public ModelAndView changepasswordUser(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("myaccount");
+        Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
+        if (request.getParameter("oldpassword").equals(usercheck.getPassword())) {
+            usercheck.setPassword(request.getParameter("newpassword"));
+            UsersDAO.addorupdateUser(usercheck);
+        }
+        mv.addObject("user", usercheck);
         return mv;
     }
 
@@ -71,55 +93,24 @@ public class UsersContoller {
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView();
 
-        Users user = new Users(request.getParameter("username"), request.getParameter("password"),
-                request.getParameter("email"), request.getParameter("phonenumber"), false);
-        
-        Users usercheck = UsersDAO.getUserbyName(user.getUsername());
-        if (user.getPassword().equals(usercheck.getPassword())) {
+        Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
+        if (request.getParameter("password").equals(usercheck.getPassword())) {
             String hash = UsersService.hash(request.getParameter("username"));
             usercheck.setSession(hash);
             UsersDAO.addorupdateUser(usercheck);
-            
+
             mv.addObject("user", usercheck);
-            mv.setViewName("redirect:/index");
+            mv.setViewName("index");
         }
         return mv;
     }
-    
-<<<<<<< HEAD
-    @RequestMapping(value = "/loout", method = RequestMethod.POST)
-=======
-    @RequestMapping(value = "/logout")
->>>>>>> c8c32dbfabbc6ed4054093c6ea3eb4c15f622143
-    public ModelAndView logout(HttpServletRequest request,
+
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("redirect:/index");
-        
+
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
         usercheck.setSession(null);
         UsersDAO.addorupdateUser(usercheck);
-        return mv;
     }
-    
-    
-
-    @RequestMapping("/alluser")
-    public ModelAndView listUser(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("userss");
-        List<Users> lst = UsersDAO.listUser();
-        mv.addObject("users", lst);
-        return mv;
-    }
-
-    @RequestMapping("/deleteuser")
-    public ModelAndView deleteUser(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("HelloWorldPage");
-        Users user = new Users("username", "world", "email123", "111-111-1110", false);
-        mv.addObject("users", user);
-        UsersDAO.deleteUser(user);
-        return mv;
-    }
-
 }

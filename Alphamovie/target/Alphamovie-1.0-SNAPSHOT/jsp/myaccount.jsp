@@ -15,7 +15,7 @@
     <style type="text/css">
         body{
             background-attachment: fixed;
-            background-image: url(${pageContext.request.contextPath}/resources/img/cinemabackground.jpg);
+            background-image: url(${pageContext.request.contextPath}/resources/img/CinemaBackground.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -57,36 +57,35 @@
                         <!-- /.Profile form -->
                         <div class="tab-pane fade in active" id="profile">
                             <form class="form-horizontal" role="form">
-                                <p>  </p>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="show-username">Username :</label>
                                     <div class="col-sm-6">
-                                        <p> <c:out value="${user.getUsername()}"></c:out> </p>
-                                        </div>
+                                        <p> <c:out value="${user.getUsername()}"/> </p>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3" for="show-email">Email :</label>
-                                        <div class="col-sm-6">
-                                            <p> <c:out value="${user.getEmail()}"></c:out> </p>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="show-email">Email :</label>
+                                    <div class="col-sm-6">
+                                        <p> <c:out value="${user.getEmail()}"/> </p>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3" for="show-tel">Phone Number :</label>
-                                        <div class="col-sm-6">
-                                            <p> <c:out value="${user.getPhonenumber()}"></c:out> </p>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="show-tel">Phone Number :</label>
+                                    <div class="col-sm-6">
+                                        <p> <c:out value="${user.getPhonenumber()}"/> </p>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
+                        </div>
 
-                            <!-- /.Edit-Profile form -->
-                            <div class="tab-pane fade" id="editinfo">
-                                <form class="form-horizontal" role="form" name = "input" action="updateinformation" method="post">
-                                    <p>  </p>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3" for="show-username">Username :</label>
-                                        <div class="col-sm-6">
-                                            <p> <c:out value="${user.getUsername()}"></c:out> </p> 
+                        <!-- /.Edit-Profile form -->
+                        <div class="tab-pane fade" id="editinfo">
+                            <form class="form-horizontal" role="form" name = "input" action="myaccount/update" method="post">
+                                <input type="hidden" name="username" class="form-control" id="input-username" value="<c:out value="${user.getUsername()}"/>">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="show-username">Username :</label>
+                                    <div class="col-sm-6">
+                                        <p> <c:out value="${user.getUsername()}"/> </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -108,26 +107,27 @@
 
                         <!-- /.Change-password form -->
                         <div class="tab-pane fade" id="changepass">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" name = "input" action="myaccount/changepassword" method="post">
+                                <input type="hidden" name="username" class="form-control" id="input-username" value="<c:out value="${user.getUsername()}"/>">
                                 <p>  </p>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="input-newpassword">New Password:</label>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control" id="input-newpassword" placeholder="New Password">
+                                        <input type="password" name="newpassword" class="form-control" id="input-newpassword" placeholder="New Password">
                                     </div>
                                     <span class="col-sm-8"></span><p class="col-sm-7 col-sm-offset-3 help-block">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="confirm-newpassword">Confirm New Password:</label>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control" id="confirm-newpassword" placeholder="Confirm New Password">
+                                        <input type="password" name="confirmnewpassword" class="form-control" id="confirm-newpassword" placeholder="Confirm New Password">
                                     </div>
                                     <p class="col-sm-3 help-block">.</p>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="input-newpassword">Password:</label>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control" id="input-password" placeholder="Password">
+                                        <input type="password" name="oldpassword" class="form-control" id="input-password" placeholder="Password">
                                     </div>
                                 </div>
                                 <p>  </p>

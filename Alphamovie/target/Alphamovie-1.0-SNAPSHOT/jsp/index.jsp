@@ -20,7 +20,7 @@
         if (localStorage.getItem("session") != null) {
             $(".show-if-logout").hide();
             $("#logout").show();
-            if (localStorage.getItem("isadmin") === true) {
+            if (localStorage.getItem("isadmin") == "true") {
                 $("#admin-login").show();
                 $("#user-login").hide();
             }
@@ -39,8 +39,21 @@
 <script>
     $(document).ready(function () {
         $("#logout").click(function () {
+            alert("logout");
+            var username = localStorage.getItem("user");
+            $.post("logout", {username: username});
             localStorage.clear();
-            document.location = "./";
+            document.location = "/Alphamovie/index";
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#user-login").click(function () {
+            var username = localStorage.getItem("user");
+            $('input:hidden').val(username);
+            $("#myaccount").submit();
         });
     });
 </script>
@@ -95,14 +108,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="movie"><b> Movie </b></a></li>
-                    <li><a href="showtime"><b> Showtime </b></a></li>
+                    <li><a href="showtime" ><b> Showtime </b></a></li>
                     <li><a href="#"><b> Booking Ticket </b></a></li>
-<<<<<<< HEAD
-                    <li><b><c:out value="${user.getSession()}"></c:out> </b></li>
-=======
->>>>>>> c8c32dbfabbc6ed4054093c6ea3eb4c15f622143
+
 
                 </ul>
+                <form id="myaccount" role="form" name ="input" action="myaccount" method="post">
+                    <input type="hidden" name="username">
+                </form>
 
                 <!--ul class="nav navbar-nav">
                                 <div class="input-group">
@@ -124,13 +137,13 @@
                     <li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href="#"><b> Sign Up </b></a></li> 
 
                     <li class="show-if-login" id="user-login">
-                        <a href="myaccount"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
+                        <a href="#" onclick="myaccount"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
                     </li>
                     <li class="show-if-login" id="admin-login">
                         <a href="adminmanage"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
                     </li>
                     <li class="show-if-login" id="logout">
-                        <a href="logout?username=<c:out value="${user.getUsername()}"/> "><b> Sign Out </b></a>
+                        <a href="#" onclick="logout"><b> Sign Out </b></a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -139,13 +152,12 @@
 
     <script>
         function getdata() {
-//                   if(typeof(Storage)!=="undefined")
-            if ("<c:out value="${user.getUsername()}"/>".length !== 0)
+            if ("<c:out value="${user.getSession()}"/>".length !== 0)
             {
                 // Code for localStorage/sessionStorage.
                 localStorage.setItem("user", '<c:out value="${user.getUsername()}"/>');
                 localStorage.setItem("session", '<c:out value="${user.getSession()}"/>');
-                localStorage.setItem("isadmin", false);
+                localStorage.setItem("isadmin", '<c:out value="${user.isIsadmin()}"/>');
                 //fetch object
                 console.log(localStorage.getItem("user")); // will return "[object Object]"
                 console.log(localStorage.getItem("session"));
@@ -168,27 +180,27 @@
                 </div>
                 <div class="modal-body">
                     <div class="wrap">
-                            <form class="form-horizontal" role="form" name = "input" action="login" method="post">
-                                <center>
-                                    <div class="form-group">
-                                        <div class="input-group col-sm-7">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                            <input type="username" name="username" class="form-control" placeholder="Username">
-                                        </div>
+                        <form class="form-horizontal" role="form" name ="input" action="login" method="post">
+                            <center>
+                                <div class="form-group">
+                                    <div class="input-group col-sm-7">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                        <input type="username" name="username" class="form-control" placeholder="Username">
                                     </div>
-                                    <br>
-                                    <div class="form-group">
-                                        <div class="input-group col-sm-7">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                            <input type="password" name="password" class="form-control" placeholder="Password">
-                                        </div>
-                                    </div>
-                                    <!--<p><input type="checkbox"> Remember Me </p>-->
-                                </center>
-                                <div class="modal-footer">
-                                       <button type="submit" class="btn btn-default"><b>Sign In</b></button>
                                 </div>
-                            </form>
+                                <br>
+                                <div class="form-group">
+                                    <div class="input-group col-sm-7">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                        <input type="password" name="password" class="form-control" placeholder="Password">
+                                    </div>
+                                </div>
+                                <!--<p><input type="checkbox"> Remember Me </p>-->
+                            </center>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default"><b>Sign In</b></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
