@@ -86,10 +86,14 @@ public class UsersContoller {
         return mv;
     }
     
+<<<<<<< HEAD
     @RequestMapping(value = "/loout", method = RequestMethod.POST)
+=======
+    @RequestMapping(value = "/logout")
+>>>>>>> c8c32dbfabbc6ed4054093c6ea3eb4c15f622143
     public ModelAndView logout(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("redirect:/index");
         
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
         usercheck.setSession(null);

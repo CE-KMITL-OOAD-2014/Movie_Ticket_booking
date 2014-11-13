@@ -12,38 +12,39 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
-        
-        <script>  
-            $(document).ready(function(){
-                if ($(localStorage.getItem("session")).val() != ''){
-                    $(".show-if-logout").hide();
-                    $("#logout").show();
-                    if ($(localStorage.getItem("isadmin")).val() === 'true'){
-                        $("#admin-login").show();
-                        $("#user-login").hide();
-                    }
-                    else {
-                        $("#user-login").show();
-                        $("#admin-login").hide();
-                    }
-                }    
-                else {
-                    $(".show-if-logout").show();
-                    $(".show-if-login").hide();
-                }
-            });
-	</script>
-        
-        <script>
-            $(document).ready(function(){
-              $("#logout").click(function(){
-                    localStorage.clear();
-                    location.reload(true);
-              });
-            });
-	</script>
-        
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
+
+<script>
+    $(document).ready(function () {
+        getdata();
+        if (localStorage.getItem("session") != null) {
+            $(".show-if-logout").hide();
+            $("#logout").show();
+            if (localStorage.getItem("isadmin") === true) {
+                $("#admin-login").show();
+                $("#user-login").hide();
+            }
+            else {
+                $("#user-login").show();
+                $("#admin-login").hide();
+            }
+        }
+        else {
+            $(".show-if-logout").show();
+            $(".show-if-login").hide();
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#logout").click(function () {
+            localStorage.clear();
+            document.location = "./";
+        });
+    });
+</script>
+
 <title> Alpha Movie Ticket Booking </title>
 </head>
 <body>
@@ -96,7 +97,10 @@
                     <li><a href="movie"><b> Movie </b></a></li>
                     <li><a href="showtime"><b> Showtime </b></a></li>
                     <li><a href="#"><b> Booking Ticket </b></a></li>
+<<<<<<< HEAD
                     <li><b><c:out value="${user.getSession()}"></c:out> </b></li>
+=======
+>>>>>>> c8c32dbfabbc6ed4054093c6ea3eb4c15f622143
 
                 </ul>
 
@@ -114,42 +118,83 @@
                         </ul-->
 
                 <ul class="nav navbar-nav navbar-right">     
-		        		<li class="show-if-logout">
-		         			<a href="signin.html"><b> Sign In </b></a>
-		        		</li>
-		        		<li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href="#"><b> Sign Up </b></a></li> 
-		        		
-		        		<li class="show-if-login" id="user-login">
-        					<a href="myaccount.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
-        				</li>
-        				<li class="show-if-login" id="admin-login">
-        					<a href="adminmanage.html"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
-        				</li>
-        				<li class="show-if-login" id="logout">
-		         			<a href="#"><b> Sign Out </b></a>
-		        		</li>
-		</ul>
+                    <li class="show-if-logout" data-toggle="modal" data-target="#signinModal">
+                        <a href="#"><b> Sign In </b></a>
+                    </li>
+                    <li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href="#"><b> Sign Up </b></a></li> 
+
+                    <li class="show-if-login" id="user-login">
+                        <a href="myaccount"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
+                    </li>
+                    <li class="show-if-login" id="admin-login">
+                        <a href="adminmanage"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
+                    </li>
+                    <li class="show-if-login" id="logout">
+                        <a href="logout?username=<c:out value="${user.getUsername()}"/> "><b> Sign Out </b></a>
+                    </li>
+                </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-                
-                <script>
-                    if(typeof(Storage)!=="undefined")
-                        {
-                        // Code for localStorage/sessionStorage.
-                        localStorage.setItem("user",'<c:out value="${user.getUsername()}"></c:out>');
-                        localStorage.setItem("session",'xx');  
-                        localStorage.setItem("isadmin",'false');  
-                        //fetch object
-                        console.log(localStorage.getItem("user")); // will return "[object Object]"
-                        console.log(localStorage.getItem("session"));
-                        console.log(localStorage.getItem("isadmin"));
-                        }
-                    else
-                        {
-                        // Sorry! No Web Storage support..
-                        }
-                </script>
+
+    <script>
+        function getdata() {
+//                   if(typeof(Storage)!=="undefined")
+            if ("<c:out value="${user.getUsername()}"/>".length !== 0)
+            {
+                // Code for localStorage/sessionStorage.
+                localStorage.setItem("user", '<c:out value="${user.getUsername()}"/>');
+                localStorage.setItem("session", '<c:out value="${user.getSession()}"/>');
+                localStorage.setItem("isadmin", false);
+                //fetch object
+                console.log(localStorage.getItem("user")); // will return "[object Object]"
+                console.log(localStorage.getItem("session"));
+                console.log(localStorage.getItem("isadmin"));
+            }
+            else
+            {
+                // Sorry! No Web Storage support..
+            }
+        }
+    </script>
+
+    <!--Sign In Modal -->
+    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h1 class="modal-title" id="myModalLabel">Sign In</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="wrap">
+                            <form class="form-horizontal" role="form" name = "input" action="login" method="post">
+                                <center>
+                                    <div class="form-group">
+                                        <div class="input-group col-sm-7">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                            <input type="username" name="username" class="form-control" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="input-group col-sm-7">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="password" name="password" class="form-control" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <!--<p><input type="checkbox"> Remember Me </p>-->
+                                </center>
+                                <div class="modal-footer">
+                                       <button type="submit" class="btn btn-default"><b>Sign In</b></button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            
+
 
     <!--Sign Up Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -161,47 +206,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="wrap">
-                        <div class="container">
-
-                            <form class="form-horizontal" role="form" name = "input" action="register" method="post">
-
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="input-username">Username :</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" name="username" class="form-control" id="input-username" placeholder="Username" required autofocus>
-                                    </div>
+                        <form class="form-horizontal" role="form" name = "input" action="register" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="input-username">Username :</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="username" class="form-control" id="input-username" placeholder="Username" required autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="input-password">Password :</label>
-                                    <div class="col-sm-3">
-                                        <input type="password" name="password" class="form-control" id="input-password" placeholder="Password" required autofocus onchange="form.repass.pattern = this.value;" > <!-- -->
-                                    </div>
-                                    <div class="col-sm-9"><p class="help-block col-sm-offset-3">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="input-password">Password :</label>
+                                <div class="col-sm-3">
+                                    <input type="password" name="password" class="form-control" id="input-password" placeholder="Password" required autofocus onchange="form.repass.pattern = this.value;" > <!-- -->
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="confirm-password">Confirm Password :</label>
-                                    <div class="col-sm-3">
-                                        <input type="password" name="confirmpassword" class="form-control" id="confirm-password" placeholder="Confirm Password" required autofocus title="Please use same password."><!---->
-                                    </div>
-                                    <ul><p class="col-sm-3 help-block">.</p></ul>
+                                <div class="col-sm-9"><p class="help-block col-sm-offset-3">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="confirm-password">Confirm Password :</label>
+                                <div class="col-sm-3">
+                                    <input type="password" name="confirmpassword" class="form-control" id="confirm-password" placeholder="Confirm Password" required autofocus title="Please use same password."><!---->
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="input-email">Email address :</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" name="email" class="form-control" id="input-email" placeholder="Enter email" required autofocus>
-                                    </div>
+                                <ul><p class="col-sm-3 help-block">.</p></ul>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="input-email">Email address :</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="email" class="form-control" id="input-email" placeholder="Enter email" required autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-sm-2" for="input-tel">Phone Number :</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" name="phonenumber" class="form-control" id="input-tel" placeholder="(xxx)-xxx-xxxx" required autofocus>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="input-tel">Phone Number :</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="phonenumber" class="form-control" id="input-tel" placeholder="(xxx)-xxx-xxxx" required autofocus>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-default" >Submit</button> <!--data-dismiss="modal" -->
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default" >Submit</button> <!--data-dismiss="modal" -->
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div>
@@ -237,25 +278,25 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="${pageContext.request.contextPath}/resources/img/the_hunger_games_mockingjay__part_1_title-2560x1600.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 500px;">
+                        <img src="${pageContext.request.contextPath}/resources/img/the_hunger_games_mockingjay__part_1_title-2560x1600.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 70%;">
                         <div class="carousel-caption">
 
                         </div>
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/resources/img/3_wideDraculaPoster3-1024x640-780x400.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 500px;">
+                        <img src="${pageContext.request.contextPath}/resources/img/3_wideDraculaPoster3-1024x640-780x400.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 70%;">
                         <div class="carousel-caption">
 
                         </div>
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/resources/img/slide2.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 500px;">
+                        <img src="${pageContext.request.contextPath}/resources/img/slide2.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 70%;">
                         <div class="carousel-caption">
 
                         </div>
                     </div>
                     <div class="item">
-                        <img src="${pageContext.request.contextPath}/resources/img/slide3.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 500px;">
+                        <img src="${pageContext.request.contextPath}/resources/img/slide3.jpg" class="image-responsive" alt="Responsive image" style="width: 100%; height: 70%;">
                         <div class="carousel-caption">
 
                         </div>
