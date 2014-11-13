@@ -96,10 +96,8 @@
                     <li><a href="movie"><b> Movie </b></a></li>
                     <li><a href="showtime"><b> Showtime </b></a></li>
                     <li><a href="#"><b> Booking Ticket </b></a></li>
-<<<<<<< HEAD
-=======
                     <li><b><c:out value="${user.getSession()}"></c:out> </b></li>
->>>>>>> a00b60041112e09e87342916f4493d2515b2058b
+
                 </ul>
 
                 <!--ul class="nav navbar-nav">

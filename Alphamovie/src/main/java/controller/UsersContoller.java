@@ -69,7 +69,7 @@ public class UsersContoller {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView();
 
         Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                 request.getParameter("email"), request.getParameter("phonenumber"), false);
@@ -79,12 +79,14 @@ public class UsersContoller {
             String hash = UsersService.hash(request.getParameter("username"));
             usercheck.setSession(hash);
             UsersDAO.addorupdateUser(usercheck);
+            
             mv.addObject("user", usercheck);
+            mv.setViewName("redirect:/index");
         }
         return mv;
     }
     
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/loout", method = RequestMethod.POST)
     public ModelAndView logout(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
