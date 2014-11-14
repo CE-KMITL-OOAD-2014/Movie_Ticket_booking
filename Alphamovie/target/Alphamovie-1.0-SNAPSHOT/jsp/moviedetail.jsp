@@ -8,6 +8,23 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
+
+<script>
+    $(document).ready(function () {
+        
+       if ((localStorage.getItem("session")) != null)
+            {
+                $("#baddreviewnrate").show();
+            }
+            else
+            {
+                // Sorry! No Web Storage support..
+                $("#baddreviewnrate").hide();
+            }
+    });
+</script>
+
+
 <title>Movie Detail</title>
 </head>
 <body>
@@ -75,7 +92,7 @@
                             <br><br>
                             <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
                             <br><br>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#reviewModal">Add Review & Rating</button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#reviewModal" id="baddreviewnrate">Add Review & Rating</button>
                         </center>
                     </div>
 
@@ -111,7 +128,7 @@
                             </div>  
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                <label class="control-label" for="add-review">Add review </label><br><br>
+                                <label class="control-label" for="add-review">Add Review </label><br><br>
                                 <textarea class="form-control" rows="5" name="review"></textarea>
                                 </div>
                             </div>
@@ -124,5 +141,7 @@
             </div>
         </div>
     </div>
+    
+    
 </body>
 </html>
