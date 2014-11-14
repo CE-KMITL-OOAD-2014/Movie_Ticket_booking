@@ -13,7 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Register Success!</h1>
-        <c:out value="${username}"></c:out>
+        <c:forEach var="seat" items="${seat}" >
+            <p><c:out value="${seat}"/></p>
+        </c:forEach>
     </body>
 </html>

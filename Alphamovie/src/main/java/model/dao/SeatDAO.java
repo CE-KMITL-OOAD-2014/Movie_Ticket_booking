@@ -5,10 +5,9 @@
  */
 package model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import model.pojo.Movie;
-import model.pojo.Showtime;
+import model.pojo.Seat;
+import model.pojo.SeatId;
 import model.pojo.ShowtimeId;
 import model.ulti.HibernateUtil;
 import org.hibernate.Query;
@@ -18,13 +17,12 @@ import org.hibernate.Session;
  *
  * @author Art
  */
-public class ShowtimeDAO {
-
-    public static List<Showtime> listShowtime() {
-        List<Showtime> lst = null;
+public class SeatDAO {
+    public static List<Seat> listSeat() {
+        List<Seat> lst = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Showtime");
+            Query query = session.createQuery("from Seat");
             lst = query.list();
             session.close();
         } catch (Exception e) {
@@ -33,26 +31,26 @@ public class ShowtimeDAO {
         return lst;
     }
     
-    public static Showtime addShowtime(Showtime showtime) {
+    public static Seat addSeat(Seat seat) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(showtime);
+            session.save(seat);
             session.getTransaction().commit();
-            Showtime showtimeadd = (Showtime) session.load(Showtime.class, showtime.getId());
+            Seat seatadd = (Seat) session.load(Seat.class, seat.getId());
             session.close();
-            return showtimeadd;
+            return seatadd;
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public static void deleteShowtime(Showtime showtime) {
+    public static void deleteSeat(Seat seat) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction();
-            Showtime dshowtime = (Showtime) session.load(Showtime.class, showtime.getId());
-            session.delete(dshowtime);
+            Seat dseat = (Seat) session.load(Seat.class, seat.getId());
+            session.delete(dseat);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
@@ -60,12 +58,12 @@ public class ShowtimeDAO {
         }
     }
 
-    public static Showtime getShowtimebyId(String time, int cinema) {
-        ShowtimeId id = new ShowtimeId(time, cinema);
+    public static Seat getSeatbyId(String time, int cinema,String seat) {
+        SeatId id = new SeatId(time, cinema,seat);
         try {
-            List<Showtime> lst = listShowtime();
-            for (Showtime s : lst) {
-                ShowtimeId id1 = s.getId();
+            List<Seat> lst = listSeat();
+            for (Seat s : lst) {
+                SeatId id1 = s.getId();
                 if (id.equals(id1)) {
                     return s;
                 }

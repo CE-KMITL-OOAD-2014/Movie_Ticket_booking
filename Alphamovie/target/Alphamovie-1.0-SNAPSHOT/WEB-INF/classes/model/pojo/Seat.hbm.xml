@@ -1,22 +1,25 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 14, 2014 9:01:23 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 15, 2014 4:01:32 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.pojo.Seat" table="Seat" schema="dbo" catalog="Alpha" optimistic-lock="version">
-        <composite-id name="id" class="model.pojo.ShowtimeId">
+        <composite-id name="id" class="model.pojo.SeatId">
             <key-property name="time" type="string">
                 <column name="time" length="5" />
             </key-property>
             <key-property name="cinema" type="int">
                 <column name="cinema" />
             </key-property>
+            <key-property name="seat" type="string">
+                <column name="seat" length="3" />
+            </key-property>
         </composite-id>
-        <property name="seat" type="string">
-            <column name="seat" length="3" not-null="true" />
+        <property name="type" type="int">
+            <column name="type" not-null="true" />
         </property>
-        <property name="type" type="java.lang.Integer">
-            <column name="type" />
+        <property name="avalible" type="boolean">
+            <column name="avalible" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

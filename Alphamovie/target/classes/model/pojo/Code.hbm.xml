@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Nov 14, 2014 9:01:23 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Nov 15, 2014 4:01:32 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.pojo.Code" table="Code" schema="dbo" catalog="Alpha" optimistic-lock="version">
+    <class name="model.pojo.Code" table="Code" schema="dbo" catalog="Alpha">
         <id name="code" type="string">
             <column name="code" length="100" />
-            <generator class="assigned" />
+            <generator class="assigned"></generator>
         </id>
         <property name="time" type="string">
             <column name="time" length="5" not-null="true" />

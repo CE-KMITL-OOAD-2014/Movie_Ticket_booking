@@ -12,13 +12,14 @@ C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\mode
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\controller\NewSimpleFormController.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\controller\Moviecontroller.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\test\App.java
+C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\dao\CodeDAO.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\pojo\Showtime.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\controller\AdminController.java
-C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\pojo\Seat.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\pojo\ShowtimeId.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\pojo\Code.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\dao\UsersDAO.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\controller\ShowtimeContoller.java
+C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\dao\SeatDAO.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\model\dao\CinemaDAO.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\service\AdminService.java
 C:\Users\Art\Documents\GitHub\Movie_Ticket_booking\Alphamovie\src\main\java\controller\CinemaController.java

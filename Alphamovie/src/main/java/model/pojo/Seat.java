@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Nov 14, 2014 9:01:22 PM by Hibernate Tools 4.3.1
+// Generated Nov 15, 2014 4:01:32 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -20,22 +20,17 @@ import javax.persistence.Table;
 public class Seat  implements java.io.Serializable {
 
 
-     private ShowtimeId id;
-     private String seat;
-     private Integer type;
+     private SeatId id;
+     private int type;
+     private boolean avalible;
 
     public Seat() {
     }
 
-	
-    public Seat(ShowtimeId id, String seat) {
-        this.id = id;
-        this.seat = seat;
-    }
-    public Seat(ShowtimeId id, String seat, Integer type) {
+    public Seat(SeatId id, int type, boolean avalible) {
        this.id = id;
-       this.seat = seat;
        this.type = type;
+       this.avalible = avalible;
     }
    
      @EmbeddedId
@@ -43,33 +38,34 @@ public class Seat  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="time", column=@Column(name="time", nullable=false, length=5) ), 
-        @AttributeOverride(name="cinema", column=@Column(name="cinema", nullable=false) ) } )
-    public ShowtimeId getId() {
+        @AttributeOverride(name="cinema", column=@Column(name="cinema", nullable=false) ), 
+        @AttributeOverride(name="seat", column=@Column(name="seat", nullable=false, length=3) ) } )
+    public SeatId getId() {
         return this.id;
     }
     
-    public void setId(ShowtimeId id) {
+    public void setId(SeatId id) {
         this.id = id;
     }
 
     
-    @Column(name="seat", nullable=false, length=3)
-    public String getSeat() {
-        return this.seat;
-    }
-    
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
-    
-    @Column(name="type")
-    public Integer getType() {
+    @Column(name="type", nullable=false)
+    public int getType() {
         return this.type;
     }
     
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
+    }
+
+    
+    @Column(name="avalible", nullable=false)
+    public boolean isAvalible() {
+        return this.avalible;
+    }
+    
+    public void setAvalible(boolean avalible) {
+        this.avalible = avalible;
     }
 
 

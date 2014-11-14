@@ -66,8 +66,7 @@
                                 <div class="normal-seat">
                                     <label class="col-sm-3 col-sm-offset-3"><b>Normal seat</b></label>
                                     <div class="col-sm-2">
-                                        <select class="form-control" for="select-nseat" name="val">
-                                            <option>-</option>
+                                        <select class="form-control" for="select-nseat" name="seatnum">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

@@ -6,6 +6,7 @@
 package controller;
 
 import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 import service.UsersService;
 
 import java.util.List;
@@ -83,7 +84,8 @@ public class UsersContoller {
     public ModelAndView testPage(HttpServletRequest request,
             HttpServletResponse response) throws Exception{
         ModelAndView mv = new ModelAndView("success");
-        mv.addObject("username",request.getParameter("seatsel"));
+         List<String> lst = new ArrayList<String>();
+        mv.addObject("seat",request.getParameterValues("seat"));
         return mv;
     }
     
@@ -98,7 +100,7 @@ public class UsersContoller {
     public ModelAndView selectSeatPage(HttpServletRequest request,
             HttpServletResponse response) throws Exception{
         ModelAndView mv = new ModelAndView("selectseat");
-        mv.addObject("seatnum",request.getParameter("val"));
+        mv.addObject("seatnum",request.getParameter("seatnum"));
         return mv;
     }
 
