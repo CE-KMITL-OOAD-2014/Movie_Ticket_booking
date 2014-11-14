@@ -19,10 +19,4 @@ public class MovieService {
     public static String addMovie(Movie movie){
         return movie.getMname();
     }
-    
-    public static List<Movie> allMovie(Users user,List<Movie> mlist){
-        if(UsersService.login(user)!=null);
-        List<Movie> lst = mlist;
-        return lst;
-    }
 }

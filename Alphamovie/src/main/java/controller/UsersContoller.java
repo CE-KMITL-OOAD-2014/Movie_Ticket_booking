@@ -41,8 +41,9 @@ public class UsersContoller {
             Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                     request.getParameter("email"), request.getParameter("phonenumber"),
                     false);
-            //String hash = UsersService.hash(request.getParameter("password"));
-            Users useradd = UsersService.register(user);
+            String password = UsersService.generatePasswordHash(request.getParameter("username"),request.getParameter("password"));
+            user.setPassword(password);
+            Users useradd = UsersDAO.addorupdateUser(user);
             mv = new ModelAndView("register");
             mv.addObject("user", useradd);
             return mv;
@@ -80,8 +81,10 @@ public class UsersContoller {
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
-        if (request.getParameter("oldpassword").equals(usercheck.getPassword())) {
-            usercheck.setPassword(request.getParameter("newpassword"));
+        String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("oldpassword"));
+        if (password.equals(usercheck.getPassword())) {
+            password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("newpassword"));
+            usercheck.setPassword(password);
             UsersDAO.addorupdateUser(usercheck);
         }
         mv.addObject("user", usercheck);
@@ -94,9 +97,10 @@ public class UsersContoller {
         ModelAndView mv = new ModelAndView();
 
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
-        if (request.getParameter("password").equals(usercheck.getPassword())) {
-            String hash = UsersService.hash(request.getParameter("username"));
-            usercheck.setSession(hash);
+        String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("password"));
+        if (password.equals(usercheck.getPassword())) {
+            String session = UsersService.generateSession(request.getParameter("username"));
+            usercheck.setSession(session);
             UsersDAO.addorupdateUser(usercheck);
 
             mv.addObject("user", usercheck);
