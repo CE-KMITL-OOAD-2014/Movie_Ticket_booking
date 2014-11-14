@@ -58,6 +58,14 @@
     });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $("#admin-login").click(function () {
+            $("#adminmanage").submit();
+        });
+    });
+</script>
+
 <title> Alpha Movie Ticket Booking </title>
 </head>
 <body>
@@ -116,6 +124,8 @@
                 <form id="myaccount" role="form" name ="input" action="myaccount" method="post">
                     <input type="hidden" name="username">
                 </form>
+                <form id="adminmanage" role="form" name ="input" action="adminmanage" method="post">
+                </form>
 
                 <!--ul class="nav navbar-nav">
                                 <div class="input-group">
@@ -137,10 +147,10 @@
                     <li class="show-if-logout" data-toggle="modal" data-target="#signupModal"><a href="#"><b> Sign Up </b></a></li> 
 
                     <li class="show-if-login" id="user-login">
-                        <a href="#" onclick="myaccount"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
+                        <a href="#"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Your Account </b></span></a>
                     </li>
                     <li class="show-if-login" id="admin-login">
-                        <a href="adminmanage"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
+                        <a href="#"><span class="user-name"><span class="glyphicon glyphicon-user"></span><b> Admin </b></span></a>
                     </li>
                     <li class="show-if-login" id="logout">
                         <a href="#" onclick="logout"><b> Sign Out </b></a>

@@ -16,6 +16,60 @@
         }
     </style>
     <div class="page-header">
+      <span class="col-sm-1"></span><h1>Add & Delete Movie</h1>
+    </div>
+
+              <div class="wrap">
+        <div class="well col-sm-8 col-sm-offset-2">
+          <table class="table table-striped">
+            <thead>
+              <h3><b>Movie List</b></h3>
+            </thead>
+              <tbody>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-3">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-4">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+                <tr class="mlist">
+                  <td class="col-sm-8">
+                    <br>
+                    <div class="col-sm-offset-1">
+                      <p>Movie Title</p>
+                      <p>Release Date</p>
+                    </div>
+                  </td>
+                  <td class="col-sm-4">
+                    <br>
+                    <center><button type="button" class="btn btn-default">Delete</button></center>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="page-header">
         <span class="col-sm-1"></span><h1>Add Movie</h1>
     </div>
     <div class="wrap col-sm-offset-2 col-sm-8">
@@ -48,16 +102,3 @@
                 <span class="col-sm-10"></span><button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
-
-    <!--Review n Rating Modal -->
-    <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h1>Register Success!</h1>
-                    <c:out value="${mname}"></c:out>
-
-
-                    </body>
-                    </html>
