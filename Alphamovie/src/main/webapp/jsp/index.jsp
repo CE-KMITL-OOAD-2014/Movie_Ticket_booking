@@ -233,34 +233,34 @@
                         <form class="form-horizontal" role="form" name = "input" action="register" method="post">
                             <div class="form-group">
 
-                                <label class="control-label col-sm-2" for="input-username">Username :</label>
-                                <div class="col-sm-3">
+                                <label class="control-label col-sm-4" for="input-username">Username :</label>
+                                <div class="col-sm-6">
                                     <input type="text" name="username" class="form-control" id="input-username" placeholder="Username" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="input-password">Password :</label>
-                                <div class="col-sm-3">
+                                <label class="control-label col-sm-4" for="input-password">Password :</label>
+                                <div class="col-sm-6">
                                     <input type="password" name="password" class="form-control" id="input-password" placeholder="Password" required autofocus onchange="form.repass.pattern = this.value;" > <!-- -->
                                 </div>
                                 <div class="col-sm-9"><p class="help-block col-sm-offset-3">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p></div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="confirm-password">Confirm Password :</label>
-                                <div class="col-sm-3">
+                                <label class="control-label col-sm-4" for="confirm-password">Confirm Password :</label>
+                                <div class="col-sm-6">
                                     <input type="password" name="confirmpassword" class="form-control" id="confirm-password" placeholder="Confirm Password" required autofocus title="Please use same password."><!---->
                                 </div>
-                                <ul><p class="col-sm-3 help-block">.</p></ul>
+                                <ul><p class="col-sm-6 help-block">.</p></ul>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="input-email">Email address :</label>
-                                <div class="col-sm-3">
+                                <label class="control-label col-sm-4" for="input-email">Email address :</label>
+                                <div class="col-sm-6">
                                     <input type="text" name="email" class="form-control" id="input-email" placeholder="Enter email" required autofocus>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="input-tel">Phone Number :</label>
-                                <div class="col-sm-3">
+                                <label class="control-label col-sm-4" for="input-tel">Phone Number :</label>
+                                <div class="col-sm-6">
                                     <input type="text" name="phonenumber" class="form-control" id="input-tel" placeholder="(xxx)-xxx-xxxx" required autofocus>
                                 </div>
                             </div>
