@@ -5,8 +5,6 @@
  */
 package controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,25 +29,36 @@ public class Moviecontroller {
     @RequestMapping(value = "/addmovie", method = RequestMethod.POST)
     public ModelAndView addMovie(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("moviedetail");
+        ModelAndView mv = new ModelAndView("movieedit");
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        MultipartFile multipartFile = multipartRequest.getFile("img");
-        byte[] img = multipartFile.getBytes();
         try {
-
+            MultipartFile multipartFile = multipartRequest.getFile("img");
+            byte[] img = multipartFile.getBytes();
             Movie movie = new Movie(request.getParameter("mname"), request.getParameter("releasedate"),
                     request.getParameter("type"), Integer.parseInt(request.getParameter("duration")), request.getParameter("synopsis"), img);
-            Movie movieadd = MovieDAO.addorupdateMovie(movie);
+            MovieDAO.addorupdateMovie(movie);
+            List<Movie> lstm = MovieDAO.listMovie();
 
-            mv = new ModelAndView("moviedetail");
-            OutputStream os = new ByteArrayOutputStream();
-            os.write(movieadd.getMimg());
-            mv.addObject("data", os.toString());
-            mv.addObject("movie", movieadd);
+            mv.addObject("movie", lstm);
             return mv;
         } catch (Exception e) {
             e.printStackTrace();
-            mv.addObject("username", e);
+            return mv;
+        }
+    }
+    
+    @RequestMapping(value = "/deletemovie", method = RequestMethod.POST)
+    public ModelAndView deleteMovie(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("movieedit");
+        try {
+            MovieDAO.deleteMovie(request.getParameter("mname"));
+            List<Movie> lstm = MovieDAO.listMovie();
+
+            mv.addObject("movie", lstm);
+            return mv;
+        } catch (Exception e) {
+            e.printStackTrace();
             return mv;
         }
     }
@@ -58,6 +67,9 @@ public class Moviecontroller {
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("movieedit");
+        List<Movie> lstm = MovieDAO.listMovie();
+
+            mv.addObject("movie", lstm);
         return mv;
     }
 
