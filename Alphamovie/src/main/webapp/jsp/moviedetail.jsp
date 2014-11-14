@@ -11,18 +11,26 @@
 
 <script>
     $(document).ready(function () {
-        
        if ((localStorage.getItem("session")) != null)
             {
                 $("#baddreviewnrate").show();
             }
             else
             {
-                // Sorry! No Web Storage support..
                 $("#baddreviewnrate").hide();
             }
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        $("#reviewrating").click(function () {
+            var username = localStorage.getItem("user");
+            $('#username').val(username);
+        });
+    });
+</script>
+
 
 
 <title>Movie Detail</title>
@@ -49,23 +57,23 @@
 
                     <!--left table-->  
                     <div class="col-sm-8">
-                        <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b> <c:out value="${movie.getMname()}"></c:out> </b></h2></p></div><br>
+                        <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b> <c:out value="${movie.getMname()}"/></b></h2></p></div><br>
                             <div class="date-release">
                                 <label class="col-sm-3"><b>Release Date</b></label>
                                 <p> <c:out value="${movie.getReleasedate()}"/> </p>
                             </div>
                             <div class="type-movie">
                                 <label class="col-sm-3"><b>Film Categories</b></label>
-                                <p><c:out value="${movie.getType()}"></c:out></p>
+                                <p><c:out value="${movie.getType()}"/></p>
                             </div>
                             <div class="time-movie">
                                 <label class="col-sm-2"><b>Duration</b></label>
-                                <p><c:out value="${movie.getDuration()}"></c:out></p>
+                                <p><c:out value="${movie.getDuration()}"/></p>
                             </div>
                             <br>
                             <div class="m-synopsis">
                                 <label class="col-sm-2"><b>Synopsis</b></label><br>
-                                <p class="col-sm-offset-1"><c:out value="${movie.getSynopsis()}"></c:out></p>
+                                <p class="col-sm-offset-1"><c:out value="${movie.getSynopsis()}"/></p>
                             </div>
                             <br><br><br>
                             <div class="review-rate">
@@ -111,7 +119,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="wrap">
-                        <form class="form-horizontal" role="form" name ="input" action="reviewrating" method="get">
+                        <form class="form-horizontal" role="form" name ="input" action="reviewrating" method="post" id="reviewrating" >
+                            <input type="hidden"  name="username" id="username" >
+                            <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
                             <div class="form-group">
                                 <label class="control-label col-sm-4">Choose Score </label>
                                 <div class="col-sm-3">
@@ -141,7 +151,5 @@
             </div>
         </div>
     </div>
-    
-    
 </body>
 </html>

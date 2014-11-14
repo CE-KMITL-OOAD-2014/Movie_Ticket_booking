@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class Moviecontroller {
-    
+
     @RequestMapping(value = "/addmovie", method = RequestMethod.POST)
     public ModelAndView addMovie(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -46,7 +46,7 @@ public class Moviecontroller {
             return mv;
         }
     }
-    
+
     @RequestMapping(value = "/deletemovie", method = RequestMethod.POST)
     public ModelAndView deleteMovie(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
@@ -68,8 +68,7 @@ public class Moviecontroller {
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("movieedit");
         List<Movie> lstm = MovieDAO.listMovie();
-
-            mv.addObject("movie", lstm);
+        mv.addObject("movie", lstm);
         return mv;
     }
 
@@ -80,7 +79,6 @@ public class Moviecontroller {
         try {
             mv = new ModelAndView("moviedetail");
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            
             List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
             mv.addObject("review", lstr);
             mv.addObject("movie", movie);

@@ -43,7 +43,7 @@
             var username = localStorage.getItem("user");
             $.post("logout", {username: username});
             localStorage.clear();
-            document.location = "/Alphamovie/index";
+            document.location = "/index";
         });
     });
 </script>

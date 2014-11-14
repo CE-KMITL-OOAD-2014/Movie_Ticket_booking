@@ -27,8 +27,7 @@ public class ReviewRating  implements java.io.Serializable {
     public ReviewRating() {
     }
 
-    public ReviewRating(int id, String mname, String username, int rating, String review) {
-       this.id = id;
+    public ReviewRating(String mname, String username, int rating, String review) {
        this.mname = mname;
        this.username = username;
        this.rating = rating;

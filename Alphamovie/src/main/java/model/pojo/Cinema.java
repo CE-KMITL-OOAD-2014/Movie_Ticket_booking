@@ -21,16 +21,13 @@ public class Cinema  implements java.io.Serializable {
 
      private int cinema;
      private int seatmax;
-     private int seatcount;
      private List<Movie> movielist = null;
      
     public Cinema() {
     }
 
-    public Cinema(int cinema, int seatmax, int seatcount) {
-       this.cinema = cinema;
+    public Cinema(int seatmax) {
        this.seatmax = seatmax;
-       this.seatcount = seatcount;
     }
     
     public List<Movie> addMovieList(List<Movie> movielist) {
@@ -62,19 +59,6 @@ public class Cinema  implements java.io.Serializable {
     public void setSeatmax(int seatmax) {
         this.seatmax = seatmax;
     }
-
-    
-    @Column(name="seatcount", nullable=false)
-    public int getSeatcount() {
-        return this.seatcount;
-    }
-    
-    public void setSeatcount(int seatcount) {
-        this.seatcount = seatcount;
-    }
-
-
-
 
 }
 

@@ -20,12 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Art
  */
 @Controller
-public class CinemaController {
-
-    @RequestMapping(value = "/addcinema")
-    public ModelAndView addCinema(HttpServletRequest request,
+public class ShowtimeContoller {
+    @RequestMapping(value = "/addshowtime")
+    public ModelAndView addShowtime(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("cinemaedit");
+        ModelAndView mv = new ModelAndView("showtimeedit");
         try {
             Integer seat = parseInt(request.getParameter("seat"));
             seat *= 10;
@@ -40,13 +39,10 @@ public class CinemaController {
         }
     }
 
-    @RequestMapping("/cinemaedit")
+    @RequestMapping("/showtimeedit")
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("cinemaedit");
-        List<Cinema> lstc = CinemaDAO.listCinema();
-        mv.addObject("cinema", lstc);
+        ModelAndView mv = new ModelAndView("showtimeedit");
         return mv;
     }
-
 }

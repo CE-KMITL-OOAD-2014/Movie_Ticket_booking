@@ -6,13 +6,10 @@
     <class name="model.pojo.Cinema" table="Cinema" schema="dbo" catalog="Alpha">
         <id name="cinema" type="int">
             <column name="cinema" />
-            <generator class="assigned"></generator>
+            <generator class="increment"></generator>
         </id>
         <property name="seatmax" type="int">
             <column name="seatmax" not-null="true" />
-        </property>
-        <property name="seatcount" type="int">
-            <column name="seatcount" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -43,8 +43,8 @@
                         </p>
                         <br><br><br><br><br><br>
                         <p>
-                            <a href="addshowtime"><button type="button" class="btn btn-primary col-sm-3 col-sm-offset-2"><br><b><h4>Add Showtime</h4></b><br></button></a>
-                            <a href="addcinema"><button type="button" class="btn btn-warning col-sm-3 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
+                            <a href="showtimeedit"><button type="button" class="btn btn-primary col-sm-3 col-sm-offset-2"><br><b><h4>Add Showtime</h4></b><br></button></a>
+                            <a href="cinemaedit"><button type="button" class="btn btn-warning col-sm-3 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
                         </p>
                         <br><br><br><br><br>
                     </div>

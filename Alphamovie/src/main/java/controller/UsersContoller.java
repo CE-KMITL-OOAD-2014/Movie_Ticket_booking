@@ -5,6 +5,7 @@
  */
 package controller;
 
+import static java.lang.Integer.parseInt;
 import service.UsersService;
 
 import java.util.List;
@@ -12,7 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.MovieDAO;
+import model.dao.ReviewRatingDAO;
 import model.dao.UsersDAO;
+import model.pojo.Movie;
+import model.pojo.ReviewRating;
 import model.pojo.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +57,48 @@ public class UsersContoller {
             mv = new ModelAndView("fail");
             mv.addObject("msg", "register fail!");
         }
+        return mv;
+    }
+    
+    @RequestMapping(value = "/reviewrating", method = RequestMethod.POST)
+    public ModelAndView ReviewRating(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("moviedetail");
+        try {
+            ReviewRating review = new ReviewRating(request.getParameter("mname"),request.getParameter("username"), parseInt(request.getParameter("rating")), request.getParameter("review"));
+            ReviewRatingDAO.saveorupdateReviewRating(review);
+            Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
+            List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
+            mv.addObject("review", lstr);
+            mv.addObject("movie", movie);
+        } catch (Exception ex) {
+            Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
+            mv = new ModelAndView("fail");
+            mv.addObject("msg","fail!");
+        }
+        return mv;
+    }
+    
+    @RequestMapping(value="/hello")
+    public ModelAndView testPage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception{
+        ModelAndView mv = new ModelAndView("success");
+        mv.addObject("username",request.getParameter("seatsel"));
+        return mv;
+    }
+    
+    @RequestMapping(value="/booking")
+    public ModelAndView bookingPage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception{
+        ModelAndView mv = new ModelAndView("booking");
+        return mv;
+    }
+    
+    @RequestMapping(value="/selectseat")
+    public ModelAndView selectSeatPage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception{
+        ModelAndView mv = new ModelAndView("selectseat");
+        mv.addObject("seatnum",request.getParameter("val"));
         return mv;
     }
 
