@@ -94,10 +94,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="wrap">
-                        <div class="container">
+                        <form class="form-horizontal" role="form" name ="input" action="reviewrating" method="get">
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="sel-score">Choose Score </label>
-                                <div class="col-sm-1">
+                                <label class="control-label col-sm-4">Choose Score </label>
+                                <div class="col-sm-3">
                                     <select class="form-control" name="rating">
                                         <option>-</option>
                                         <option value="0">0</option>
@@ -108,16 +108,17 @@
                                         <option value="5">5</option>
                                     </select>
                                 </div>
-                            </div>        
-                            <br><br>      
-                            <div class="form-group col-sm-5">
-                                <label class="control-label" for="add-review">Add review </label>
+                            </div>  
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                <label class="control-label" for="add-review">Add review </label><br><br>
                                 <textarea class="form-control" rows="5" name="review"></textarea>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+                                <button type="submit" class="btn btn-default">Submit</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
