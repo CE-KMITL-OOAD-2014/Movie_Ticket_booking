@@ -35,7 +35,7 @@
                         <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b> <c:out value="${movie.getMname()}"></c:out> </b></h2></p></div><br>
                             <div class="date-release">
                                 <label class="col-sm-3"><b>Release Date</b></label>
-                                <p> <c:out value="${movie.getReleasedate()}"></c:out> </p>
+                                <p> <c:out value="${movie.getReleasedate()}"/> </p>
                             </div>
                             <div class="type-movie">
                                 <label class="col-sm-3"><b>Film Categories</b></label>

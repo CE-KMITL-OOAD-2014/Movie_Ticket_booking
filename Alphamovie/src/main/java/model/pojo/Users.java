@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Nov 12, 2014 10:39:01 PM by Hibernate Tools 4.3.1
+// Generated Nov 14, 2014 9:01:22 PM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -28,12 +28,21 @@ public class Users  implements java.io.Serializable {
     public Users() {
     }
 
+	
     public Users(String username, String password, String email, String phonenumber, boolean isadmin) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phonenumber = phonenumber;
+        this.isadmin = isadmin;
+    }
+    public Users(String username, String password, String email, String phonenumber, boolean isadmin, String session) {
        this.username = username;
        this.password = password;
        this.email = email;
        this.phonenumber = phonenumber;
        this.isadmin = isadmin;
+       this.session = session;
     }
    
      @Id 
@@ -87,6 +96,7 @@ public class Users  implements java.io.Serializable {
     public void setIsadmin(boolean isadmin) {
         this.isadmin = isadmin;
     }
+
     
     @Column(name="session", length=150)
     public String getSession() {
@@ -96,6 +106,9 @@ public class Users  implements java.io.Serializable {
     public void setSession(String session) {
         this.session = session;
     }
+
+
+
 
 }
 

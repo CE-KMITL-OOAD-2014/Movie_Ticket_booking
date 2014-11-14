@@ -171,7 +171,7 @@
                 localStorage.setItem("session", '<c:out value="${user.getSession()}"/>');
                 localStorage.setItem("isadmin", '<c:out value="${user.isIsadmin()}"/>');
                 //fetch object
-                console.log(localStorage.getItem("user")); // will return "[object Object]"
+                console.log(localStorage.getItem("user")); 
                 console.log(localStorage.getItem("session"));
                 console.log(localStorage.getItem("isadmin"));
             }
