@@ -67,11 +67,11 @@ public class MovieDAO {
         }
     }
 
-    public static void deleteMovie(Movie movie) {
+    public static void deleteMovie(String mname) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            Movie dmovie = (Movie) session.load(Movie.class, movie.getMname());
+            session.beginTransaction();
+            Movie dmovie = (Movie) session.get(Movie.class, mname);
             session.delete(dmovie);
             session.getTransaction().commit();
             session.close();

@@ -16,62 +16,39 @@
         }
     </style>
     <div class="page-header">
-      <span class="col-sm-1"></span><h1>Add & Delete Movie</h1>
+        <span class="col-sm-1"></span><h1>Add & Delete Movie</h1>
     </div>
 
-              <div class="wrap">
+    <div class="wrap">
         <div class="well col-sm-8 col-sm-offset-2">
-          <table class="table table-striped">
-            <thead>
-              <h3><b>Movie List</b></h3>
-            </thead>
-              <tbody>
-                <tr class="mlist">
-                  <td class="col-sm-8">
-                    <br>
-                    <div class="col-sm-offset-1">
-                      <p>Movie Title</p>
-                      <p>Release Date</p>
-                    </div>
-                  </td>
-                  <td class="col-sm-3">
-                    <br>
-                    <center><button type="button" class="btn btn-default">Delete</button></center>
-                  </td>
+            <table class="table table-striped">
+                <thead>
+                <h3><b>Movie List</b></h3>
+                </thead>
+                <tbody>
+                    <c:forEach var="movie" items="${movie}">
+                    <tr class="mlist">
+                            <td class="col-sm-8">
+                                <br>
+                                <div class="col-sm-offset-1">
+                                    <p>Movie Title : <c:out value="${movie.getMname()}"/></p>
+                                    <p>Release Date : <c:out value="${movie.getReleasedate()}"/></p>
+                                </div>
+                            </td>
+                            <td class="col-sm-3">
+                                <br>
+                    <form role="form" name ="input" action="deletemovie" method="post">
+                        <input type="hidden" value="<c:out value="${movie.getMname()}"/>" name="mname">
+                    <center><button type="submit" class="btn btn-default">Delete</button></center>
+                    </form>
+                    </td>
                 </tr>
-                <tr class="mlist">
-                  <td class="col-sm-8">
-                    <br>
-                    <div class="col-sm-offset-1">
-                      <p>Movie Title</p>
-                      <p>Release Date</p>
-                    </div>
-                  </td>
-                  <td class="col-sm-4">
-                    <br>
-                    <center><button type="button" class="btn btn-default">Delete</button></center>
-                  </td>
-                </tr>
-                <tr class="mlist">
-                  <td class="col-sm-8">
-                    <br>
-                    <div class="col-sm-offset-1">
-                      <p>Movie Title</p>
-                      <p>Release Date</p>
-                    </div>
-                  </td>
-                  <td class="col-sm-4">
-                    <br>
-                    <center><button type="button" class="btn btn-default">Delete</button></center>
-                  </td>
-                </tr>
-              </tbody>
-          </table>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="page-header">
-        <span class="col-sm-1"></span><h1>Add Movie</h1>
-    </div>
+
     <div class="wrap col-sm-offset-2 col-sm-8">
         <form role="form" name = "input" action="addmovie" method="POST" enctype="multipart/form-data">
             <div class="form-group">
