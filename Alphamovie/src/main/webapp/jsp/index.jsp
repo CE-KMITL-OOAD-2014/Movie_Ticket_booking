@@ -121,11 +121,7 @@
 
 
                 </ul>
-                <form id="myaccount" role="form" name ="input" action="myaccount" method="post">
-                    <input type="hidden" name="username">
-                </form>
-                <form id="adminmanage" role="form" name ="input" action="adminmanage" method="post">
-                </form>
+                
 
                 <!--ul class="nav navbar-nav">
                                 <div class="input-group">
@@ -160,6 +156,12 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+            <form id="myaccount" role="form" name ="input" action="myaccount" method="post">
+                    <input type="hidden" name="username">
+                </form>
+                <form id="adminmanage" role="form" name ="input" action="adminmanage" method="post">
+                </form>
+            
     <script>
         function getdata() {
             if ("<c:out value="${user.getSession()}"/>".length !== 0)
