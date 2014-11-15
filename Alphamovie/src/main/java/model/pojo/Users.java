@@ -37,14 +37,6 @@ public class Users  implements java.io.Serializable {
         this.phonenumber = phonenumber;
         this.isadmin = isadmin;
     }
-    public Users(String username, String password, String email, String phonenumber, boolean isadmin, String session) {
-       this.username = username;
-       this.password = password;
-       this.email = email;
-       this.phonenumber = phonenumber;
-       this.isadmin = isadmin;
-       this.session = session;
-    }
    
      @Id 
 

@@ -15,7 +15,7 @@
     <style type="text/css">
         body{
             background-attachment: fixed;
-            background-image: url(img/bg.jpg);
+            background-image: url(${pageContext.request.contextPath}/resources/img/bg.jpg);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -118,7 +118,7 @@
             var countChecked = function () {
                 $("button[type=submit]").attr('disabled', 'disabled');
                 var n = $("input:checked").length;
-
+                
                 if (n == <c:out value="${seatnum}"/>) {
                     $("button[type=submit]").removeAttr('disabled');
                 }

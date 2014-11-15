@@ -34,7 +34,7 @@
 
             </div>
             <div class="col-sm-6">
-              <form role="form" action="addcinema">
+              <form role="form" action="addcinema" method="post">
                 <center><img src="${pageContext.request.contextPath}/resources/img/seatplan.jpg"></center>
                 <br>
                 <div class="form-group">

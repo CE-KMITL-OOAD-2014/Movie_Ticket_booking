@@ -13,7 +13,7 @@
         <style type="text/css">
             body{
                 background-attachment: fixed;
-                background-image: url(/resources/img/bg.jpg);
+                background-image: url(${pageContext.request.contextPath}/resources/img/bg.jpg);
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;

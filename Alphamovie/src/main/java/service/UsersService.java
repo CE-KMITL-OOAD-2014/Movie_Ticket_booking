@@ -6,18 +6,12 @@
 package service;
 
 import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import model.dao.UsersDAO;
-import model.pojo.Movie;
-import model.pojo.Users;
 
 /**
  *
@@ -25,12 +19,15 @@ import model.pojo.Users;
  */
 public class UsersService {
     
-    public static Users register(Users user) throws Exception{
-        return UsersDAO.addorupdateUser(user);
-    }
-    
-    public static Users editInformation(Users user){
-        return UsersDAO.addorupdateUser(user);
+    public static String[] seatArray(String seatname){
+        int n = seatname.length()/3;
+        String[] seatarray=new String[n];
+        int substr=0;
+        for(int i=0;i<n;i++){
+            seatarray[i] = seatname.substring(substr,substr+3);
+            substr+=3;
+        }
+        return seatarray;
     }
     
     public static String generateSession(String username){

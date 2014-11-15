@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author TRathC
+ * @author Art
  */
 @Controller
 public class Moviecontroller {
@@ -27,10 +27,14 @@ public class Moviecontroller {
     @RequestMapping(value = "/movieedit", method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("movieedit");
-        List<Movie> lstm = MovieDAO.listMovie();
-        mv.addObject("movie", lstm);
-        return mv;
+        try {
+            ModelAndView mv = new ModelAndView("movieedit");
+            List<Movie> lstm = MovieDAO.listMovie();
+            mv.addObject("movie", lstm);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
     }
 
     @RequestMapping("/moviedetail")
@@ -40,13 +44,12 @@ public class Moviecontroller {
         try {
             mv = new ModelAndView("moviedetail");
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
-            mv.addObject("review", lstr);
+            List<ReviewRating> reviewratinglist = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
+            mv.addObject("review", reviewratinglist);
             mv.addObject("movie", movie);
             return mv;
-        } catch (NumberFormatException ex) {
-            mv = new ModelAndView("redirect:/movie");
-            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/movie");
         }
     }
 }

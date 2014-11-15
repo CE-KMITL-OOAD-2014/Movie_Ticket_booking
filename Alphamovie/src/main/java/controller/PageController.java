@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.util.ArrayList;
@@ -6,18 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CinemaDAO;
 import model.dao.MovieDAO;
-import model.dao.ReviewRatingDAO;
 import model.pojo.Cinema;
 import model.pojo.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Art
@@ -25,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
-    @RequestMapping(value ="/index")
+    @RequestMapping(value = "/index")
     public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
@@ -43,14 +42,14 @@ public class PageController {
             for (Cinema c : lstc) {
                 c.addMovieList(CinemaDAO.listMovieinCinema(c.getCinema()));
                 lstm = c.getMovieList();
-                for (Movie m : lstm){
-                    m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname(),c.getCinema()));
+                for (Movie m : lstm) {
+                    m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname(), c.getCinema()));
                 }
             }
             mv.addObject("cinema", lstc);
             return mv;
-        } catch (NumberFormatException ex) {
-            return null;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
         }
     }
 
@@ -59,23 +58,22 @@ public class PageController {
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("movie");
-            ReviewRatingDAO.deleteReviewRatingbyMovie("Interstella");
             List<Movie> lst = MovieDAO.listMovie();
             mv.addObject("movie", lst);
             return mv;
-        } catch (NumberFormatException ex) {
-            return null;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
         }
     }
-    
+
     @RequestMapping("/signin")
     public ModelAndView signinpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("signin");
             return mv;
-        } catch (NumberFormatException ex) {
-            return null;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
         }
     }
 }
