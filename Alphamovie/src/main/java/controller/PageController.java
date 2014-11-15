@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CinemaDAO;
 import model.dao.MovieDAO;
+import model.dao.ReviewRatingDAO;
 import model.pojo.Cinema;
 import model.pojo.Movie;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value ="/index")
     public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
@@ -58,6 +59,7 @@ public class PageController {
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("movie");
+            ReviewRatingDAO.deleteReviewRatingbyMovie("Interstella");
             List<Movie> lst = MovieDAO.listMovie();
             mv.addObject("movie", lst);
             return mv;

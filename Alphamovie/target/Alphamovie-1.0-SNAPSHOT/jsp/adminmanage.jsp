@@ -39,12 +39,12 @@
                     <div class="panel-body">
                         <br>
                         <p>
-                            <a href="movieedit"><button type="button" class="btn btn-danger col-sm-8 col-sm-offset-2"><br><b><h4>Add & Delete Movie</h4></b><br></button></a>
+                            <a href=# id="movie"><button type="button" class="btn btn-danger col-sm-8 col-sm-offset-2"><br><b><h4>Add & Delete Movie</h4></b><br></button></a>
                         </p>
                         <br><br><br><br><br><br>
                         <p>
-                            <a href="showtimeedit"><button type="button" class="btn btn-primary col-sm-3 col-sm-offset-2"><br><b><h4>Add Showtime</h4></b><br></button></a>
-                            <a href="cinemaedit"><button type="button" class="btn btn-warning col-sm-3 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
+                            <a href=# id="showtime"><button type="button" class="btn btn-primary col-sm-3 col-sm-offset-2"><br><b><h4>Add Showtime</h4></b><br></button></a>
+                            <a href=# id="cinema"><button type="button" class="btn btn-warning col-sm-3 col-sm-offset-2"><br><b><h4>Add Cinema</h4></b><br></button></a>
                         </p>
                         <br><br><br><br><br>
                     </div>
@@ -52,7 +52,33 @@
             </div>
         </div>
     </div>
-
+            <form id="movieedit" role="form" name ="input" action="movieedit" method="post">
+                </form>
+            <form id="showtimeedit" role="form" name ="input" action="showtimeedit" method="post">
+                </form>
+            <form id="cinemaedit" role="form" name ="input" action="cinemaedit" method="post">
+                </form>
+<script>
+    $(document).ready(function () {
+        $("#movie").click(function () {
+            $("#movieedit").submit();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#showtime").click(function () {
+            $("#showtimeedit").submit();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#cinema").click(function () {
+            $("#cinemaedit").submit();
+        });
+    });
+</script>
 
 
 

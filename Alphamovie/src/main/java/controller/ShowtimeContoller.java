@@ -21,6 +21,7 @@ import model.pojo.Showtime;
 import model.pojo.ShowtimeId;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -30,51 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ShowtimeContoller {
 
-    @RequestMapping(value = "/addshowtime")
-    public ModelAndView addShowtime(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("test");
-        try {
-            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
-            Showtime showtime = new Showtime(id, request.getParameter("mname"));
-            Showtime showtimeadd = ShowtimeDAO.addorupdateShowtime(showtime);
-            Cinema cinema = CinemaDAO.getCinemabyNum(showtimeadd.getId().getCinema());
-            int seatmax = cinema.getSeatmax();
-            SeatId seatid = null;
-            Seat seat = null;
-            char seatnum = 'A';
-            String seatname;
-            Integer n = 1;
-            Integer nn =0;
-            for (int i = 1; i <= seatmax; i++) {
-                if (i % 10 == 0) {
-                    nn=1;
-                    n=0;
-                    seatname = seatnum + nn.toString()+ n.toString();
-                    seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
-                    seat = new Seat(seatid, 1, true);
-                    SeatDAO.addorupdateSeat(seat);
-                    n++;
-                    seatnum = (char) (seatnum + 1);
-                } else {
-                    nn=0;
-                    seatname = seatnum +nn.toString()+ n.toString();
-                    seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
-                    seat = new Seat(seatid, 1, true);
-                    SeatDAO.addorupdateSeat(seat);
-                    n++;
-                }
-            }
-            List <Seat> lstseat = SeatDAO.listSeat();
-            mv.addObject("seat", lstseat);
-            return mv;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
-        }
-    }
-
-    @RequestMapping("/showtimeedit")
+    @RequestMapping(value= "/showtimeedit", method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("showtimeedit");

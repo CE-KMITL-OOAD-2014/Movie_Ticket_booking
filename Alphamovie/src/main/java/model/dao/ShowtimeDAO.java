@@ -5,9 +5,7 @@
  */
 package model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import model.pojo.Movie;
 import model.pojo.Showtime;
 import model.pojo.ShowtimeId;
 import model.ulti.HibernateUtil;
@@ -50,8 +48,8 @@ public class ShowtimeDAO {
     public static void deleteShowtime(Showtime showtime) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            Showtime dshowtime = (Showtime) session.load(Showtime.class, showtime.getId());
+            session.beginTransaction();
+            Showtime dshowtime = (Showtime) session.get(Showtime.class, showtime.getId());
             session.delete(dshowtime);
             session.getTransaction().commit();
             session.close();
@@ -75,5 +73,22 @@ public class ShowtimeDAO {
             e.printStackTrace();
             return null;
         }
+    }
+    
+     public static Showtime deleteShowtimebyMovie(String mname) {
+         Showtime showtime = new Showtime();
+        try {
+            
+            List<Showtime> lsts = listShowtime();
+            for(Showtime s : lsts){
+                if(mname.equals(s.getMname())){
+                    deleteShowtime(s);
+                    showtime = s;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return showtime;
     }
 }

@@ -21,8 +21,7 @@ public class UsersDAO {
         List<Users> lst = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            String hql = "from Users";
-            Query query = session.createQuery(hql);
+            Query query = session.createQuery("from Users");
             lst = query.list();
             session.close();
         } catch (Exception e) {

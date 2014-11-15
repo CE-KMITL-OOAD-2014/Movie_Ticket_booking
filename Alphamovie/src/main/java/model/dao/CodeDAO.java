@@ -21,8 +21,7 @@ public class CodeDAO {
         List<Code> lst = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            String hql = "from Code";
-            Query query = session.createQuery(hql);
+            Query query = session.createQuery("from Code");
             lst = query.list();
             session.close();
         } catch (Exception e) {
@@ -31,7 +30,7 @@ public class CodeDAO {
         return lst;
     }
 
-    public static Code addorupdateUser(Code code){
+    public static Code addorupdateCode(Code code){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -45,7 +44,7 @@ public class CodeDAO {
         }
     }
     
-    public static void deleteUser(Code code){
+    public static void deleteCode(Code code){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -69,6 +68,19 @@ public class CodeDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    public static void deleteCodebyMovie(String mname) {
+        try {
+            List<Code> lstc = listCode();
+            for(Code c : lstc){
+                if(mname.equals(c.getMname())){
+                    deleteCode(c);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -64,11 +64,24 @@ public class ReviewRatingDAO {
     public static void deleteReviewRating(ReviewRating reviewrating) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            ReviewRating dreviewrating = (ReviewRating) session.load(ReviewRating.class, reviewrating.getId());
+            session.beginTransaction();
+            ReviewRating dreviewrating = (ReviewRating) session.get(ReviewRating.class, reviewrating.getId());
             session.delete(dreviewrating);
             session.getTransaction().commit();
             session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteReviewRatingbyMovie(String mname) {
+        try {
+            List<ReviewRating> lstr = listReviewRating();
+            for(ReviewRating r : lstr){
+                if(mname.equals(r.getMname())){
+                    deleteReviewRating(r);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
