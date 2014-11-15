@@ -36,6 +36,24 @@
             border-bottom-color: transparent;
         } 
     </style>
+    
+    <script>
+						function checkPassMatch() {
+							var newpassword = $("#input-newpassword").val();
+							var newconfirmPassword = $("#confirm-newpassword").val();
+							if (newpassword != newconfirmPassword){
+								  $("#confirm-newpassword").css( "background-color", "#d9534f" );
+								  $("#send-newpass").prop("type", "button");	 
+							}
+							else{
+								$("#confirm-newpassword").css( "background-color", "#5cb85c" );
+								$("#send-newpass").prop("type", "submit");
+							}
+						}
+						$(document).ready(function () {
+						   $("#confirm-newpassword").keyup(checkPassMatch);					
+						});
+    </script>
     <div class="wrap">
         <div class="container">
             <div class="page-header">
@@ -85,19 +103,19 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="show-username">Username :</label>
                                     <div class="col-sm-6">
-                                        <p> <c:out value="${user.getUsername()}"/> </p>
+                                        <input type="text" name="username" class="form-control" id="input-username" placeholder="<c:out value="${user.getUsername()}"/>" disabled="disabled">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="show-email">Email :</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="email" class="form-control" id="input-email" placeholder="Enter email">
+                                        <input type="text" name="email" class="form-control" id="input-email" placeholder="<c:out value="${user.getEmail()}"/>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-sm-3" for="show-tel">Phone Number :</label>
                                     <div class="col-sm-6">
-                                        <input type="text" name="phonenumber" class="form-control" id="input-tel" placeholder="(xxx)-xxx-xxxx">
+                                        <input type="text" name="phonenumber" class="form-control" id="input-tel" placeholder="<c:out value="${user.getPhonenumber()}"/>">
                                     </div>
                                 </div>
                                 <p>  </p>
@@ -111,27 +129,27 @@
                                 <input type="hidden" name="username" class="form-control" id="input-username" value="<c:out value="${user.getUsername()}"/>">
                                 <p>  </p>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="input-newpassword">New Password:</label>
+                                    <label class="control-label col-sm-4" for="input-newpassword">New Password:</label>
                                     <div class="col-sm-6">
-                                        <input type="password" name="newpassword" class="form-control" id="input-newpassword" placeholder="New Password">
+                                        <input type="password" name="newpassword" class="form-control" id="input-newpassword" placeholder="New Password" pattern=".{8,15}" required title="8 to 15 characters" autofocus>
                                     </div>
-                                    <span class="col-sm-8"></span><p class="col-sm-7 col-sm-offset-3 help-block">At least 8-12 Alphabet. (A-z,a-z,0-9,No space)</p>
+                                    <span class="col-sm-8"></span><p class="col-sm-7 col-sm-offset-4 help-block">At least 8 to 15 Alphabet. (A-z,a-z,0-9,No space)</p>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="confirm-newpassword">Confirm New Password:</label>
+                                    <label class="control-label col-sm-4" for="confirm-newpassword">Confirm New Password:</label>
                                     <div class="col-sm-6">
-                                        <input type="password" name="confirmnewpassword" class="form-control" id="confirm-newpassword" placeholder="Confirm New Password">
+                                        <input type="password" name="confirmnewpassword" class="form-control" id="confirm-newpassword" placeholder="Confirm New Password" required autofocus title="Please use same password.">
                                     </div>
                                     <p class="col-sm-3 help-block">.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3" for="input-newpassword">Password:</label>
+                                    <label class="control-label col-sm-4" for="input-newpassword">Password:</label>
                                     <div class="col-sm-6">
                                         <input type="password" name="oldpassword" class="form-control" id="input-password" placeholder="Password">
                                     </div>
                                 </div>
                                 <p>  </p>
-                                <button type="submit" class="btn btn-warning col-sm-2 col-sm-offset-5"><b>Submit</b></button>
+                                <button type="submit" class="btn btn-warning col-sm-2 col-sm-offset-5" id="send-newpass"><b>Submit</b></button>
                             </form>
                         </div>
 
