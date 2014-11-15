@@ -9,6 +9,10 @@
 
 </head>
 <body>
+    <jsp:include page="navbar.jsp" />
+    <div class="page-header">
+
+    </div>
     <style type="text/css">
         body{
             background-attachment: fixed;

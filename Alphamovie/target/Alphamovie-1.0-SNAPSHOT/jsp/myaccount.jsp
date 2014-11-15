@@ -12,6 +12,7 @@
 
 </head>
 <body>
+    <jsp:include page="navbar.jsp" />
     <style type="text/css">
         body{
             background-attachment: fixed;
@@ -54,6 +55,9 @@
 						   $("#confirm-newpassword").keyup(checkPassMatch);					
 						});
     </script>
+    <div class="page-header">
+
+    </div>
     <div class="wrap">
         <div class="container">
             <div class="page-header">

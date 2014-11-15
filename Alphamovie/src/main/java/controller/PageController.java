@@ -24,15 +24,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
-<<<<<<< HEAD
     @RequestMapping("/navbar")
-    public ModelAndView test(){
+    public ModelAndView test() {
         return new ModelAndView("navbar");
     }
-    @RequestMapping(value ="/index")
-=======
+
     @RequestMapping(value = "/index")
->>>>>>> origin/master
     public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
