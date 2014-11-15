@@ -44,25 +44,15 @@
                 <div class="form-group">
                     <label for="Intype">Showtime</label>
                     <br>
-                    <div class="checkbox">
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="10:00" name="time"> 10.00 - 12.00
-                        </label><br>
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="12:00" name="time"> 12.00 - 14.00
-                        </label><br>
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="14:00" name="time"> 14.00 - 16.00
-                        </label><br>
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="16:00" name="time"> 16.00 - 18.00
-                        </label><br>
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="18:00" name="time"> 18.00 - 20.00
-                        </label><br>
-                        <label class="col-sm-offset-1">
-                            <input type="checkbox" value="20:00" name="time"> 20.00 - 22.00
-                        </label><br>
+                    <div class="col-sm-3">
+                        <select class="form-control" for="select-showtime" name="showtime">
+                            <option value="10:00" name="time"> 10.00 - 12.00</option>
+                            <option value="12:00" name="time"> 12.00 - 14.00</option>
+                            <option value="14:00" name="time"> 14.00 - 16.00</option>
+                            <option value="16:00" name="time"> 16.00 - 18.00</option>
+                            <option value="18:00" name="time"> 18.00 - 20.00</option>
+                            <option value="20:00" name="time"> 20.00 - 22.00</option>
+                        </select>
                     </div>
                 </div>
                 <p>_________________________________________________________________________________________________________</p>
@@ -70,7 +60,7 @@
                 <span class="col-sm-5"></span><button type="submit" class="btn btn-default"><b>Submit</b></button>
             </form>
         </div>
-
-
+        <br><br><br>
+        <span class="col-sm-1"></span><h3>Showtime List</h3>
     </body>
 </html>

@@ -140,9 +140,64 @@
                         <!-- /.Check-booking form -->
                         <div class="tab-pane fade" id="checkbooking">
                             <div class="jumbotron">
-                                <h1>COMING SOON!!</h1>
+                              <center><h1>None<br> Booking Status</h1></center>
                             </div>
-                        </div>
+                            <table class="table table-striped">
+                              <tbody>
+                                <tr class="bookstatus" id="bs1">
+                                  <td class="col-sm-2"><center><h2>1</h2></center></td>
+                                  <td class="col-sm-6">
+                                    <br>
+                                    <p><b>Movie Title</b></p>
+                                    <p>Showtime : XX.XX - xx.xx</p>
+                                    <p>Seat : a1,a2,a3,a4</p>
+                                    <p>Booking Code : abcd1234ef</p>
+                                    <br>
+                                  </td>
+                                  <td>
+                                    <center>
+                                      <br>
+                                      <button type="button" class="btn btn-danger"><b>Cancel Booking</b></button>
+                                    </center>
+                                  </td>
+                                </tr>
+                                <tr class="bookstatus" id="bs2">
+                                  <td class="col-sm-2"><center><h2>2</h2></center></td>
+                                  <td class="col-sm-6">
+                                    <br>
+                                    <p><b>Movie Title</b></p>
+                                    <p>Showtime : XX.XX - xx.xx</p>
+                                    <p>Seat : b1,b2,b3,b4</p>
+                                    <p>Booking Code : abcd1234ef</p>
+                                    <br>
+                                  </td>
+                                  <td>
+                                    <center>
+                                      <br>
+                                      <button type="button" class="btn btn-danger"><b>Cancel Booking</b></button>
+                                    </center>
+                                  </td>
+                                </tr>
+                                <tr class="bookstatus" id="bs3">
+                                  <td class="col-sm-2"><center><h2>3</h2></center></td>
+                                  <td class="col-sm-6">
+                                    <br>
+                                    <p><b>Movie Title</b></p>
+                                    <p>Showtime : XX.XX - xx.xx</p>
+                                    <p>Seat : c1,c2,c3,c4</p>
+                                    <p>Booking Code : abcd1234ef</p>
+                                    <br>
+                                  </td>
+                                  <td>
+                                    <center>
+                                      <br>
+                                      <button type="button" class="btn btn-danger"><b>Cancel Booking</b></button>
+                                    </center>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
 
 
                     </div>
