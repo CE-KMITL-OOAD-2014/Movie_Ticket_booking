@@ -13,6 +13,7 @@ import model.dao.CinemaDAO;
 import model.pojo.Cinema;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -21,26 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class CinemaController {
-
-    @RequestMapping(value = "/addcinema")
-    public ModelAndView addCinema(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("cinemaedit");
-        try {
-            Integer seat = parseInt(request.getParameter("seat"));
-            seat *= 10;
-            Cinema cinema = new Cinema(seat);
-            CinemaDAO.addCinema(cinema);
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            mv.addObject("cinema", lstc);
-            return mv;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
-        }
-    }
-
-    @RequestMapping("/cinemaedit")
+    
+    @RequestMapping(value= "/cinemaedit",  method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("cinemaedit");

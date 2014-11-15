@@ -52,26 +52,23 @@ public class UsersContoller {
             Users user = new Users(request.getParameter("username"), request.getParameter("password"),
                     request.getParameter("email"), request.getParameter("phonenumber"),
                     false);
-            String password = UsersService.generatePasswordHash(request.getParameter("username"),request.getParameter("password"));
+            String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("password"));
             user.setPassword(password);
             Users useradd = UsersDAO.addorupdateUser(user);
             mv = new ModelAndView("register");
             mv.addObject("user", useradd);
-            return mv;
         } catch (Exception ex) {
-            Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
-            mv = new ModelAndView("fail");
-            mv.addObject("msg", "register fail!");
+            mv = new ModelAndView("redirect:/index");
         }
         return mv;
     }
-    
+
     @RequestMapping(value = "/reviewrating", method = RequestMethod.POST)
     public ModelAndView ReviewRating(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("moviedetail");
         try {
-            ReviewRating review = new ReviewRating(request.getParameter("mname"),request.getParameter("username"), parseInt(request.getParameter("rating")), request.getParameter("review"));
+            ReviewRating review = new ReviewRating(request.getParameter("mname"), request.getParameter("username"), parseInt(request.getParameter("rating")), request.getParameter("review"));
             ReviewRatingDAO.addReviewRating(review);
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
             List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
@@ -80,58 +77,58 @@ public class UsersContoller {
         } catch (Exception ex) {
             Logger.getLogger(UsersContoller.class.getName()).log(Level.SEVERE, "add user failed!", ex);
             mv = new ModelAndView("fail");
-            mv.addObject("msg","fail!");
+            mv.addObject("msg", "fail!");
         }
         return mv;
     }
-    
-    @RequestMapping(value="/code")
-    public ModelAndView testPage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception{
+
+    @RequestMapping(value = "/code")
+    public ModelAndView Code(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("success");
         String[] strarr = request.getParameterValues("seat");
-        String seatname="";
-        for(String s :strarr){
+        String seatname = "";
+        for (String s : strarr) {
             Seat seat = SeatDAO.getSeatbyId(request.getParameter("time"), parseInt(request.getParameter("cinema")), s);
             seat.setAvalible(false);
             SeatDAO.addorupdateSeat(seat);
-            seatname+=s;
+            seatname += s;
         }
-        String usercode = 'c'+request.getParameter("cinema")+'m'+request.getParameter("movie")+"time"+request.getParameter("time")+'@'+seatname;
+        String usercode = 'c' + request.getParameter("cinema") + 'm' + request.getParameter("movie") + "time" + request.getParameter("time") + '@' + seatname;
         Integer hashcode = usercode.hashCode();
         Code code = new Code(hashcode.toString(), request.getParameter("time"), parseInt(request.getParameter("cinema")), request.getParameter("mname"), seatname);
         Users user = UsersDAO.getUserbyName(request.getParameter("username"));
         user.setCode(hashcode.toString());
         Users useradd = UsersDAO.addorupdateUser(user);
-        CodeDAO.addorupdateUser(code);
-        mv.addObject("user",useradd);
-        mv.addObject("code",code);
+        CodeDAO.addorupdateCode(code);
+        mv.addObject("user", useradd);
+        mv.addObject("code", code);
         return mv;
     }
-    
-    @RequestMapping(value="/booking")
+
+    @RequestMapping(value = "/booking")
     public ModelAndView bookingPage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception{
+            HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("booking");
-        ShowtimeId id = new ShowtimeId(request.getParameter("time"),parseInt(request.getParameter("cinema")));
-        Showtime showtime = new Showtime(id,request.getParameter("mname"));
+        ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+        Showtime showtime = new Showtime(id, request.getParameter("mname"));
         Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-        mv.addObject("movie",movie);
-        mv.addObject("showtime",showtime);
+        mv.addObject("movie", movie);
+        mv.addObject("showtime", showtime);
         return mv;
     }
-    
-    @RequestMapping(value="/selectseat")
+
+    @RequestMapping(value = "/selectseat")
     public ModelAndView selectSeatPage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception{
+            HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("selectseat");
-        List<Seat> lsts = SeatDAO.listSeatbyShowtime(request.getParameter("time"),parseInt(request.getParameter("cinema")));
-        ShowtimeId id = new ShowtimeId(request.getParameter("time"),parseInt(request.getParameter("cinema")));
-        Showtime showtime = new Showtime(id,request.getParameter("mname"));
+        List<Seat> lsts = SeatDAO.listSeatbyShowtime(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+        ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+        Showtime showtime = new Showtime(id, request.getParameter("mname"));
         Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-        mv.addObject("movie",movie);
-        mv.addObject("seat",lsts);
-        mv.addObject("showtime",showtime);
+        mv.addObject("movie", movie);
+        mv.addObject("seat", lsts);
+        mv.addObject("showtime", showtime);
         return mv;
     }
 
@@ -163,11 +160,16 @@ public class UsersContoller {
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
-        String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("oldpassword"));
-        if (password.equals(usercheck.getPassword())) {
-            password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("newpassword"));
-            usercheck.setPassword(password);
-            UsersDAO.addorupdateUser(usercheck);
+        try {
+            String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("oldpassword"));
+            if (password.equals(usercheck.getPassword())) {
+                password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("newpassword"));
+                usercheck.setPassword(password);
+                UsersDAO.addorupdateUser(usercheck);
+            }
+            
+        } catch (Exception e) {
+
         }
         mv.addObject("user", usercheck);
         return mv;
@@ -177,16 +179,18 @@ public class UsersContoller {
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView();
-
-        Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
-        String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("password"));
-        if (password.equals(usercheck.getPassword())) {
-            String session = UsersService.generateSession(request.getParameter("username"));
-            usercheck.setSession(session);
-            UsersDAO.addorupdateUser(usercheck);
-
-            mv.addObject("user", usercheck);
-            mv.setViewName("index");
+        try {
+            Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));
+            String password = UsersService.generatePasswordHash(request.getParameter("username"), request.getParameter("password"));
+            if (password.equals(usercheck.getPassword())) {
+                String session = UsersService.generateSession(request.getParameter("username"));
+                usercheck.setSession(session);
+                UsersDAO.addorupdateUser(usercheck);
+                mv.addObject("user", usercheck);
+                mv.setViewName("index");
+            }
+        } catch (Exception e) {
+            mv = new ModelAndView("redirect:/index");
         }
         return mv;
     }

@@ -7,11 +7,8 @@ package model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import static model.dao.ShowtimeDAO.listShowtime;
 import model.pojo.Seat;
 import model.pojo.SeatId;
-import model.pojo.Showtime;
-import model.pojo.ShowtimeId;
 import model.ulti.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -67,8 +64,8 @@ public class SeatDAO {
     public static void deleteSeat(Seat seat) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            session.getTransaction();
-            Seat dseat = (Seat) session.load(Seat.class, seat.getId());
+            session.beginTransaction();
+            Seat dseat = (Seat) session.get(Seat.class, seat.getId());
             session.delete(dseat);
             session.getTransaction().commit();
             session.close();
@@ -91,6 +88,19 @@ public class SeatDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    public static void deleteSeatbyShowtime(String time) {
+        try {
+            List<Seat> lsts = listSeat();
+            for(Seat s : lsts){
+                if(time.equals(s.getId().getTime())){
+                    deleteSeat(s);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

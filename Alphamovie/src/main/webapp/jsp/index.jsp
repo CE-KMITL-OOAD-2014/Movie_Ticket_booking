@@ -121,20 +121,6 @@
 
 
                 </ul>
-                
-
-                <!--ul class="nav navbar-nav">
-                                <div class="input-group">
-                                <form class="navbar-form  col-sm-4" role="search">
-                                        <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Search movie by title.">
-                                                <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" onClick="location.href='#"><span class="glyphicon glyphicon-search"></span> Search </button>
-                                                </span>
-                                        </div>
-                                </form>
-                        </div>
-                        </ul-->
 
                 <ul class="nav navbar-nav navbar-right">     
                     <li class="show-if-logout" data-toggle="modal" data-target="#signinModal">

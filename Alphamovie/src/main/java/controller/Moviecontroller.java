@@ -26,44 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Moviecontroller {
 
-    @RequestMapping(value = "/addmovie", method = RequestMethod.POST)
-    public ModelAndView addMovie(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("movieedit");
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        try {
-            MultipartFile multipartFile = multipartRequest.getFile("img");
-            byte[] img = multipartFile.getBytes();
-            Movie movie = new Movie(request.getParameter("mname"), request.getParameter("releasedate"),
-                    request.getParameter("type"), Integer.parseInt(request.getParameter("duration")), request.getParameter("synopsis"), img);
-            MovieDAO.addorupdateMovie(movie);
-            List<Movie> lstm = MovieDAO.listMovie();
-
-            mv.addObject("movie", lstm);
-            return mv;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
-        }
-    }
-
-    @RequestMapping(value = "/deletemovie", method = RequestMethod.POST)
-    public ModelAndView deleteMovie(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("movieedit");
-        try {
-            MovieDAO.deleteMovie(request.getParameter("mname"));
-            List<Movie> lstm = MovieDAO.listMovie();
-
-            mv.addObject("movie", lstm);
-            return mv;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
-        }
-    }
-
-    @RequestMapping("/movieedit")
+    @RequestMapping(value = "/movieedit", method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("movieedit");

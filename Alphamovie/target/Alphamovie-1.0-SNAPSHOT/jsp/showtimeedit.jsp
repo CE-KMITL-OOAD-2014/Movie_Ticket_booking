@@ -45,13 +45,13 @@
                     <label for="Intype">Showtime</label>
                     <br>
                     <div class="col-sm-3">
-                        <select class="form-control" for="select-showtime" name="showtime">
-                            <option value="10:00" name="time"> 10.00 - 12.00</option>
-                            <option value="12:00" name="time"> 12.00 - 14.00</option>
-                            <option value="14:00" name="time"> 14.00 - 16.00</option>
-                            <option value="16:00" name="time"> 16.00 - 18.00</option>
-                            <option value="18:00" name="time"> 18.00 - 20.00</option>
-                            <option value="20:00" name="time"> 20.00 - 22.00</option>
+                        <select class="form-control" for="select-showtime" name="time">
+                            <option value="10:00" > 10.00 - 12.00</option>
+                            <option value="12:00" > 12.00 - 14.00</option>
+                            <option value="14:00" > 14.00 - 16.00</option>
+                            <option value="16:00" > 16.00 - 18.00</option>
+                            <option value="18:00" > 18.00 - 20.00</option>
+                            <option value="20:00" > 20.00 - 22.00</option>
                         </select>
                     </div>
                 </div>
