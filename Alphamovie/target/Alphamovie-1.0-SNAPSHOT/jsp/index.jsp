@@ -20,6 +20,7 @@
         if (localStorage.getItem("session") != null) {
             $(".show-if-logout").hide();
             $("#logout").show();
+            $("#memberbooking").show();
             if (localStorage.getItem("isadmin") == "true") {
                 $("#admin-login").show();
                 $("#user-login").hide();
@@ -117,9 +118,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="movie"><b> Movie </b></a></li>
                     <li><a href="showtime" ><b> Showtime </b></a></li>
-                    <li><a href="#"><b> Booking Ticket </b></a></li>
-
-
+                    <li class="show-if-login" id="memberbooking"><a href="selectshowtime"><b> Booking Ticket </b></a></li>
+                    <li class="show-if-logout" id="disablebooking" data-toggle="modal" data-target="#alertModal"><a href="#"><b> Booking Ticket </b></a></li>
                 </ul>
                 
 
@@ -181,6 +181,22 @@
             }
         }
     </script>
+    
+    <!--alert booking Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><br>
+                </div>
+                <div class="modal-body">
+                    <div class="wrap">
+                        <h3><center><b>Please sign in before use this function.</b></center></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
 
     <!--Sign In Modal -->
     <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

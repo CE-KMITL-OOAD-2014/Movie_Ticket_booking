@@ -7,7 +7,7 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap-theme.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
-<title> Showtime </title>
+<title> Booking Ticket </title>
 </head>
 <body>
 
@@ -35,7 +35,8 @@
         <div class="well col-sm-10 col-sm-offset-1">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div><p><h2><span class="glyphicon glyphicon-time"></span>  <b>Showtime</b></h2></p></div><br>
+                    <div><p><h2><span class="glyphicon glyphicon-bookmark"></span>  <b>Booking</b></h2></p></div><br>
+                    <p class="help-block">Choose movie and select showtime by click on time button.</p>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -54,7 +55,14 @@
                                 <p style="strong"><b><a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>"> <c:out value="${movie.getMname()}"/></a></b></p>
                                 <p>showtime</p>
                                 <c:forEach var="showtime" items="${movie.getShowtimeList()}">
-                                        <button disabled="disable"><c:out value="${showtime.getId().getTime()}"/></button>
+                                    
+                                    <form role="form" name ="input" action="booking" method="get">
+                                        <input type="hidden" name="cinema" value="<c:out value="${cinema.getCinema()}"/>">
+                                               <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
+                                               <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
+                                        <button type="submit" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
+                                    </form>
+                                    
                                 </c:forEach>
                             </td>
                             

@@ -18,9 +18,40 @@
         <div class="page-header">
             <span class="col-sm-1"></span><h1>Add Showtime</h1>
         </div>
+        <div class="wrap">
+        <div class="well col-sm-8 col-sm-offset-2">
+        <span class="col-sm-1"></span><h3>Showtime List</h3>
+        <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-2 text-center"><h4><b>Cinema</b></h4></th>
+                        <th><h4><b>Detail</b></h4></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="cinema" items="${cinema}">
+                            <tr class="mshowtime" id="mst1">
+                                <td><center><h2><c:out value="${cinema.getCinema()}"/></h2></center></td>
+                                <c:forEach var="movie" items="${cinema.getMovieList()}">
+                            <td>
+                                <p style="strong"><b><a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>"> <c:out value="${movie.getMname()}"/></a></b></p>
+                                <p>showtime</p>
+                                <c:forEach var="showtime" items="${movie.getShowtimeList()}">
+                                    <button type="button" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
+                                </c:forEach>
+                            </td>
+                            </c:forEach>
+                            </tr>
+                            
+                        </c:forEach>
+                        </tbody>
+                    </table>
+        </div>
+        </div>
 
         <div class="wrap col-sm-offset-2 col-sm-8">
             <form class="form-horizontal" role="form" name ="input" action="addshowtime" method="get">
+                <br><br>
                 <div class="form-group">
                     <label for="InputtitleM">Title Movie</label>
                     <select class="form-control" for="select-mname" name="mname">
@@ -45,13 +76,13 @@
                     <label for="Intype">Showtime</label>
                     <br>
                     <div class="col-sm-3">
-                        <select class="form-control" for="select-showtime" name="showtime">
-                            <option value="10:00" name="time"> 10.00 - 12.00</option>
-                            <option value="12:00" name="time"> 12.00 - 14.00</option>
-                            <option value="14:00" name="time"> 14.00 - 16.00</option>
-                            <option value="16:00" name="time"> 16.00 - 18.00</option>
-                            <option value="18:00" name="time"> 18.00 - 20.00</option>
-                            <option value="20:00" name="time"> 20.00 - 22.00</option>
+                        <select class="form-control" for="select-showtime" name="time">
+                            <option value="10:00"> 10.00 - 12.00</option>
+                            <option value="12:00"> 12.00 - 14.00</option>
+                            <option value="14:00"> 14.00 - 16.00</option>
+                            <option value="16:00"> 16.00 - 18.00</option>
+                            <option value="18:00"> 18.00 - 20.00</option>
+                            <option value="20:00"> 20.00 - 22.00</option>
                         </select>
                     </div>
                 </div>
@@ -60,7 +91,7 @@
                 <span class="col-sm-5"></span><button type="submit" class="btn btn-default"><b>Submit</b></button>
             </form>
         </div>
-        <br><br><br>
-        <span class="col-sm-1"></span><h3>Showtime List</h3>
+
+        
     </body>
 </html>

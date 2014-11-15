@@ -68,7 +68,7 @@
                             </div>
                             <div class="time-movie">
                                 <label class="col-sm-2"><b>Duration</b></label>
-                                <p><c:out value="${movie.getDuration()}"/></p>
+                                <p><c:out value="${movie.getDuration()}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>min</b></p>
                             </div>
                             <br>
                             <div class="m-synopsis">
@@ -88,7 +88,9 @@
                             <c:forEach var="review" items="${review}">
                                 <br><br>
                                 <div class="review-show col-sm-offset-1">
-                                    <p><c:out value="${review.getUsername()} : "/> <c:out value="${review.getReview()}"/> <c:out value="Rating = ${review.getRating()}"/></p>
+                                    <p><b><c:out value="${review.getUsername()} : "/></b></p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="${review.getReview()}"/></p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:out value="Rating = ${review.getRating()}"/></p>
                                 </div>
                             </c:forEach>
                         </div>
