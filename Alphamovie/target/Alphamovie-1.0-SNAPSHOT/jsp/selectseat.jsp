@@ -46,18 +46,18 @@
                             </center>
                         </div>
                         <div class="col-sm-8">
-                                <br>
-                                <div><p><h4><b><c:out value="${showtime.getMname()}"/></b></h4></p></div><br>
-                                <div class="date-release">
-                                    <label class="col-sm-3"><b>Cinema</b></label>
-                                    <p><c:out value="${showtime.getId().getCinema()}"/></p>
-                                </div>  
-                                <div class="time-movie">
-                                    <label class="col-sm-3"><b>Time</b></label>
-                                    <p><c:out value="${showtime.getId().getTime()}"/></p>
-                                </div>
+                            <br>
+                            <div><p><h4><b><c:out value="${showtime.getMname()}"/></b></h4></p></div><br>
+                            <div class="date-release">
+                                <label class="col-sm-3"><b>Cinema</b></label>
+                                <p><c:out value="${showtime.getId().getCinema()}"/></p>
+                            </div>  
+                            <div class="time-movie">
+                                <label class="col-sm-3"><b>Time</b></label>
+                                <p><c:out value="${showtime.getId().getTime()}"/></p>
                             </div>
                         </div>
+                    </div>
 
                     <div class="col-sm-8 col-sm-offset-2">
                         <form role="form" action="code" method="get" id="submit">
@@ -98,7 +98,7 @@
                                 <br><br>
                                 <center><p>_________________________________________________________________________</p></center>
                                 <br>
-                                 <input type="hidden" name="username" value="" id="username">
+                                <input type="hidden" name="username" value="" id="username">
                                 <input type="hidden" name="mname" value="<c:out value="${showtime.getMname()}"/>">
                                 <input type="hidden" name="cinema" value="<c:out value="${showtime.getId().getCinema()}"/>">
                                 <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
@@ -118,7 +118,7 @@
             var countChecked = function () {
                 $("button[type=submit]").attr('disabled', 'disabled');
                 var n = $("input:checked").length;
-                
+
                 if (n == <c:out value="${seatnum}"/>) {
                     $("button[type=submit]").removeAttr('disabled');
                 }
@@ -127,15 +127,15 @@
 
             $("input[type=checkbox]").on("click", countChecked);
         </script>
- <script>
-    $(document).ready(function () {
-        $("#submit").click(function () {
-            var username = localStorage.getItem("user");
-            $('#username').val(username);
-        });
-    });
-</script>
-        
+        <script>
+            $(document).ready(function () {
+                $("#submit").click(function () {
+                    var username = localStorage.getItem("user");
+                    $('#username').val(username);
+                });
+            });
+        </script>
+
 
 </body>
 </html>

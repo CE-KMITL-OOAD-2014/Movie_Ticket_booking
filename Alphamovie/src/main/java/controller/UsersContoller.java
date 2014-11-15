@@ -114,11 +114,11 @@ public class UsersContoller {
                 SeatDAO.addorupdateSeat(seat);
                 seatname += s;
             }
-            String usercode = 'c' + request.getParameter("cinema") + 'm' + request.getParameter("movie") + "time" + request.getParameter("time") + '@' + seatname;
-            Integer hashcode = usercode.hashCode();
-            Code code = new Code(hashcode.toString(), request.getParameter("time"), parseInt(request.getParameter("cinema")), request.getParameter("mname"), seatname);
+            ShowtimeId id = new ShowtimeId(request.getParameter("time"),parseInt(request.getParameter("cinema")));
+            Showtime showtime = new Showtime(id,request.getParameter("mname"));
+            Code code = UsersService.generateCode(showtime, seatname);
             Users user = UsersDAO.getUserbyName(request.getParameter("username"));
-            user.setCode(hashcode.toString());
+            user.setCode(code.getCode());
             Users useradd = UsersDAO.addorupdateUser(user);
             CodeDAO.addorupdateCode(code);
             mv.addObject("user", useradd);

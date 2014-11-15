@@ -12,12 +12,21 @@ import java.sql.Timestamp;
 import java.util.Date;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import model.pojo.Code;
+import model.pojo.Showtime;
 
 /**
  *
  * @author TRathC
  */
 public class UsersService {
+    
+    public static Code generateCode(Showtime showtime, String seatname){
+        String usercode = 'c' + showtime.getId().getCinema() + 'm' + showtime.getMname() + "time" + showtime.getId().getTime() + '@' + seatname;
+        Integer hashcode = usercode.hashCode();
+        Code code = new Code(hashcode.toString(), showtime.getId().getTime(), showtime.getId().getCinema(), showtime.getMname() , seatname);
+        return code;
+    }
     
     public static String[] seatArray(String seatname){
         int n = seatname.length()/3;

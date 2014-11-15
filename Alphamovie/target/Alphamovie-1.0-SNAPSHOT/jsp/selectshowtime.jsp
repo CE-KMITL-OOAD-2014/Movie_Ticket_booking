@@ -46,27 +46,27 @@
                         </thead>
                         <tbody>
                             <c:forEach var="cinema" items="${cinema}">
-                            <c:forEach var="movie" items="${cinema.getMovieList()}">
-                            <tr class="mshowtime" id="mst1">
-                                <td><center><h2><c:out value="${cinema.getCinema()}"/></h2></center></td>
-                                
-                            <td class="col-sm-3"><img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 90px; height: 120px;"></td>
-                            <td>
-                                <p style="strong"><b><a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>"> <c:out value="${movie.getMname()}"/></a></b></p>
-                                <p>showtime</p>
-                                <c:forEach var="showtime" items="${movie.getShowtimeList()}">
-                                    
-                                    <form role="form" name ="input" action="booking" method="post">
-                                        <input type="hidden" name="cinema" value="<c:out value="${cinema.getCinema()}"/>">
-                                               <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
-                                               <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
-                                        <button type="submit" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
-                                    </form>
-                                    
-                                </c:forEach>
-                            </td>
-                            
-                            </tr>
+                                <c:forEach var="movie" items="${cinema.getMovieList()}">
+                                    <tr class="mshowtime" id="mst1">
+                                        <td><center><h2><c:out value="${cinema.getCinema()}"/></h2></center></td>
+
+                                <td class="col-sm-3"><img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 90px; height: 120px;"></td>
+                                <td>
+                                    <p style="strong"><b><a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>"> <c:out value="${movie.getMname()}"/></a></b></p>
+                                    <p>showtime</p>
+                                    <c:forEach var="showtime" items="${movie.getShowtimeList()}">
+
+                                        <form role="form" name ="input" action="booking" method="post">
+                                            <input type="hidden" name="cinema" value="<c:out value="${cinema.getCinema()}"/>">
+                                            <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
+                                            <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
+                                            <button type="submit" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
+                                        </form>
+
+                                    </c:forEach>
+                                </td>
+
+                                </tr>
                             </c:forEach>
                         </c:forEach>
                         </tbody>
