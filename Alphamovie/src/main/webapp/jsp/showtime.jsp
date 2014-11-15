@@ -10,7 +10,7 @@
 <title> Showtime </title>
 </head>
 <body>
-
+    <jsp:include page="navbar.jsp" />
     <style type="text/css">
         body{
             background-attachment: fixed;
