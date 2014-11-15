@@ -17,7 +17,6 @@ import javax.persistence.Table;
 )
 public class Code  implements java.io.Serializable {
 
-
      private String code;
      private String time;
      private int cinema;

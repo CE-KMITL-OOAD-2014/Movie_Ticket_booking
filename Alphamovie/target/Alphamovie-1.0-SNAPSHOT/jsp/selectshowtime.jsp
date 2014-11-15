@@ -56,7 +56,7 @@
                                 <p>showtime</p>
                                 <c:forEach var="showtime" items="${movie.getShowtimeList()}">
                                     
-                                    <form role="form" name ="input" action="booking" method="get">
+                                    <form role="form" name ="input" action="booking" method="post">
                                         <input type="hidden" name="cinema" value="<c:out value="${cinema.getCinema()}"/>">
                                                <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
                                                <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">

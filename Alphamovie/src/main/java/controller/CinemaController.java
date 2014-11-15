@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,14 +21,18 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class CinemaController {
-    
-    @RequestMapping(value= "/cinemaedit",  method = RequestMethod.POST)
+
+    @RequestMapping(value = "/cinemaedit", method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("cinemaedit");
-        List<Cinema> lstc = CinemaDAO.listCinema();
-        mv.addObject("cinema", lstc);
-        return mv;
+        try {
+            ModelAndView mv = new ModelAndView("cinemaedit");
+            List<Cinema> lstc = CinemaDAO.listCinema();
+            mv.addObject("cinema", lstc);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
     }
 
 }

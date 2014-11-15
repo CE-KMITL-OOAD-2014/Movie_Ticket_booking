@@ -5,20 +5,15 @@
  */
 package controller;
 
-import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CinemaDAO;
 import model.dao.MovieDAO;
-import model.dao.SeatDAO;
 import model.dao.ShowtimeDAO;
 import model.pojo.Cinema;
 import model.pojo.Movie;
-import model.pojo.Seat;
-import model.pojo.SeatId;
 import model.pojo.Showtime;
-import model.pojo.ShowtimeId;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,14 +26,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ShowtimeContoller {
 
-    @RequestMapping(value= "/showtimeedit", method = RequestMethod.POST)
+    @RequestMapping(value = "/showtimeedit", method = RequestMethod.POST)
     public ModelAndView editpage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("showtimeedit");
-        List<Movie> lstm = MovieDAO.listMovie();
-        List<Cinema> lstc = CinemaDAO.listCinema();
-        mv.addObject("cinema",lstc);
-        mv.addObject("movie",lstm);
-        return mv;
+            HttpServletResponse response) {
+        try {
+            ModelAndView mv = new ModelAndView("showtimeedit");
+            List<Movie> lstm = MovieDAO.listMovie();
+            List<Cinema> lstc = CinemaDAO.listCinema();
+            List<Showtime> lsts = ShowtimeDAO.listShowtime();
+            mv.addObject("cinema", lstc);
+            mv.addObject("movie", lstm);
+            mv.addObject("showtime", lsts);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
     }
 }

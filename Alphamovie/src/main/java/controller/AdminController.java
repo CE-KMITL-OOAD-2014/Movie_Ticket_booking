@@ -38,25 +38,27 @@ public class AdminController {
     @RequestMapping(value = "/adminmanage", method = RequestMethod.POST)
     public ModelAndView managePage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("adminmanage");
-        return mv;
+        try {
+            ModelAndView mv = new ModelAndView("adminmanage");
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
     }
 
-    @RequestMapping(value = "/addcinema")
+    @RequestMapping(value = "/addcinema", method = RequestMethod.POST)
     public ModelAndView addCinema(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("cinemaedit");
         try {
-            Integer seat = parseInt(request.getParameter("seat"));
-            seat *= 10;
+            Integer seat = parseInt(request.getParameter("seat")) * 10;
             Cinema cinema = new Cinema(seat);
             CinemaDAO.addCinema(cinema);
             List<Cinema> lstc = CinemaDAO.listCinema();
             mv.addObject("cinema", lstc);
             return mv;
         } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
+            return new ModelAndView("redirect:/index");
         }
     }
 
@@ -76,8 +78,7 @@ public class AdminController {
             mv.addObject("movie", lstm);
             return mv;
         } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
+            return new ModelAndView("redirect:/index");
         }
     }
 
@@ -91,22 +92,21 @@ public class AdminController {
             Showtime showtime = ShowtimeDAO.deleteShowtimebyMovie(request.getParameter("mname"));
             SeatDAO.deleteSeatbyShowtime(showtime.getId().getTime());
             CodeDAO.deleteCodebyMovie(request.getParameter("mname"));
-            
+
             List<Movie> lstm = MovieDAO.listMovie();
 
             mv.addObject("movie", lstm);
             return mv;
         } catch (Exception e) {
-            e.printStackTrace();
-            return mv;
+            return new ModelAndView("redirect:/index");
         }
     }
 
-    @RequestMapping(value = "/addshowtime")
+    @RequestMapping(value = "/addshowtime", method = RequestMethod.POST)
     public ModelAndView addShowtime(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("test");
-        try{
+        ModelAndView mv = new ModelAndView("showtimeedit");
+        try {
             ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
             Showtime showtime = new Showtime(id, request.getParameter("mname"));
             Showtime showtimeadd = ShowtimeDAO.addorupdateShowtime(showtime);
@@ -137,12 +137,15 @@ public class AdminController {
                     n++;
                 }
             }
+            List<Movie> lstm = MovieDAO.listMovie();
+            List<Cinema> lstc = CinemaDAO.listCinema();
             List<Showtime> lsts = ShowtimeDAO.listShowtime();
+            mv.addObject("cinema", lstc);
+            mv.addObject("movie", lstm);
             mv.addObject("showtime", lsts);
             return mv;
         } catch (Exception e) {
-           e.printStackTrace();
-            return mv;
+            return new ModelAndView("redirect:/index");
         }
     }
 }
