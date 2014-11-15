@@ -15,8 +15,6 @@ import model.pojo.ReviewRating;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -36,7 +34,7 @@ public class Moviecontroller {
     }
 
     @RequestMapping("/moviedetail")
-    public ModelAndView moviedetailpage(HttpServletRequest request,
+    public ModelAndView moviedetail(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv;
         try {
@@ -47,7 +45,7 @@ public class Moviecontroller {
             mv.addObject("movie", movie);
             return mv;
         } catch (NumberFormatException ex) {
-            mv = new ModelAndView("success");
+            mv = new ModelAndView("redirect:/movie");
             return mv;
         }
     }

@@ -105,6 +105,34 @@ public class UsersContoller {
         mv.addObject("code", code);
         return mv;
     }
+    
+    @RequestMapping(value = "/canclebooking", method = RequestMethod.POST)
+    public ModelAndView Canclebooking(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("myaccount");
+        Users user = UsersDAO.getUserbyName(request.getParameter("username"));
+        Code code = CodeDAO.getCodebyName(request.getParameter("code"));
+        int cinema = code.getCinema();
+        String time = code.getTime();
+        String seatname = code.getSeatname();
+        int n = seatname.length()/3;
+        String[] seatarr=new String[n];
+        int substr=0;
+        for(int i=0;i<n;i++){
+            seatarr[i] = seatname.substring(substr,substr+3);
+            substr+=3;
+        }
+        for(String seat:seatarr){
+            Seat setseat = SeatDAO.getSeatbyId(time, cinema, seat);
+            setseat.setAvalible(true);
+            SeatDAO.addorupdateSeat(setseat);
+        }
+        CodeDAO.deleteCode(code);
+        user.setCode(null);
+        Users usercancle = UsersDAO.addorupdateUser(user);
+        mv.addObject("user",usercancle);
+        return mv;
+    }
 
     @RequestMapping(value = "/booking")
     public ModelAndView bookingPage(HttpServletRequest request,
