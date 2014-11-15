@@ -23,5 +23,8 @@
         <property name="session" type="string">
             <column name="session" length="150" />
         </property>
+        <property name="code" type="string">
+            <column name="code" length="100" />
+        </property>
     </class>
 </hibernate-mapping>

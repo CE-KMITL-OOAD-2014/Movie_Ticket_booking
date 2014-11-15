@@ -10,8 +10,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.dao.CinemaDAO;
+import model.dao.MovieDAO;
+import model.dao.SeatDAO;
 import model.dao.ShowtimeDAO;
 import model.pojo.Cinema;
+import model.pojo.Movie;
 import model.pojo.Seat;
 import model.pojo.SeatId;
 import model.pojo.Showtime;
@@ -26,29 +29,44 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class ShowtimeContoller {
+
     @RequestMapping(value = "/addshowtime")
     public ModelAndView addShowtime(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("showtimeedit");
+        ModelAndView mv = new ModelAndView("test");
         try {
-            ShowtimeId id = new ShowtimeId(request.getParameter("time"),parseInt(request.getParameter("cinema")));
-            Showtime showtime = new Showtime(id,request.getParameter("mname"));
-            Showtime showtimeadd = ShowtimeDAO.addShowtime(showtime);
+            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+            Showtime showtime = new Showtime(id, request.getParameter("mname"));
+            Showtime showtimeadd = ShowtimeDAO.addorUpdateShowtime(showtime);
             Cinema cinema = CinemaDAO.getCinemabyNum(showtimeadd.getId().getCinema());
             int seatmax = cinema.getSeatmax();
-            SeatId seatid = new SeatId();
-            Seat seat = new Seat();
-            String seatname = "A1";
-            for(int i=1;i<=seatmax;i++){
-                if(i%10==0){
-                    
+            SeatId seatid = null;
+            Seat seat = null;
+            char seatnum = 'A';
+            String seatname;
+            Integer n = 1;
+            Integer nn =0;
+            for (int i = 1; i <= seatmax; i++) {
+                if (i % 10 == 0) {
+                    nn=1;
+                    n=0;
+                    seatname = seatnum + nn.toString()+ n.toString();
+                    seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
+                    seat = new Seat(seatid, 1, true);
+                    SeatDAO.addSeat(seat);
+                    n++;
+                    seatnum = (char) (seatnum + 1);
+                } else {
+                    nn=0;
+                    seatname = seatnum +nn.toString()+ n.toString();
+                    seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
+                    seat = new Seat(seatid, 1, true);
+                    SeatDAO.addSeat(seat);
+                    n++;
                 }
-                else {
-                }
-                
             }
-            
-            mv.addObject("cinema", showtimeadd);
+            List <Seat> lstseat = SeatDAO.listSeat();
+            mv.addObject("seat", lstseat);
             return mv;
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,6 +78,10 @@ public class ShowtimeContoller {
     public ModelAndView editpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("showtimeedit");
+        List<Movie> lstm = MovieDAO.listMovie();
+        List<Cinema> lstc = CinemaDAO.listCinema();
+        mv.addObject("cinema",lstc);
+        mv.addObject("movie",lstm);
         return mv;
     }
 }

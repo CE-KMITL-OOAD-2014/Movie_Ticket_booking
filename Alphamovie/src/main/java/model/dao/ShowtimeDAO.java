@@ -33,13 +33,13 @@ public class ShowtimeDAO {
         return lst;
     }
     
-    public static Showtime addShowtime(Showtime showtime) {
+    public static Showtime addorUpdateShowtime(Showtime showtime) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(showtime);
-            session.getTransaction().commit();
+            session.saveOrUpdate(showtime);
             Showtime showtimeadd = (Showtime) session.load(Showtime.class, showtime.getId());
+            session.getTransaction().commit();
             session.close();
             return showtimeadd;
         } catch (Exception e) {

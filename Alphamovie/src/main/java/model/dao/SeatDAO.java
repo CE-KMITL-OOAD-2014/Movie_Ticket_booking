@@ -36,8 +36,8 @@ public class SeatDAO {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.save(seat);
-            session.getTransaction().commit();
             Seat seatadd = (Seat) session.load(Seat.class, seat.getId());
+            session.getTransaction().commit();
             session.close();
             return seatadd;
         } catch (Exception e) {

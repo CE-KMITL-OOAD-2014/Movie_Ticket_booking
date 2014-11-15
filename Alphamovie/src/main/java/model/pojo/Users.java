@@ -24,6 +24,7 @@ public class Users  implements java.io.Serializable {
      private String phonenumber;
      private boolean isadmin;
      private String session;
+     private String code;
 
     public Users() {
     }
@@ -105,6 +106,15 @@ public class Users  implements java.io.Serializable {
     
     public void setSession(String session) {
         this.session = session;
+    }
+    
+    @Column(name="code", length=100)
+    public String getCode() {
+        return this.code;
+    }
+    
+    public void setCode(String code) {
+        this.code = code;
     }
 
 

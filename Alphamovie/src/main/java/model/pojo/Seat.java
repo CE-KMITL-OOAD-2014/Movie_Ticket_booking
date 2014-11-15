@@ -67,10 +67,6 @@ public class Seat  implements java.io.Serializable {
     public void setAvalible(boolean avalible) {
         this.avalible = avalible;
     }
-
-
-
-
 }
 
 
