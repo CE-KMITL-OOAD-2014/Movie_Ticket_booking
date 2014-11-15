@@ -52,33 +52,33 @@
             </div>
         </div>
     </div>
-            <form id="movieedit" role="form" name ="input" action="movieedit" method="post">
-                </form>
-            <form id="showtimeedit" role="form" name ="input" action="showtimeedit" method="post">
-                </form>
-            <form id="cinemaedit" role="form" name ="input" action="cinemaedit" method="post">
-                </form>
-<script>
-    $(document).ready(function () {
-        $("#movie").click(function () {
-            $("#movieedit").submit();
+    <form id="movieedit" role="form" name ="input" action="movieedit" method="post">
+    </form>
+    <form id="showtimeedit" role="form" name ="input" action="showtimeedit" method="post">
+    </form>
+    <form id="cinemaedit" role="form" name ="input" action="cinemaedit" method="post">
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#movie").click(function () {
+                $("#movieedit").submit();
+            });
         });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $("#showtime").click(function () {
-            $("#showtimeedit").submit();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#showtime").click(function () {
+                $("#showtimeedit").submit();
+            });
         });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $("#cinema").click(function () {
-            $("#cinemaedit").submit();
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#cinema").click(function () {
+                $("#cinemaedit").submit();
+            });
         });
-    });
-</script>
+    </script>
 
 
 

@@ -163,7 +163,7 @@
                                             <br>
                                             <form role="form" action="canclebooking" method="post" >
                                                 <input type="hidden" name="code" value="<c:out value="${code.getCode()}"/>">>
-                                                <input type="hidden" name="username" value="<c:out value="${user.getUsername()}"/>">>
+                                                <input type="hidden" name="username" value="<c:out value="${user.getUsername()}"/>">
                                                 <button type="submit" class="btn btn-danger"><b>Cancel Booking</b></button>
                                             </form>
                                         </center>
