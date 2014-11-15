@@ -47,7 +47,7 @@ public class ReviewRatingDAO {
         }
     }
 
-    public static ReviewRating saveorupdateReviewRating(ReviewRating reviewrating) {
+    public static ReviewRating addReviewRating(ReviewRating reviewrating) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -71,16 +71,6 @@ public class ReviewRatingDAO {
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public static ReviewRating getReviewRatingbyId(int id) {
-        try {
-            
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

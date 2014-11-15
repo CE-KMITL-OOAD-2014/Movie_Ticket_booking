@@ -98,7 +98,7 @@
                     <div class="col-sm-4">
                         <center>
                             <br><br>
-                            <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"></c:out>" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
+                            <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 240px; height: 320px;"/>
                             <br><br>
                             <button class="btn btn-danger" data-toggle="modal" data-target="#reviewModal" id="baddreviewnrate">Add Review & Rating</button>
                         </center>

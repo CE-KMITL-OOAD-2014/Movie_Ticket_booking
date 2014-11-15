@@ -38,8 +38,8 @@
                 <center><img src="${pageContext.request.contextPath}/resources/img/seatplan.jpg"></center>
                 <br>
                 <div class="form-group">
-                  <label for="innumseatprow">Number of Seat per Row</label>
-                  <input type="text" name="seat" class="form-control" id="innumseatprow" placeholder="Number of Seat per Row">
+                  <label for="innumseatprow">Number of Seat Row</label>
+                  <input type="text" name="seat" class="form-control" id="innumseatprow" placeholder="Number of Seat Row">
                 </div>
                 <!--<div class="form-group">
                   <label for="innrow">Number of Normal Row</label>

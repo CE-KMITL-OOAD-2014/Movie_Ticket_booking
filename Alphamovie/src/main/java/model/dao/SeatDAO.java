@@ -5,9 +5,12 @@
  */
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import static model.dao.ShowtimeDAO.listShowtime;
 import model.pojo.Seat;
 import model.pojo.SeatId;
+import model.pojo.Showtime;
 import model.pojo.ShowtimeId;
 import model.ulti.HibernateUtil;
 import org.hibernate.Query;
@@ -31,11 +34,27 @@ public class SeatDAO {
         return lst;
     }
     
-    public static Seat addSeat(Seat seat) {
+    public static List<Seat> listSeatbyShowtime(String time, int c) {
+        List<Seat> lsts = listSeat();
+        List<Seat> lstshow = new ArrayList<Seat>();
+        try {
+            for (Seat s : lsts) {
+                if (c == s.getId().getCinema() && time.equals(s.getId().getTime())) {
+                    lstshow.add(s);
+                }
+            }
+            return lstshow;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static Seat addorupdateSeat(Seat seat) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(seat);
+            session.saveOrUpdate(seat);
             Seat seatadd = (Seat) session.load(Seat.class, seat.getId());
             session.getTransaction().commit();
             session.close();

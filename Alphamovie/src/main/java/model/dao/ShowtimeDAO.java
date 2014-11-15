@@ -33,7 +33,7 @@ public class ShowtimeDAO {
         return lst;
     }
     
-    public static Showtime addorUpdateShowtime(Showtime showtime) {
+    public static Showtime addorupdateShowtime(Showtime showtime) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();

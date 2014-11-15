@@ -37,7 +37,7 @@ public class ShowtimeContoller {
         try {
             ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
             Showtime showtime = new Showtime(id, request.getParameter("mname"));
-            Showtime showtimeadd = ShowtimeDAO.addorUpdateShowtime(showtime);
+            Showtime showtimeadd = ShowtimeDAO.addorupdateShowtime(showtime);
             Cinema cinema = CinemaDAO.getCinemabyNum(showtimeadd.getId().getCinema());
             int seatmax = cinema.getSeatmax();
             SeatId seatid = null;
@@ -53,7 +53,7 @@ public class ShowtimeContoller {
                     seatname = seatnum + nn.toString()+ n.toString();
                     seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
                     seat = new Seat(seatid, 1, true);
-                    SeatDAO.addSeat(seat);
+                    SeatDAO.addorupdateSeat(seat);
                     n++;
                     seatnum = (char) (seatnum + 1);
                 } else {
@@ -61,7 +61,7 @@ public class ShowtimeContoller {
                     seatname = seatnum +nn.toString()+ n.toString();
                     seatid = new SeatId(showtimeadd.getId().getTime(), cinema.getCinema(), seatname);
                     seat = new Seat(seatid, 1, true);
-                    SeatDAO.addSeat(seat);
+                    SeatDAO.addorupdateSeat(seat);
                     n++;
                 }
             }

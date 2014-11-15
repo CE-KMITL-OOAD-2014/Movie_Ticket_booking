@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,24 +39,20 @@
                         <div class="well col-sm-8 col-sm-offset-2">
                             <div class="col-sm-4">
                                 <center>
-                                    <img src="${pageContext.request.contextPath}/resources/img/photodune-1625438-movies-film-blue-light-background-s.jpg" class="image-responsive" alt="Responsive image" style="width: 120px; height: 160px;">
+                                    <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" class="image-responsive" alt="Responsive image" style="width: 120px; height: 160px;">
                                     <br>
                                 </center>
                             </div>
                             <div class="col-sm-8">
                                 <br>
-                                <div><p><h4><b>Movie Title</b></h4></p></div><br>
+                                <div><p><h4><b><c:out value="${showtime.getMname()}"/></b></h4></p></div><br>
                                 <div class="date-release">
                                     <label class="col-sm-3"><b>Cinema</b></label>
-                                    <p>__________</p>
-                                </div>
-                                <div class="type-movie">
-                                    <label class="col-sm-3"><b>Date</b></label>
-                                    <p>__________</p>
-                                </div>
+                                    <p><c:out value="${showtime.getId().getCinema()}"/></p>
+                                </div>  
                                 <div class="time-movie">
                                     <label class="col-sm-3"><b>Time</b></label>
-                                    <p>__________</p>
+                                    <p><c:out value="${showtime.getId().getTime()}"/></p>
                                 </div>
                             </div>
                         </div>
@@ -76,21 +73,10 @@
                                     <label class="col-sm-2"> 120 Baht</label>
                                 </div>
                                 <br><br><br>
-                                <!--<div class="premium-seat">
-                                    <label class="col-sm-3 col-sm-offset-3"><b>Premium seat</b></label>
-
-                                    <div class="col-sm-2">
-                                        <select class="form-control" for="select-nseat">
-                                            <option>-</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                    <label class="col-sm-2"> 150 Baht</label>
-                                </div>-->
                                 <br><br><br><br>
+                                <input type="hidden" name="mname" value="<c:out value="${showtime.getMname()}"/>">
+                                <input type="hidden" name="cinema" value="<c:out value="${showtime.getId().getCinema()}"/>">
+                                <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
                                 <button type="submit" class="btn btn-defualt col-sm-2 col-sm-offset-10"><b>Submit</b></button>
                                 <br><br>
                             </form>

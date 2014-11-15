@@ -53,7 +53,12 @@
                                 <p style="strong"><b><a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>"> <c:out value="${movie.getMname()}"/></a></b></p>
                                 <p>showtime</p>
                                 <c:forEach var="showtime" items="${movie.getShowtimeList()}">
-                                    <button type="button" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
+                                    <form class="form-horizontal" role="form" name ="input" action="booking" method="get">
+                                        <input type="hidden" name="cinema" value="<c:out value="${cinema.getCinema()}"/>">
+                                               <input type="hidden" name="mname" value="<c:out value="${movie.getMname()}"/>">
+                                               <input type="hidden" name="time" value="<c:out value="${showtime.getId().getTime()}"/>">
+                                        <button type="submit" class="btn btn-default"><c:out value="${showtime.getId().getTime()}"/></button>
+                                    </form>
                                 </c:forEach>
                             </td>
                             </c:forEach>
