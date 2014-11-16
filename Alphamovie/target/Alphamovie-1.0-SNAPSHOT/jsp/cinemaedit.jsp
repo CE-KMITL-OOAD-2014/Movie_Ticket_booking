@@ -41,14 +41,6 @@
                         <label for="innumseatprow">Number of Seat Row</label>
                         <input type="text" name="seat" class="form-control" id="innumseatprow" placeholder="Number of Seat Row">
                     </div>
-                    <!--<div class="form-group">
-                      <label for="innrow">Number of Normal Row</label>
-                      <input type="text" name="row" sclass="form-control" id="innrow" placeholder="Number of Normal Row">
-                    </div>
-                    <div class="form-group">
-                      <label for="inprow">Number of Premium Row</label>
-                      <input type="text" class="form-control" id="inprow" placeholder="Number of Premium Row">
-                    </div>-->
                     <span class="col-sm-5"></span><button type="submit" class="btn btn-default col-sm-2"><b>Submit</b></button>
                     <br><br>
                 </form>

@@ -43,8 +43,6 @@
             <h3 class="panel-title">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active"><a href="#nowshow" role="tab" data-toggle="tab">Now Showing</a></li>
-                    <li><a href="#coming" role="tab" data-toggle="tab">Coming Soon</a></li>
-                    <!--li><a href="#toprank" role="tab" data-toggle="tab">Top Ranking</a></li-->
                 </ul>
             </h3>
             <div class="panel-body">
@@ -62,24 +60,6 @@
                             </div>
                         </c:forEach>
                     </div>
-
-                    <!--Coming Tab -->
-                    <div class="tab-pane fade" id="coming">
-                        <center><p><H1>Coming Soon!!</H1></p></center>
-                    </div>
-
-                    <script>
-                        var fullDate = new Date()
-                        console.log(fullDate);
-                        //Thu May 19 2011 17:25:38 GMT+1000 {}
-
-                        //convert month to 2 digits
-                        var twoDigitMonth = ((fullDate.getMonth().length + 1) != 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
-
-                        var currentDate = fullDate.getDate() + "-" + twoDigitMonth + "-" + fullDate.getFullYear();
-                        console.log(currentDate);
-                        //19-05-2011
-                    </script>
 
                 </div>
             </div>

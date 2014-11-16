@@ -69,7 +69,6 @@
             </div>
             <div class="form-group">
                 <label for="Insynopsis">Synopsis</label>
-                <!--input type="text" class="form-control" id="Insynopsis" placeholder="xxx min"-->
                 <input type="text" name="synopsis" class="form-control" id="InputtitleM" placeholder="Synopsis">
                 <div class="form-group">
                     <label for="exampleInputFile">Movie Poster</label>
