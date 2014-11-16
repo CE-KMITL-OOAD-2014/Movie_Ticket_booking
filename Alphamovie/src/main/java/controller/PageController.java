@@ -24,15 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PageController {
 
-<<<<<<< HEAD
-    @RequestMapping("/navbar")
-    public ModelAndView test(){
-        return new ModelAndView("navbar");
-    }
-    @RequestMapping(value ="/index")
-=======
     @RequestMapping(value = "/index")
->>>>>>> origin/master
     public ModelAndView indexpage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("index");
@@ -40,21 +32,21 @@ public class PageController {
     }
 
     @RequestMapping("/showtime")
-    public ModelAndView movieshowtimepage(HttpServletRequest request,
+    public ModelAndView showtimepage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("showtime");
 
-            List<Movie> lstm = new ArrayList<Movie>();
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            for (Cinema c : lstc) {
-                c.addMovieList(CinemaDAO.listMovieinCinema(c.getCinema()));
-                lstm = c.getMovieList();
-                for (Movie m : lstm) {
-                    m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname(), c.getCinema()));
+            List<Movie> lstmovie = new ArrayList<Movie>();
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            for (Cinema cinema : lstcinema) {
+                cinema.addMovieList(CinemaDAO.listMovieinCinema(cinema.getCinema()));
+                lstmovie = cinema.getMovieList();
+                for (Movie movie : lstmovie) {
+                    movie.addShowtimeList(MovieDAO.listShowtimeinMovie(movie.getMname(), cinema.getCinema()));
                 }
             }
-            mv.addObject("cinema", lstc);
+            mv.addObject("cinema", lstcinema);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
@@ -66,19 +58,8 @@ public class PageController {
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("movie");
-            List<Movie> lst = MovieDAO.listMovie();
-            mv.addObject("movie", lst);
-            return mv;
-        } catch (Exception e) {
-            return new ModelAndView("redirect:/index");
-        }
-    }
-
-    @RequestMapping("/signin")
-    public ModelAndView signinpage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        try {
-            ModelAndView mv = new ModelAndView("signin");
+            List<Movie> lstmovie = MovieDAO.listMovie();
+            mv.addObject("movie", lstmovie);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");

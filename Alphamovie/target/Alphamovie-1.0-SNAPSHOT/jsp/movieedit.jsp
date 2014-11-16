@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="movie" items="${movie}">
-                    <tr class="mlist">
+                        <tr class="mlist">
                             <td class="col-sm-8">
                                 <br>
                                 <div class="col-sm-offset-1">
@@ -37,13 +37,13 @@
                             </td>
                             <td class="col-sm-3">
                                 <br>
-                    <form role="form" name ="input" action="deletemovie" method="post">
-                        <input type="hidden" value="<c:out value="${movie.getMname()}"/>" name="mname">
-                    <center><button type="submit" class="btn btn-default">Delete</button></center>
-                    </form>
-                    </td>
-                </tr>
-                </c:forEach>
+                                <form role="form" name ="input" action="deletemovie" method="post">
+                                    <input type="hidden" value="<c:out value="${movie.getMname()}"/>" name="mname">
+                                    <center><button type="submit" class="btn btn-default">Delete</button></center>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

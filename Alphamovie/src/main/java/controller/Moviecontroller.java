@@ -29,8 +29,8 @@ public class Moviecontroller {
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("movieedit");
-            List<Movie> lstm = MovieDAO.listMovie();
-            mv.addObject("movie", lstm);
+            List<Movie> lstmovie = MovieDAO.listMovie();
+            mv.addObject("movie", lstmovie);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
@@ -44,8 +44,8 @@ public class Moviecontroller {
         try {
             mv = new ModelAndView("moviedetail");
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            List<ReviewRating> reviewratinglist = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
-            mv.addObject("review", reviewratinglist);
+            List<ReviewRating> lstreviewrating = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
+            mv.addObject("review", lstreviewrating);
             mv.addObject("movie", movie);
             return mv;
         } catch (Exception e) {

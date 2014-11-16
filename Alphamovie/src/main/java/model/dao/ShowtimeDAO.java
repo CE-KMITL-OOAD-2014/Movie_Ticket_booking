@@ -19,18 +19,18 @@ import org.hibernate.Session;
 public class ShowtimeDAO {
 
     public static List<Showtime> listShowtime() {
-        List<Showtime> lst = null;
+        List<Showtime> lstshowtime = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Showtime");
-            lst = query.list();
+            lstshowtime = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstshowtime;
     }
-    
+
     public static Showtime addorupdateShowtime(Showtime showtime) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -49,46 +49,45 @@ public class ShowtimeDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Showtime dshowtime = (Showtime) session.get(Showtime.class, showtime.getId());
-            session.delete(dshowtime);
+            Showtime deleteshowtime = (Showtime) session.get(Showtime.class, showtime.getId());
+            session.delete(deleteshowtime);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
     public static Showtime getShowtimebyId(String time, int cinema) {
         ShowtimeId id = new ShowtimeId(time, cinema);
         try {
-            List<Showtime> lst = listShowtime();
-            for (Showtime s : lst) {
-                ShowtimeId id1 = s.getId();
+            List<Showtime> lstshowtime = listShowtime();
+            for (Showtime showtime : lstshowtime) {
+                ShowtimeId id1 = showtime.getId();
                 if (id.equals(id1)) {
-                    return s;
+                    return showtime;
                 }
             }
             return null;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
-    
-     public static Showtime deleteShowtimebyMovie(String mname) {
-         Showtime showtime = new Showtime();
+
+    public static Showtime deleteShowtimebyMovie(String mname) {
+        Showtime showtimeinmovie = new Showtime();
         try {
-            
-            List<Showtime> lsts = listShowtime();
-            for(Showtime s : lsts){
-                if(mname.equals(s.getMname())){
-                    deleteShowtime(s);
-                    showtime = s;
+
+            List<Showtime> lstshowtime = listShowtime();
+            for (Showtime showtime : lstshowtime) {
+                if (mname.equals(showtime.getMname())) {
+                    deleteShowtime(showtime);
+                    showtimeinmovie = showtime;
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return showtime;
+        return showtimeinmovie;
     }
 }

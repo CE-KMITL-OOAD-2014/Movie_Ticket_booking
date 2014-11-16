@@ -92,8 +92,8 @@ public class UsersContoller {
             ReviewRating review = new ReviewRating(request.getParameter("mname"), request.getParameter("username"), parseInt(request.getParameter("rating")), request.getParameter("review"));
             ReviewRatingDAO.addReviewRating(review);
             Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            List<ReviewRating> lstr = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
-            mv.addObject("review", lstr);
+            List<ReviewRating> lstreviewrating = ReviewRatingDAO.listReviewRatingbyMovie(movie.getMname());
+            mv.addObject("review", lstreviewrating);
             mv.addObject("movie", movie);
             return mv;
         } catch (Exception e) {
@@ -101,8 +101,65 @@ public class UsersContoller {
         }
     }
 
-    @RequestMapping(value = "/code")
-    public ModelAndView Code(HttpServletRequest request,
+    @RequestMapping("/selectshowtime")
+    public ModelAndView selectshowtimePage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        try {
+            ModelAndView mv = new ModelAndView("selectshowtime");
+
+            List<Movie> lstmovie = new ArrayList<Movie>();
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            for (Cinema cinema : lstcinema) {
+                cinema.addMovieList(CinemaDAO.listMovieinCinema(cinema.getCinema()));
+                lstmovie = cinema.getMovieList();
+                for (Movie movie : lstmovie) {
+                    movie.addShowtimeList(MovieDAO.listShowtimeinMovie(movie.getMname(), cinema.getCinema()));
+                }
+            }
+            mv.addObject("cinema", lstcinema);
+            return mv;
+        } catch (NumberFormatException ex) {
+            return new ModelAndView("redirect:/index");
+        }
+    }
+
+    @RequestMapping(value = "/booking", method = RequestMethod.POST)
+    public ModelAndView bookingPage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv = new ModelAndView("booking");
+        try {
+            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+            Showtime showtime = new Showtime(id, request.getParameter("mname"));
+            Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
+            mv.addObject("movie", movie);
+            mv.addObject("showtime", showtime);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
+    }
+
+    @RequestMapping(value = "/selectseat", method = RequestMethod.POST)
+    public ModelAndView selectSeatPage(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        try {
+            ModelAndView mv = new ModelAndView("selectseat");
+            List<Seat> lstseat = SeatDAO.listSeatbyShowtime(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+            Showtime showtime = new Showtime(id, request.getParameter("mname"));
+            Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
+            mv.addObject("seatnum", request.getParameter("seatnum"));
+            mv.addObject("movie", movie);
+            mv.addObject("seat", lstseat);
+            mv.addObject("showtime", showtime);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirect:/index");
+        }
+    }
+
+    @RequestMapping(value = "/code", method = RequestMethod.POST)
+    public ModelAndView Codegenerate(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");
         try {
@@ -114,8 +171,8 @@ public class UsersContoller {
                 SeatDAO.addorupdateSeat(seat);
                 seatname += s;
             }
-            ShowtimeId id = new ShowtimeId(request.getParameter("time"),parseInt(request.getParameter("cinema")));
-            Showtime showtime = new Showtime(id,request.getParameter("mname"));
+            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
+            Showtime showtime = new Showtime(id, request.getParameter("mname"));
             Code code = UsersService.generateCode(showtime, seatname);
             Users user = UsersDAO.getUserbyName(request.getParameter("username"));
             user.setCode(code.getCode());
@@ -139,7 +196,7 @@ public class UsersContoller {
             int cinema = code.getCinema();
             String time = code.getTime();
             String seatname = code.getSeatname();
-            String[] seatarray = UsersService.seatArray(seatname);
+            String[] seatarray = UsersService.getseatArray(seatname);
             for (String seat : seatarray) {
                 Seat setseat = SeatDAO.getSeatbyId(time, cinema, seat);
                 setseat.setAvalible(true);
@@ -155,84 +212,39 @@ public class UsersContoller {
         }
     }
 
-    @RequestMapping(value = "/booking", method = RequestMethod.POST)
-    public ModelAndView bookingPage(HttpServletRequest request,
+    @RequestMapping(value = "/myaccount", method = RequestMethod.POST)
+    public ModelAndView UserInformationPage(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("booking");
         try {
-            ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
-            Showtime showtime = new Showtime(id, request.getParameter("mname"));
-            Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-            mv.addObject("movie", movie);
-            mv.addObject("showtime", showtime);
+            ModelAndView mv = new ModelAndView("myaccount");
+            Users user = UsersDAO.getUserbyName(request.getParameter("username"));
+            Code code = CodeDAO.getCodebyName(user.getCode());
+            mv.addObject("code", code);
+            mv.addObject("user", user);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
         }
     }
 
-    @RequestMapping("/selectshowtime")
-    public ModelAndView selectshowtimepage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        try {
-            ModelAndView mv = new ModelAndView("selectshowtime");
-
-            List<Movie> lstm = new ArrayList<Movie>();
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            for (Cinema c : lstc) {
-                c.addMovieList(CinemaDAO.listMovieinCinema(c.getCinema()));
-                lstm = c.getMovieList();
-                for (Movie m : lstm) {
-                    m.addShowtimeList(MovieDAO.listShowtimeinMovie(m.getMname(), c.getCinema()));
-                }
-            }
-            mv.addObject("cinema", lstc);
-            return mv;
-        } catch (NumberFormatException ex) {
-            return new ModelAndView("redirect:/index");
-        }
-    }
-
-    @RequestMapping(value = "/selectseat")
-    public ModelAndView selectSeatPage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("selectseat");
-        List<Seat> lsts = SeatDAO.listSeatbyShowtime(request.getParameter("time"), parseInt(request.getParameter("cinema")));
-        ShowtimeId id = new ShowtimeId(request.getParameter("time"), parseInt(request.getParameter("cinema")));
-        Showtime showtime = new Showtime(id, request.getParameter("mname"));
-        Movie movie = MovieDAO.getMoviebyName(request.getParameter("mname"));
-        mv.addObject("seatnum", request.getParameter("seatnum"));
-        mv.addObject("movie", movie);
-        mv.addObject("seat", lsts);
-        mv.addObject("showtime", showtime);
-        return mv;
-    }
-
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("myaccount");
-        Users user = UsersDAO.getUserbyName(request.getParameter("username"));
-        user.setEmail(request.getParameter("email"));
-        user.setPhonenumber(request.getParameter("phonenumber"));
-        UsersDAO.addorupdateUser(user);
-        mv.addObject("user", user);
-        return mv;
-    }
-
-    @RequestMapping(value = "/myaccount", method = RequestMethod.POST)
-    public ModelAndView UserInformationpage(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView("myaccount");
-        Users user = UsersDAO.getUserbyName(request.getParameter("username"));
-        Code code = CodeDAO.getCodebyName(user.getCode());
-        mv.addObject("code", code);
-        mv.addObject("user", user);
-        return mv;
+        try {
+            ModelAndView mv = new ModelAndView("myaccount");
+            Users user = UsersDAO.getUserbyName(request.getParameter("username"));
+            user.setEmail(request.getParameter("email"));
+            user.setPhonenumber(request.getParameter("phonenumber"));
+            UsersDAO.addorupdateUser(user);
+            mv.addObject("user", user);
+            return mv;
+        } catch (Exception e) {
+            return new ModelAndView("redirec:/index");
+        }
     }
 
     @RequestMapping(value = "/changepassword", method = RequestMethod.POST)
-    public ModelAndView changepasswordUser(HttpServletRequest request,
+    public ModelAndView changePasswordUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView("myaccount");
         Users usercheck = UsersDAO.getUserbyName(request.getParameter("username"));

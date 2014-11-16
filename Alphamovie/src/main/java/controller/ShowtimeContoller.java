@@ -31,12 +31,12 @@ public class ShowtimeContoller {
             HttpServletResponse response) {
         try {
             ModelAndView mv = new ModelAndView("showtimeedit");
-            List<Movie> lstm = MovieDAO.listMovie();
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            List<Showtime> lsts = ShowtimeDAO.listShowtime();
-            mv.addObject("cinema", lstc);
-            mv.addObject("movie", lstm);
-            mv.addObject("showtime", lsts);
+            List<Movie> lstmovie = MovieDAO.listMovie();
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            List<Showtime> lstshowtime = ShowtimeDAO.listShowtime();
+            mv.addObject("cinema", lstcinema);
+            mv.addObject("movie", lstmovie);
+            mv.addObject("showtime", lstshowtime);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");

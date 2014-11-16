@@ -22,34 +22,33 @@ import org.hibernate.Session;
 public class MovieDAO {
 
     public static List<Movie> listMovie() {
-        List<Movie> lst = null;
+        List<Movie> lstmovie = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Movie");
-            lst = query.list();
-            for (Movie m : lst) {
-                m.setB64str();
+            lstmovie = query.list();
+            for (Movie movie : lstmovie) {
+                movie.setB64str();
             }
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstmovie;
     }
 
-    public static List<Showtime> listShowtimeinMovie(String mname, int c) {
-        List<Showtime> lsts = listShowtime();
-        List<Showtime> lstshow = new ArrayList<Showtime>();
+    public static List<Showtime> listShowtimeinMovie(String mname, int cinema) {
+        List<Showtime> lstshowtime = listShowtime();
+        List<Showtime> lstshowtimeinmovie = new ArrayList<Showtime>();
         try {
-            for (Showtime s : lsts) {
-                if (c == s.getId().getCinema() && mname.equals(s.getMname())) {
-                    lstshow.add(s);
+            for (Showtime showtime : lstshowtime) {
+                if (cinema == showtime.getId().getCinema() && mname.equals(showtime.getMname())) {
+                    lstshowtimeinmovie.add(showtime);
                 }
             }
-            return lstshow;
+            return lstshowtimeinmovie;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 
@@ -71,12 +70,12 @@ public class MovieDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Movie dmovie = (Movie) session.get(Movie.class, mname);
-            session.delete(dmovie);
+            Movie deletemovie = (Movie) session.get(Movie.class, mname);
+            session.delete(deletemovie);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
@@ -90,8 +89,7 @@ public class MovieDAO {
             movie.setB64str();
             return movie;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 }

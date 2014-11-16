@@ -13,7 +13,7 @@ import service.UsersService;
  *
  * @author TRathC
  */
-public class UserBooking {
+public class UserBookingUnitTest {
 
     @Test
     public void test() {
@@ -61,14 +61,15 @@ public class UserBooking {
         //User2 booking seat5 to seat8
         String seatnameforuser2 = seat5.getId().getSeat() + seat6.getId().getSeat() + seat7.getId().getSeat() + seat8.getId().getSeat();
 
-        //Code
+        //generate Code
         Code codeforuser1 = UsersService.generateCode(showtime1, seatnameforuser1);
         Code codeforuser2 = UsersService.generateCode(showtime2, seatnameforuser2);
 
         //User get code
         user1.setCode(codeforuser1.getCode());
         user2.setCode(codeforuser2.getCode());
-
+        
+        //check code with Info
         assertEquals(showtime1.getId().getCinema(), codeforuser1.getCinema());
         assertEquals(showtime1.getMname(), codeforuser1.getMname());
         assertEquals(showtime1.getId().getTime(), codeforuser1.getTime());
@@ -78,7 +79,8 @@ public class UserBooking {
         assertEquals(showtime2.getMname(), codeforuser2.getMname());
         assertEquals(showtime2.getId().getTime(), codeforuser2.getTime());
         assertEquals(seatnameforuser2, codeforuser2.getSeatname());
-
+        
+        //check usercode with generatecode
         assertEquals(user1.getCode(), codeforuser1.getCode());
         assertEquals(user2.getCode(), codeforuser2.getCode());
 

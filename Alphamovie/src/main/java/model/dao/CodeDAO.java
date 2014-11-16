@@ -16,21 +16,21 @@ import org.hibernate.Session;
  * @author Art
  */
 public class CodeDAO {
-    
+
     public static List<Code> listCode() {
-        List<Code> lst = null;
+        List<Code> lstcode = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Code");
-            lst = query.list();
+            lstcode = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstcode;
     }
 
-    public static Code addorupdateCode(Code code){
+    public static Code addorupdateCode(Code code) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -43,20 +43,20 @@ public class CodeDAO {
             throw e;
         }
     }
-    
-    public static void deleteCode(Code code){
+
+    public static void deleteCode(Code code) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Code dcode = (Code) session.get(Code.class, code.getCode());
-            session.delete(dcode);
+            Code deletecode = (Code) session.get(Code.class, code.getCode());
+            session.delete(deletecode);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
-    
+
     public static Code getCodebyName(String codename) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -66,21 +66,20 @@ public class CodeDAO {
             session.close();
             return code;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
-    
+
     public static void deleteCodebyMovie(String mname) {
         try {
-            List<Code> lstc = listCode();
-            for(Code c : lstc){
-                if(mname.equals(c.getMname())){
-                    deleteCode(c);
+            List<Code> lstcode = listCode();
+            for (Code code : lstcode) {
+                if (mname.equals(code.getMname())) {
+                    deleteCode(code);
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

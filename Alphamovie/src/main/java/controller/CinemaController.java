@@ -27,8 +27,8 @@ public class CinemaController {
             HttpServletResponse response) throws Exception {
         try {
             ModelAndView mv = new ModelAndView("cinemaedit");
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            mv.addObject("cinema", lstc);
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            mv.addObject("cinema", lstcinema);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");

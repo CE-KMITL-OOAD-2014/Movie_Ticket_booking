@@ -12,6 +12,14 @@
 
 </head>
 <body>
+    <jsp:include page="navbar.jsp" />
+
+
+    <!--Content -->
+
+    <div class="page-header">
+
+    </div>
     <style type="text/css">
         body{
             background-attachment: fixed;
@@ -36,23 +44,23 @@
             border-bottom-color: transparent;
         } 
     </style>
-    
+
     <script>
-						function checkPassMatch() {
-							var newpassword = $("#input-newpassword").val();
-							var newconfirmPassword = $("#confirm-newpassword").val();
-							if (newpassword != newconfirmPassword){
-								  $("#confirm-newpassword").css( "background-color", "#d9534f" );
-								  $("#send-newpass").prop("type", "button");	 
-							}
-							else{
-								$("#confirm-newpassword").css( "background-color", "#5cb85c" );
-								$("#send-newpass").prop("type", "submit");
-							}
-						}
-						$(document).ready(function () {
-						   $("#confirm-newpassword").keyup(checkPassMatch);					
-						});
+        function checkPassMatch() {
+            var newpassword = $("#input-newpassword").val();
+            var newconfirmPassword = $("#confirm-newpassword").val();
+            if (newpassword != newconfirmPassword) {
+                $("#confirm-newpassword").css("background-color", "#d9534f");
+                $("#send-newpass").prop("type", "button");
+            }
+            else {
+                $("#confirm-newpassword").css("background-color", "#5cb85c");
+                $("#send-newpass").prop("type", "submit");
+            }
+        }
+        $(document).ready(function () {
+            $("#confirm-newpassword").keyup(checkPassMatch);
+        });
     </script>
     <div class="wrap">
         <div class="container">

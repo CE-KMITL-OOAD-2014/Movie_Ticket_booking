@@ -18,35 +18,35 @@ import org.hibernate.Session;
  * @author Art
  */
 public class SeatDAO {
+
     public static List<Seat> listSeat() {
-        List<Seat> lst = null;
+        List<Seat> lstseat = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Seat");
-            lst = query.list();
+            lstseat = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstseat;
     }
-    
-    public static List<Seat> listSeatbyShowtime(String time, int c) {
-        List<Seat> lsts = listSeat();
-        List<Seat> lstshow = new ArrayList<Seat>();
+
+    public static List<Seat> listSeatbyShowtime(String time, int cinema) {
+        List<Seat> lstseat = listSeat();
+        List<Seat> lstseatinshowtime = new ArrayList<Seat>();
         try {
-            for (Seat s : lsts) {
-                if (c == s.getId().getCinema() && time.equals(s.getId().getTime())) {
-                    lstshow.add(s);
+            for (Seat seat : lstseat) {
+                if (cinema == seat.getId().getCinema() && time.equals(seat.getId().getTime())) {
+                    lstseatinshowtime.add(seat);
                 }
             }
-            return lstshow;
+            return lstseatinshowtime;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
-    
+
     public static Seat addorupdateSeat(Seat seat) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -65,42 +65,41 @@ public class SeatDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Seat dseat = (Seat) session.get(Seat.class, seat.getId());
-            session.delete(dseat);
+            Seat deleteseat = (Seat) session.get(Seat.class, seat.getId());
+            session.delete(deleteseat);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
-    public static Seat getSeatbyId(String time, int cinema,String seat) {
-        SeatId id = new SeatId(time, cinema,seat);
+    public static Seat getSeatbyId(String time, int cinema, String seatname) {
+        SeatId id = new SeatId(time, cinema, seatname);
         try {
-            List<Seat> lst = listSeat();
-            for (Seat s : lst) {
-                SeatId id1 = s.getId();
+            List<Seat> lstseat = listSeat();
+            for (Seat seat : lstseat) {
+                SeatId id1 = seat.getId();
                 if (id.equals(id1)) {
-                    return s;
+                    return seat;
                 }
             }
             return null;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
-    
+
     public static void deleteSeatbyShowtime(String time) {
         try {
-            List<Seat> lsts = listSeat();
-            for(Seat s : lsts){
-                if(time.equals(s.getId().getTime())){
-                    deleteSeat(s);
+            List<Seat> lstseat = listSeat();
+            for (Seat seat : lstseat) {
+                if (time.equals(seat.getId().getTime())) {
+                    deleteSeat(seat);
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

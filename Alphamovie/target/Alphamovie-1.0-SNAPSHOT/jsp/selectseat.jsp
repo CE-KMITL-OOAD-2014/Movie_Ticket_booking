@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="col-sm-8 col-sm-offset-2">
-                        <form role="form" action="code" method="get" id="submit">
+                        <form role="form" action="code" method="post" id="submit">
                             <br><br>
                             <center><label class="label label-warning col-sm-12"><h3><b>SCREEN</b></h3></label></center><br><br><br>
 

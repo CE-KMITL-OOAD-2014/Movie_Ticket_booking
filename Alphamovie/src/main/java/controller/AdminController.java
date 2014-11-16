@@ -54,8 +54,8 @@ public class AdminController {
             Integer seat = parseInt(request.getParameter("seat")) * 10;
             Cinema cinema = new Cinema(seat);
             CinemaDAO.addCinema(cinema);
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            mv.addObject("cinema", lstc);
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            mv.addObject("cinema", lstcinema);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
@@ -73,9 +73,9 @@ public class AdminController {
             Movie movie = new Movie(request.getParameter("mname"), request.getParameter("releasedate"),
                     request.getParameter("type"), Integer.parseInt(request.getParameter("duration")), request.getParameter("synopsis"), img);
             MovieDAO.addorupdateMovie(movie);
-            List<Movie> lstm = MovieDAO.listMovie();
+            List<Movie> lstmovie = MovieDAO.listMovie();
 
-            mv.addObject("movie", lstm);
+            mv.addObject("movie", lstmovie);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
@@ -93,9 +93,9 @@ public class AdminController {
             SeatDAO.deleteSeatbyShowtime(showtime.getId().getTime());
             CodeDAO.deleteCodebyMovie(request.getParameter("mname"));
 
-            List<Movie> lstm = MovieDAO.listMovie();
+            List<Movie> lstmovie = MovieDAO.listMovie();
 
-            mv.addObject("movie", lstm);
+            mv.addObject("movie", lstmovie);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");
@@ -137,12 +137,12 @@ public class AdminController {
                     n++;
                 }
             }
-            List<Movie> lstm = MovieDAO.listMovie();
-            List<Cinema> lstc = CinemaDAO.listCinema();
-            List<Showtime> lsts = ShowtimeDAO.listShowtime();
-            mv.addObject("cinema", lstc);
-            mv.addObject("movie", lstm);
-            mv.addObject("showtime", lsts);
+            List<Movie> lstmovie = MovieDAO.listMovie();
+            List<Cinema> lstcinema = CinemaDAO.listCinema();
+            List<Showtime> lstshowtime = ShowtimeDAO.listShowtime();
+            mv.addObject("cinema", lstcinema);
+            mv.addObject("movie", lstmovie);
+            mv.addObject("showtime", lstshowtime);
             return mv;
         } catch (Exception e) {
             return new ModelAndView("redirect:/index");

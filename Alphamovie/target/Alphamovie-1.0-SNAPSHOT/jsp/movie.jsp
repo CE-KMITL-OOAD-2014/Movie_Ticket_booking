@@ -19,7 +19,9 @@
 <body>
 
     <jsp:include page="navbar.jsp" />
-    
+    <div class="page-header">
+
+    </div>
     <style type="text/css">
         body{
             background-attachment: fixed;
@@ -34,10 +36,7 @@
         }
     </style>
 
-    <!--Content -->
-    <div class="page-header">
 
-    </div>
 <center>
     <div class="well col-sm-10 col-sm-offset-1">
         <div class="panel panel-default">
@@ -54,13 +53,13 @@
                     <!--Now Show Tab -->
                     <div class="tab-pane fade in active" id="nowshow">
                         <c:forEach var="movie" items="${movie}">
-                            
+
                             <div class="well col-sm-3">
                                 <a href ="moviedetail?mname=<c:out value="${movie.getMname()}"/>">
                                     <img src="data:image/jpg;base64,<c:out value="${movie.getB64str()}"/>" class="image-responsive" alt="Responsive image" style="width: 150px; height: 200px;">
                                     <p><c:out value="${movie.getMname()}"/></p>
-                                    </a>
-                                </div>
+                                </a>
+                            </div>
                         </c:forEach>
                     </div>
 
@@ -68,20 +67,20 @@
                     <div class="tab-pane fade" id="coming">
                         <center><p><H1>Coming Soon!!</H1></p></center>
                     </div>
-                    
+
                     <script>
                         var fullDate = new Date()
                         console.log(fullDate);
                         //Thu May 19 2011 17:25:38 GMT+1000 {}
 
                         //convert month to 2 digits
-                        var twoDigitMonth = ((fullDate.getMonth().length+1) != 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+                        var twoDigitMonth = ((fullDate.getMonth().length + 1) != 1) ? (fullDate.getMonth() + 1) : '0' + (fullDate.getMonth() + 1);
 
                         var currentDate = fullDate.getDate() + "-" + twoDigitMonth + "-" + fullDate.getFullYear();
                         console.log(currentDate);
                         //19-05-2011
                     </script>
-                    
+
                 </div>
             </div>
         </div>

@@ -14,59 +14,6 @@
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
 
-<script>
-    $(document).ready(function () {
-        getdata();
-        if (localStorage.getItem("session") != null) {
-            $(".show-if-logout").hide();
-            $("#logout").show();
-            $("#memberbooking").show();
-            if (localStorage.getItem("isadmin") == "true") {
-                $("#admin-login").show();
-                $("#user-login").hide();
-            }
-            else {
-                $("#user-login").show();
-                $("#admin-login").hide();
-            }
-        }
-        else {
-            $(".show-if-logout").show();
-            $(".show-if-login").hide();
-        }
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#logout").click(function () {
-            alert("logout");
-            var username = localStorage.getItem("user");
-            $.post("logout", {username: username});
-            localStorage.clear();
-            document.location = "/index";
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#user-login").click(function () {
-            var username = localStorage.getItem("user");
-            $('input:hidden').val(username);
-            $("#myaccount").submit();
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $("#admin-login").click(function () {
-            $("#adminmanage").submit();
-        });
-    });
-</script>
-
 <title> Alpha Movie Ticket Booking </title>
 </head>
 <body>
@@ -101,7 +48,7 @@
 
 
     </style>
-    
+
     <jsp:include page="navbar.jsp" />
 
 
@@ -167,6 +114,5 @@
         <br>
         <p class="text-center">Copyright © 2014 : Alpha Movie Ticket Booking. ||  CREDIT : © Bootstrap </p>
     </footer>
-
 </body>
 </html>

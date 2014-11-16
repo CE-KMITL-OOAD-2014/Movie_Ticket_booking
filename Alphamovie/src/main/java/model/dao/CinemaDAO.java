@@ -19,53 +19,52 @@ import org.hibernate.Session;
  * @author Art
  */
 public class CinemaDAO {
+
     public static List<Cinema> listCinema() {
-        List<Cinema> lst = null;
+        List<Cinema> lstcinema = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-                Query query = session.createQuery("from Cinema");
-            lst = query.list();
+            Query query = session.createQuery("from Cinema");
+            lstcinema = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstcinema;
     }
-    
+
     public static List<Movie> listMovieinCinema(int cinema) {
-        List<Showtime> lsts = ShowtimeDAO.listShowtime();
+        List<Showtime> lstshowtime = ShowtimeDAO.listShowtime();
         List<String> lstmname = new ArrayList<String>();
-        List<Movie> lstshow = new ArrayList<Movie>();
+        List<Movie> lstmovie = new ArrayList<Movie>();
         try {
-            for (Showtime s : lsts) {
-                if (!lstmname.contains(s.getMname()) && s.getId().getCinema() == cinema) {
-                    lstmname.add(s.getMname());
+            for (Showtime showtime : lstshowtime) {
+                if (!lstmname.contains(showtime.getMname()) && showtime.getId().getCinema() == cinema) {
+                    lstmname.add(showtime.getMname());
                 }
             }
-            for (String mname : lstmname){
+            for (String mname : lstmname) {
                 Movie movie = MovieDAO.getMoviebyName(mname);
-                lstshow.add(movie);
+                lstmovie.add(movie);
             }
-            return lstshow;
+            return lstmovie;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
-    
+
     public static List<Showtime> listShowtimeinCinema(int cinema) {
-        List<Showtime> lsts = ShowtimeDAO.listShowtime();
-        List<Showtime> lstshow = new ArrayList<Showtime>();
+        List<Showtime> lstshowtime = ShowtimeDAO.listShowtime();
+        List<Showtime> lstshowtimeincinema = new ArrayList<Showtime>();
         try {
-            for (Showtime s : lsts) {
-                if (s.getId().getCinema() == cinema) {
-                    lstshow.add(s);
+            for (Showtime showtime : lstshowtime) {
+                if (showtime.getId().getCinema() == cinema) {
+                    lstshowtimeincinema.add(showtime);
                 }
             }
-            return lstshow;
+            return lstshowtimeincinema;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 
@@ -91,7 +90,7 @@ public class CinemaDAO {
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
@@ -99,25 +98,26 @@ public class CinemaDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.getTransaction();
-            Cinema dcinema = (Cinema) session.load(Cinema.class, cinema.getCinema());
-            session.delete(dcinema);
+            Cinema deletecinema = (Cinema) session.load(Cinema.class, cinema.getCinema());
+            session.delete(deletecinema);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
     public static Cinema getCinemabyNum(int cinema) {
         try {
-            List<Cinema> lst = listCinema();
-            for(Cinema  c : lst){
-                if(c.getCinema()== (cinema))return c;
+            List<Cinema> lstcinema = listCinema();
+            for (Cinema cinemacheck : lstcinema) {
+                if (cinemacheck.getCinema() == (cinema)) {
+                    return cinemacheck;
+                }
             }
             return null;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 }

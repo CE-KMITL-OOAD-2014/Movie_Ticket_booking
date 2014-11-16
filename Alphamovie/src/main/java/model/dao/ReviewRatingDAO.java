@@ -19,31 +19,30 @@ import org.hibernate.Session;
 public class ReviewRatingDAO {
 
     public static List<ReviewRating> listReviewRating() {
-        List<ReviewRating> lst = null;
+        List<ReviewRating> lstreviewrating = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from ReviewRating");
-            lst = query.list();
+            lstreviewrating = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstreviewrating;
     }
 
     public static List<ReviewRating> listReviewRatingbyMovie(String mname) {
-        List<ReviewRating> lstr = listReviewRating();
-        List<ReviewRating> lstshow = new ArrayList<ReviewRating>();
+        List<ReviewRating> lstreviewrating = listReviewRating();
+        List<ReviewRating> lstreviewratinginmovie = new ArrayList<ReviewRating>();
         try {
-            for (ReviewRating r : lstr) {
-                if (r.getMname().equals(mname)) {
-                    lstshow.add(r);
+            for (ReviewRating reviewrating : lstreviewrating) {
+                if (reviewrating.getMname().equals(mname)) {
+                    lstreviewratinginmovie.add(reviewrating);
                 }
             }
-            return lstshow;
+            return lstreviewratinginmovie;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 
@@ -65,25 +64,25 @@ public class ReviewRatingDAO {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            ReviewRating dreviewrating = (ReviewRating) session.get(ReviewRating.class, reviewrating.getId());
-            session.delete(dreviewrating);
+            ReviewRating deletereviewrating = (ReviewRating) session.get(ReviewRating.class, reviewrating.getId());
+            session.delete(deletereviewrating);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 
     public static void deleteReviewRatingbyMovie(String mname) {
         try {
-            List<ReviewRating> lstr = listReviewRating();
-            for(ReviewRating r : lstr){
-                if(mname.equals(r.getMname())){
-                    deleteReviewRating(r);
+            List<ReviewRating> lstreviewrating = listReviewRating();
+            for (ReviewRating reviewrating : lstreviewrating) {
+                if (mname.equals(reviewrating.getMname())) {
+                    deleteReviewRating(reviewrating);
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

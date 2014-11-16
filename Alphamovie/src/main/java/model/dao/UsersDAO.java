@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model.dao;
-import java.io.Serializable;
+
 import java.util.List;
 import model.pojo.Users;
 import model.ulti.HibernateUtil;
@@ -18,19 +18,19 @@ import org.hibernate.Session;
 public class UsersDAO {
 
     public static List<Users> listUser() {
-        List<Users> lst = null;
+        List<Users> lstusers = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("from Users");
-            lst = query.list();
+            lstusers = query.list();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
-        return lst;
+        return lstusers;
     }
 
-    public static Users addorupdateUser(Users user){
+    public static Users addorupdateUser(Users user) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -43,20 +43,20 @@ public class UsersDAO {
             throw e;
         }
     }
-    
-    public static void deleteUser(Users user){
+
+    public static void deleteUser(Users user) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            Users duser = (Users) session.load(Users.class, user.getUsername());
-            session.delete(duser);
+            Users deleteuser = (Users) session.get(Users.class, user.getUsername());
+            session.delete(deleteuser);
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         }
     }
-    
+
     public static Users getUserbyName(String username) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -66,8 +66,7 @@ public class UsersDAO {
             session.close();
             return user;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 }

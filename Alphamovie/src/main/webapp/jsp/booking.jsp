@@ -57,13 +57,12 @@
                         </div>
                     </div>
                     <div class="col-sm-8 col-sm-offset-2">
-                        <form role="form" name ="input" action="selectseat" method="get">
+                        <form role="form" name ="input" action="selectseat" method="post">
                             <p><h4><b>Select seat type</b></h4></p>
-                            <p class="help-block">help comment</p><br><br>
                             <div class="normal-seat">
                                 <label class="col-sm-3 col-sm-offset-3"><b>Normal seat</b></label>
                                 <div class="col-sm-2">
-                                    <select class="form-control" for="select-nseat" name="seatnum">
+                                    <select class="form-control" id="select" for="select-nseat" name="seatnum">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -71,6 +70,12 @@
                                     </select>
                                 </div>
                                 <label class="col-sm-2"> 120 Baht</label>
+                            </div>
+                            <div>
+                                <br><br>
+                                <label class="col-sm-3 col-sm-offset-3"><b>Total Price</b></label>
+                                <label id="price" class="col-sm-2"></label>
+                                <label class="col-sm-2">Baht</label>
                             </div>
                             <br><br><br>
                             <br><br><br><br>
@@ -84,6 +89,11 @@
                 </div>           
             </div>
         </div>
-    </div>           
+    </div>
+    <script>
+        $("#select").on("click", function () {
+            $('#price').text($("#select").val() * 120);
+        });
+    </script>
 </body>
 </html>

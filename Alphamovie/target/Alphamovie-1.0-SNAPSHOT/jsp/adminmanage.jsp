@@ -8,6 +8,7 @@
 <title>ADMIN</title>
 
 </head>
+<jsp:include page="navbar.jsp" />
 <body>
     <style type="text/css">
         body{

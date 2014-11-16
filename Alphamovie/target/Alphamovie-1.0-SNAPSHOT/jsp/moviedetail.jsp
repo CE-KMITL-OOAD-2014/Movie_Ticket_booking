@@ -11,14 +11,14 @@
 
 <script>
     $(document).ready(function () {
-       if ((localStorage.getItem("session")) != null)
-            {
-                $("#baddreviewnrate").show();
-            }
-            else
-            {
-                $("#baddreviewnrate").hide();
-            }
+        if ((localStorage.getItem("session")) != null)
+        {
+            $("#baddreviewnrate").show();
+        }
+        else
+        {
+            $("#baddreviewnrate").hide();
+        }
     });
 </script>
 
@@ -59,33 +59,33 @@
                     <!--left table-->  
                     <div class="col-sm-8">
                         <div><p><h2><span class="glyphicon glyphicon-film"></span>  <b> <c:out value="${movie.getMname()}"/></b></h2></p></div><br>
-                            <div class="date-release">
-                                <label class="col-sm-3"><b>Release Date</b></label>
-                                <p> <c:out value="${movie.getReleasedate()}"/> </p>
-                            </div>
-                            <div class="type-movie">
-                                <label class="col-sm-3"><b>Film Categories</b></label>
-                                <p><c:out value="${movie.getType()}"/></p>
-                            </div>
-                            <div class="time-movie">
-                                <label class="col-sm-2"><b>Duration</b></label>
-                                <p><c:out value="${movie.getDuration()}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>min</b></p>
-                            </div>
-                            <br>
-                            <div class="m-synopsis">
-                                <label class="col-sm-2"><b>Synopsis</b></label><br>
-                                <p class="col-sm-offset-1"><c:out value="${movie.getSynopsis()}"/></p>
-                            </div>
-                            <br><br><br>
-                            <div class="review-rate">
-                                <!--  <label class="col-sm-2"><b>Rating</b></label>
-                                  <div class="progress">
-                                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                          <span class="sr-only">60% Complete (warning)</span>
-                                      </div>
-                                  </div>-->
+                        <div class="date-release">
+                            <label class="col-sm-3"><b>Release Date</b></label>
+                            <p> <c:out value="${movie.getReleasedate()}"/> </p>
+                        </div>
+                        <div class="type-movie">
+                            <label class="col-sm-3"><b>Film Categories</b></label>
+                            <p><c:out value="${movie.getType()}"/></p>
+                        </div>
+                        <div class="time-movie">
+                            <label class="col-sm-2"><b>Duration</b></label>
+                            <p><c:out value="${movie.getDuration()}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>min</b></p>
+                        </div>
+                        <br>
+                        <div class="m-synopsis">
+                            <label class="col-sm-2"><b>Synopsis</b></label><br>
+                            <p class="col-sm-offset-1"><c:out value="${movie.getSynopsis()}"/></p>
+                        </div>
+                        <br><br><br>
+                        <div class="review-rate">
+                            <!--  <label class="col-sm-2"><b>Rating</b></label>
+                              <div class="progress">
+                                  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                      <span class="sr-only">60% Complete (warning)</span>
+                                  </div>
+                              </div>-->
 
-                                <label class="col-sm-2"><b>Review</b></label>
+                            <label class="col-sm-2"><b>Review</b></label>
                             <c:forEach var="review" items="${review}">
                                 <br><br>
                                 <div class="review-show col-sm-offset-1">
@@ -141,8 +141,8 @@
                             </div>  
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                <label class="control-label" for="add-review">Add Review </label><br><br>
-                                <textarea class="form-control" rows="5" name="review"></textarea>
+                                    <label class="control-label" for="add-review">Add Review </label><br><br>
+                                    <textarea class="form-control" rows="5" name="review"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
