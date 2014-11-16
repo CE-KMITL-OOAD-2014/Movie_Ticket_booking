@@ -19,31 +19,31 @@
             <span class="col-sm-1"></span><h1>Add Showtime</h1>
         </div>
         <div class="wrap">
-        <div class="well col-sm-8 col-sm-offset-2">
-        <span class="col-sm-1"></span><h3>Showtime List</h3>
-        <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th class="col-sm-2 text-center"><h4><b>Cinema</b></h4></th>
-                        <th class="col-sm-4"><h4><b>MovieTitle</b></h4></th>
-                        <th><h4><b>Time</b></h4></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="showtime" items="${showtime}">
+            <div class="well col-sm-8 col-sm-offset-2">
+                <span class="col-sm-1"></span><h3>Showtime List</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-2 text-center"><h4><b>Cinema</b></h4></th>
+                    <th class="col-sm-4"><h4><b>MovieTitle</b></h4></th>
+                    <th><h4><b>Time</b></h4></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="showtime" items="${showtime}">
                             <tr class="mshowtime" id="mst1">
                                 <td><center><c:out value="${showtime.getId().getCinema()}"/></center></td>
-                            <td>
-                                <p><c:out value="${showtime.getMname()}"/></p>
-                            </td>
-                            <td>
-                                <p><c:out value="${showtime.getId().getTime()}"/></p>
-                            </td>
-                            </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-        </div>
+                        <td>
+                            <p><c:out value="${showtime.getMname()}"/></p>
+                        </td>
+                        <td>
+                            <p><c:out value="${showtime.getId().getTime()}"/></p>
+                        </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="wrap col-sm-offset-2 col-sm-8">
@@ -89,6 +89,6 @@
             </form>
         </div>
 
-        
+
     </body>
 </html>

@@ -6,7 +6,7 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/resources/js/jquery-2.1.1.min.js" />"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.js" />"></script>
-<title>Movie Detail</title>
+<title>Add Movie</title>
 </head>
 <body bgcolor="#ffffff">
     <style type="text/css">
