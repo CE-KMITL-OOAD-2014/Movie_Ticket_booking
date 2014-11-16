@@ -8,7 +8,6 @@
 <title>ADMIN</title>
 
 </head>
-<jsp:include page="navbar.jsp" />
 <body>
     <jsp:include page="navbar.jsp" />
     <div class="page-header">

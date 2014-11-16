@@ -90,7 +90,7 @@
                                 <br><br><br><br>
                                 <center><p>_________________________________________________________________________</p></center>
                                 <br>
-                                <span class="col-sm-1"></span>
+                                <span class="col-sm-3"></span>
                                 <center>
                                     <label class="col-sm-3"><b>Normal Seat</b></label>
                                     <label class="label label-danger col-sm-1"><h5> x </h5></label>
@@ -98,6 +98,13 @@
                                 <br><br>
                                 <center><p>_________________________________________________________________________</p></center>
                                 <br>
+                                <span class="col-sm-3"></span>
+                                <center>
+                                    <label class="col-sm-8">
+                                        <p class="col-sm-9">Choose for <c:out value="${seatnum}"/></p>
+                                    </label>
+                                </center>
+                                <br><br>
                                 <input type="hidden" name="username" value="" id="username">
                                 <input type="hidden" name="mname" value="<c:out value="${showtime.getMname()}"/>">
                                 <input type="hidden" name="cinema" value="<c:out value="${showtime.getId().getCinema()}"/>">

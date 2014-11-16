@@ -62,9 +62,7 @@
             $("#confirm-newpassword").keyup(checkPassMatch);
         });
     </script>
-    <div class="page-header">
 
-    </div>
     <div class="wrap">
         <div class="container">
             <div class="page-header">
@@ -191,7 +189,7 @@
                                         <center>
                                             <br>
                                             <form role="form" action="canclebooking" method="post" >
-                                                <input type="hidden" name="code" value="<c:out value="${code.getCode()}"/>">>
+                                                <input type="hidden" name="code" value="<c:out value="${code.getCode()}"/>">
                                                 <input type="hidden" name="username" value="<c:out value="${user.getUsername()}"/>">
                                                 <button type="submit" class="btn btn-danger"><b>Cancel Booking</b></button>
                                             </form>
@@ -209,5 +207,15 @@
                 </div>
             </div>
         </div>
+        <script>
+            function getdata() {
+                if (<c:out value="${code.getCode()}"/> !== null)
+                {
+                    alert("Your Code is : " + <c:out value="${code.getCode()}"/>);
+                }
+                else {
+                }
+            }
+        </script>
 </body>
 </html>
