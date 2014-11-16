@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="ShowtimeListUnitTest" time="0.078" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="ShowtimeListUnitTest" time="0.05" errors="0" skipped="0">
+>>>>>>> ef938ffbd7be2485d02513924ed7b055979bea10
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_25\jre\bin"/>
@@ -62,5 +66,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="ShowtimeListUnitTest" name="Test" time="0.015"/>
+=======
+  <testcase classname="ShowtimeListUnitTest" name="Test" time="0.003"/>
+>>>>>>> ef938ffbd7be2485d02513924ed7b055979bea10
 </testsuite>

@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ShowtimeListUnitTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 sec
+>>>>>>> ef938ffbd7be2485d02513924ed7b055979bea10

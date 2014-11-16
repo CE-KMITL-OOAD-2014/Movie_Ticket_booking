@@ -61,6 +61,10 @@
             $("#confirm-newpassword").keyup(checkPassMatch);
         });
     </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef938ffbd7be2485d02513924ed7b055979bea10
     <div class="wrap">
         <div class="container">
             <div class="page-header">
@@ -205,5 +209,15 @@
                 </div>
             </div>
         </div>
+        <script>
+            function getdata() {
+                if (<c:out value="${code.getCode()}"/> !== null)
+                {
+                    alert("Your Code is : " + <c:out value="${code.getCode()}"/>);
+                }
+                else {
+                }
+            }
+        </script>
 </body>
 </html>
