@@ -66,7 +66,7 @@ public class CodeDAO {
             session.close();
             return code;
         } catch (Exception e) {
-            throw e;
+            return null;
         }
     }
 

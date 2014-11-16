@@ -18,7 +18,7 @@
     <!--Content -->
 
     <div class="page-header">
-
+        
     </div>
     <style type="text/css">
         body{
@@ -44,7 +44,6 @@
             border-bottom-color: transparent;
         } 
     </style>
-
     <script>
         function checkPassMatch() {
             var newpassword = $("#input-newpassword").val();
@@ -62,9 +61,6 @@
             $("#confirm-newpassword").keyup(checkPassMatch);
         });
     </script>
-    <div class="page-header">
-
-    </div>
     <div class="wrap">
         <div class="container">
             <div class="page-header">
@@ -191,7 +187,7 @@
                                         <center>
                                             <br>
                                             <form role="form" action="canclebooking" method="post" >
-                                                <input type="hidden" name="code" value="<c:out value="${code.getCode()}"/>">>
+                                                <input type="hidden" name="code" value="<c:out value="${code.getCode()}"/>">
                                                 <input type="hidden" name="username" value="<c:out value="${user.getUsername()}"/>">
                                                 <button type="submit" class="btn btn-danger"><b>Cancel Booking</b></button>
                                             </form>
